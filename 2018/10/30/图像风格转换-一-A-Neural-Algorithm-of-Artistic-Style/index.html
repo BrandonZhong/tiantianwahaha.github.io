@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="100篇论文阅读,图像风格转换,">
 
 
 
@@ -79,17 +79,22 @@
 
 
 
-<meta name="description" content="个人博客">
-<meta name="keywords" content="个人博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="王同学的博客">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="论文地址：A Neural Algorithm of Artistic Styletensorflow代码实现：woodrush/neural-art-tf本文介绍Leon Gatys在2016年初大热的Style Transfer算法，发表于CVPR16   1. 概述首次提出，使用预训练好的VGG19网络，提取图像不同层级的特征，分别作为图像的风格特征和内容特征，以高斯噪声为初始输入图像，多次">
+<meta name="keywords" content="100篇论文阅读,图像风格转换">
+<meta property="og:type" content="article">
+<meta property="og:title" content="图像风格转换(一):A Neural Algorithm of Artistic Style">
+<meta property="og:url" content="http://yoursite.com/2018/10/30/图像风格转换-一-A-Neural-Algorithm-of-Artistic-Style/index.html">
 <meta property="og:site_name" content="王同学的博客">
-<meta property="og:description" content="个人博客">
+<meta property="og:description" content="论文地址：A Neural Algorithm of Artistic Styletensorflow代码实现：woodrush/neural-art-tf本文介绍Leon Gatys在2016年初大热的Style Transfer算法，发表于CVPR16   1. 概述首次提出，使用预训练好的VGG19网络，提取图像不同层级的特征，分别作为图像的风格特征和内容特征，以高斯噪声为初始输入图像，多次">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2018/10/30/图像风格转换-一-A-Neural-Algorithm-of-Artistic-Style/VGG19.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/10/30/图像风格转换-一-A-Neural-Algorithm-of-Artistic-Style/example1.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/10/30/图像风格转换-一-A-Neural-Algorithm-of-Artistic-Style/example2.jpg">
+<meta property="og:updated_time" content="2018-10-30T09:52:57.627Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="王同学的博客">
-<meta name="twitter:description" content="个人博客">
+<meta name="twitter:title" content="图像风格转换(一):A Neural Algorithm of Artistic Style">
+<meta name="twitter:description" content="论文地址：A Neural Algorithm of Artistic Styletensorflow代码实现：woodrush/neural-art-tf本文介绍Leon Gatys在2016年初大热的Style Transfer算法，发表于CVPR16   1. 概述首次提出，使用预训练好的VGG19网络，提取图像不同层级的特征，分别作为图像的风格特征和内容特征，以高斯噪声为初始输入图像，多次">
+<meta name="twitter:image" content="http://yoursite.com/2018/10/30/图像风格转换-一-A-Neural-Algorithm-of-Artistic-Style/VGG19.jpg">
 
 
 
@@ -119,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/">
+  <link rel="canonical" href="http://yoursite.com/2018/10/30/图像风格转换-一-A-Neural-Algorithm-of-Artistic-Style/">
 
 
 
 
 
-  <title>王同学的博客</title>
+  <title>图像风格转换(一):A Neural Algorithm of Artistic Style | 王同学的博客</title>
   
 
 
@@ -144,8 +149,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -228,9 +232,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -260,9 +264,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/30/图像风格转换-一-A-Neural-Algorithm-of-Artistic-Style/" itemprop="url">图像风格转换(一):A Neural Algorithm of Artistic Style</a></h1>
+          <h1 class="post-title" itemprop="name headline">图像风格转换(一):A Neural Algorithm of Artistic Style</h1>
         
 
         <div class="post-meta">
@@ -312,9 +314,7 @@
       
 
       
-        
-          
-            <p>论文地址：<a href="http://cn.arxiv.org/abs/1508.06576" target="_blank" rel="noopener">A Neural Algorithm of Artistic Style</a><br>tensorflow代码实现：<a href="https://github.com/woodrush/neural-art-tf" target="_blank" rel="noopener">woodrush/neural-art-tf</a><br>本文介绍Leon Gatys在2016年初大热的Style Transfer算法，发表于CVPR16  </p>
+        <p>论文地址：<a href="http://cn.arxiv.org/abs/1508.06576" target="_blank" rel="noopener">A Neural Algorithm of Artistic Style</a><br>tensorflow代码实现：<a href="https://github.com/woodrush/neural-art-tf" target="_blank" rel="noopener">woodrush/neural-art-tf</a><br>本文介绍Leon Gatys在2016年初大热的Style Transfer算法，发表于CVPR16  </p>
 <h2 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h2><p>首次提出，使用预训练好的VGG19网络，提取图像不同层级的特征，分别作为图像的风格特征和内容特征，以高斯噪声为初始输入图像，多次执行前向/后向迭代使用L-BFGS方法优化，保持CNN的参数不变，根据风格损失和内容损失，反向传播更新图片。<br>保留内容图片的内容和全局布局的同时，由风格图片提供颜色和局部结构信息。</p>
 <h2 id="2-VGG19"><a href="#2-VGG19" class="headerlink" title="2. VGG19"></a>2. VGG19</h2><p><img src="/2018/10/30/图像风格转换-一-A-Neural-Algorithm-of-Artistic-Style/VGG19.jpg" alt="">  </p>
 <p>如图所示为VGG19的网络结构，16个convolutional和5个pooling layer，本文不使用后面的全连接层。使用average pooling代替max pooling，得到更好的视觉效果。<br><img src="/2018/10/30/图像风格转换-一-A-Neural-Algorithm-of-Artistic-Style/example1.jpg" alt=""><br>如图所示，输入内容图片和风格图片，在abcde五层处分别重构风格图片和内容图片。<br><strong>内容重构</strong><br>(a)conv1_1，(b) conv2_1，(c)conv3_1，(d)conv4_1，(e)conv5_1<br>可以看出，在高层(d，e)，细节像素信息丢失，但内容保留，所以内容特征一般用高层。</p>
@@ -334,8 +334,6 @@
 </ol>
 <h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>最近对风格转换的文章比较感兴趣，看了一篇NVIDA最新的，然后有些地方不明白，就循着参考文献看过来，这片是最经典最早的一篇，后续看完其他几篇，也会做个笔记，坚持每周至少精读一篇文章并做个笔记。</p>
 
-          
-        
       
     </div>
     
@@ -350,142 +348,38 @@
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/24/hello-world/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="王同学">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="王同学的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/24/hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-24T14:39:50+08:00">
-                2018-10-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-
+            <a href="/tags/100篇论文阅读/" rel="tag"># 100篇论文阅读</a>
           
-            
+            <a href="/tags/图像风格转换/" rel="tag"># 图像风格转换</a>
           
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
       
 
       
       
-        <div class="post-eof"></div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/24/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
       
     </footer>
   </div>
@@ -495,10 +389,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -506,6 +401,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -526,8 +425,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -578,6 +486,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-概述"><span class="nav-number">1.</span> <span class="nav-text">1. 概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-VGG19"><span class="nav-number">2.</span> <span class="nav-text">2. VGG19</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-内容损失"><span class="nav-number">3.</span> <span class="nav-text">3. 内容损失</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-风格损失"><span class="nav-number">4.</span> <span class="nav-text">4. 风格损失</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-总损失"><span class="nav-number">5.</span> <span class="nav-text">5. 总损失</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后记"><span class="nav-number">7.</span> <span class="nav-text">后记</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -711,6 +635,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
