@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="图像风格转换,">
+  <meta name="keywords" content="cs231n,">
 
 
 
@@ -79,22 +79,21 @@
 
 
 
-<meta name="description" content="论文地址：A Neural Algorithm of Artistic Styletensorflow代码实现：woodrush/neural-art-tf本文介绍Leon Gatys在2016年初大热的Style Transfer算法，发表于CVPR16   1. 概述首次提出，使用预训练好的VGG19网络，提取图像不同层级的特征，分别作为图像的风格特征和内容特征，以高斯噪声为初始输入图像，多次">
-<meta name="keywords" content="图像风格转换">
+<meta name="description" content="网易云视频：https://study.163.com/course/courseLearn.htm?courseId=1003223001#/learn/video?lessonId=1003705493&amp;amp;courseId=1003223001 课件原文：http://cs231n.github.io/classification/ 课件翻译：https://zhuanlan.zhihu">
+<meta name="keywords" content="cs231n">
 <meta property="og:type" content="article">
-<meta property="og:title" content="图像风格转换(一):A Neural Algorithm of Artistic Style">
-<meta property="og:url" content="http://yoursite.com/2018/10/30/风格转换-一-：A-Neural-Algorithm-of-Artistic-Style/index.html">
+<meta property="og:title" content="cs231n Lecture2 Image Classification">
+<meta property="og:url" content="http://yoursite.com/2018/11/07/cs231n-Lecture2-Image-Classification/index.html">
 <meta property="og:site_name" content="Voila">
-<meta property="og:description" content="论文地址：A Neural Algorithm of Artistic Styletensorflow代码实现：woodrush/neural-art-tf本文介绍Leon Gatys在2016年初大热的Style Transfer算法，发表于CVPR16   1. 概述首次提出，使用预训练好的VGG19网络，提取图像不同层级的特征，分别作为图像的风格特征和内容特征，以高斯噪声为初始输入图像，多次">
+<meta property="og:description" content="网易云视频：https://study.163.com/course/courseLearn.htm?courseId=1003223001#/learn/video?lessonId=1003705493&amp;amp;courseId=1003223001 课件原文：http://cs231n.github.io/classification/ 课件翻译：https://zhuanlan.zhihu">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2018/10/30/风格转换-一-：A-Neural-Algorithm-of-Artistic-Style/VGG19.jpg">
-<meta property="og:image" content="http://yoursite.com/2018/10/30/风格转换-一-：A-Neural-Algorithm-of-Artistic-Style/example1.jpg">
-<meta property="og:image" content="http://yoursite.com/2018/10/30/风格转换-一-：A-Neural-Algorithm-of-Artistic-Style/example2.jpg">
-<meta property="og:updated_time" content="2018-10-31T06:14:24.609Z">
+<meta property="og:image" content="http://yoursite.com/cs231n-Lecture2-Image-Classification/1.png">
+<meta property="og:image" content="http://yoursite.com/cs231n-Lecture2-Image-Classification/L2.png">
+<meta property="og:updated_time" content="2018-11-07T07:03:18.651Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="图像风格转换(一):A Neural Algorithm of Artistic Style">
-<meta name="twitter:description" content="论文地址：A Neural Algorithm of Artistic Styletensorflow代码实现：woodrush/neural-art-tf本文介绍Leon Gatys在2016年初大热的Style Transfer算法，发表于CVPR16   1. 概述首次提出，使用预训练好的VGG19网络，提取图像不同层级的特征，分别作为图像的风格特征和内容特征，以高斯噪声为初始输入图像，多次">
-<meta name="twitter:image" content="http://yoursite.com/2018/10/30/风格转换-一-：A-Neural-Algorithm-of-Artistic-Style/VGG19.jpg">
+<meta name="twitter:title" content="cs231n Lecture2 Image Classification">
+<meta name="twitter:description" content="网易云视频：https://study.163.com/course/courseLearn.htm?courseId=1003223001#/learn/video?lessonId=1003705493&amp;amp;courseId=1003223001 课件原文：http://cs231n.github.io/classification/ 课件翻译：https://zhuanlan.zhihu">
+<meta name="twitter:image" content="http://yoursite.com/cs231n-Lecture2-Image-Classification/1.png">
 
 
 
@@ -124,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/10/30/风格转换-一-：A-Neural-Algorithm-of-Artistic-Style/">
+  <link rel="canonical" href="http://yoursite.com/2018/11/07/cs231n-Lecture2-Image-Classification/">
 
 
 
 
 
-  <title>图像风格转换(一):A Neural Algorithm of Artistic Style | Voila</title>
+  <title>cs231n Lecture2 Image Classification | Voila</title>
   
 
 
@@ -257,7 +256,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/30/风格转换-一-：A-Neural-Algorithm-of-Artistic-Style/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/07/cs231n-Lecture2-Image-Classification/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mr. Wang">
@@ -274,7 +273,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">图像风格转换(一):A Neural Algorithm of Artistic Style</h1>
+          <h1 class="post-title" itemprop="name headline">cs231n Lecture2 Image Classification</h1>
         
 
         <div class="post-meta">
@@ -286,8 +285,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-30T15:43:15+08:00">
-                2018-10-30
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-07T14:13:10+08:00">
+                2018-11-07
               </time>
             
 
@@ -309,8 +308,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/百篇论文阅读计划/" itemprop="url" rel="index">
-                    <span itemprop="name">百篇论文阅读计划</span>
+                  <a href="/categories/cs231n/" itemprop="url" rel="index">
+                    <span itemprop="name">cs231n</span>
                   </a>
                 </span>
 
@@ -346,25 +345,25 @@
       
 
       
-        <p>论文地址：<a href="http://cn.arxiv.org/abs/1508.06576" target="_blank" rel="noopener">A Neural Algorithm of Artistic Style</a><br>tensorflow代码实现：<a href="https://github.com/woodrush/neural-art-tf" target="_blank" rel="noopener">woodrush/neural-art-tf</a><br>本文介绍Leon Gatys在2016年初大热的Style Transfer算法，发表于CVPR16  </p>
-<h2 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h2><p>首次提出，使用预训练好的VGG19网络，提取图像不同层级的特征，分别作为图像的风格特征和内容特征，以高斯噪声为初始输入图像，多次执行前向/后向迭代使用L-BFGS方法优化，保持CNN的参数不变，根据风格损失和内容损失，反向传播更新图片。<br>保留内容图片的内容和全局布局的同时，由风格图片提供颜色和局部结构信息。</p>
-<h2 id="2-VGG19"><a href="#2-VGG19" class="headerlink" title="2. VGG19"></a>2. VGG19</h2><p><img src="/2018/10/30/风格转换-一-：A-Neural-Algorithm-of-Artistic-Style/VGG19.jpg" alt="">  </p>
-<p>如图所示为VGG19的网络结构，16个convolutional和5个pooling layer，本文不使用后面的全连接层。使用average pooling代替max pooling，得到更好的视觉效果。<br><img src="/2018/10/30/风格转换-一-：A-Neural-Algorithm-of-Artistic-Style/example1.jpg" alt=""><br>如图所示，输入内容图片和风格图片，在abcde五层处分别重构风格图片和内容图片。<br><strong>内容重构</strong><br>(a)conv1_1，(b) conv2_1，(c)conv3_1，(d)conv4_1，(e)conv5_1<br>可以看出，在高层(d，e)，细节像素信息丢失，但内容保留，所以内容特征一般用高层。</p>
-<p><strong>风格重构</strong><br>(a)conv1_1，(b)conv1_1， conv2_1，(c)conv1_1， conv2_1，conv3_1，(d)conv1_1， conv2_1，conv3_1，conv4_1，(e)conv1_1， conv2_1，conv3_1，conv4_1，conv5_1<br>感受野大小和特征复杂程度随着网络层级增大，当风格表示匹配到网络的更高层时，局部图像结构在越来越大的范围内匹配，从而导致更平滑和更连接的视觉效果<br><strong>所以在最终的实验里</strong><br>内容层 - conv4_2<br>风格层 - conv1_1, conv2_1, conv3_1, conv4_1, conv5_1</p>
-<h2 id="3-内容损失"><a href="#3-内容损失" class="headerlink" title="3. 内容损失"></a>3. 内容损失</h2><p>输入$x$，在网络中某一层的输出为，shape可以表示为 $$ N_{l}\times H \times W $$ ，reshape为 $N_{l}\times M_{l}$，写作矩阵$F^{l}$。其中$N_{l} $表示该层卷积核的个数，$ M_{l}$ 是该层feature的长度 $H $和宽度 $W$ 的乘积。$ F_{ij}^{l} $表示$ l $层第$ i $个filter的位置$ j$ 。<br>内容损失就是原始图像和生成图片，经过VGG19网络，在这一层的feature的SSE(和方差，误差平方和)<br>$$<br>L_{content} = \frac{1}{2} \sum_{i,j}({F_{ij}^{l}-P_{ij}^{l}})^{2}<br>$$</p>
-<h2 id="4-风格损失"><a href="#4-风格损失" class="headerlink" title="4. 风格损失"></a>4. 风格损失</h2><p>先引入Gram matrix $G^{l}\in R^{ N_{l} \times N_{l}}$,由矩阵$F^{l}$和他转置矩阵的相乘得到。$ G_{ij}^{l}$ 是第$ l $层的feature$ i $向量和feature$ j $向量的内积。可以认为是一个未零均值化的协方差矩阵，捕获的是哪些feature是趋于一起激活的信息(如果无法理解为什么内积=协方差，可以看参考里的2和3两篇博文)。  </p>
-<p>$$<br>E_{l} = \frac{1}{4N_{l}^{2}m_{l}^{2}}\sum_{i,j}{(G_{ij}^{l}-F_{ij}^{l})^{2}}<br>$$</p>
-<p>$$<br>L_{style} = \sum_{l=0}^{L}{w_{l}E_{l}}<br>$$</p>
-<p>5层的损失相加，乘以对应权重，通常为$ \frac{1}{5}  $</p>
-<p>当风格图片和内容图片size不一样，这个风格损失函数也可以用，因为Gram矩阵shape一样</p>
-<h2 id="5-总损失"><a href="#5-总损失" class="headerlink" title="5. 总损失"></a>5. 总损失</h2><p>$$<br>L_{total} = \alpha L_{content} + \beta L_{style}<br>$$</p>
-<p>$\alpha$和$\beta$ 表示权重，不可能内容和风格完美匹配，需要调节。文章中使用 $\frac{\alpha}{\beta} = 10^{-3}$ (B,C,D)更加注重原图，或者$10^{-4} $(E,F)，更加艺术化。<br><img src="/2018/10/30/风格转换-一-：A-Neural-Algorithm-of-Artistic-Style/example2.jpg" alt="">  </p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
-<li><a href="https://blog.csdn.net/shenxiaolu1984/article/details/52090012" target="_blank" rel="noopener">【深度学习】A neural algorithm of artistic style算法详解</a></li>
-<li><a href="https://blog.csdn.net/jesszen/article/details/80970485" target="_blank" rel="noopener">【统计学习1】方差、协方差、相关系数与向量内积 - CSDN博客</a></li>
-<li><a href="http://blog.codinglabs.org/articles/pca-tutorial.html" target="_blank" rel="noopener">CodingLabs - PCA的数学原理</a> </li>
-</ol>
-<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>最近对风格转换的文章比较感兴趣，看了一篇NVIDA最新的，然后有些地方不明白，就循着参考文献看过来，这片是最经典最早的一篇，后续看完其他几篇，也会做个笔记，坚持每周至少精读一篇文章并做个笔记。</p>
+        <p>网易云视频：<a href="https://study.163.com/course/courseLearn.htm?courseId=1003223001#/learn/video?lessonId=1003705493&amp;courseId=1003223001" target="_blank" rel="noopener">https://study.163.com/course/courseLearn.htm?courseId=1003223001#/learn/video?lessonId=1003705493&amp;courseId=1003223001</a></p>
+<p>课件原文：<a href="http://cs231n.github.io/classification/" target="_blank" rel="noopener">http://cs231n.github.io/classification/</a></p>
+<p>课件翻译：<a href="https://zhuanlan.zhihu.com/p/20894041?refer=intelligentunit" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/20894041?refer=intelligentunit</a></p>
+<p><strong>图像分类</strong></p>
+<p>面对的困难挑战是视角变化，大小变化，形变，遮挡，光照条件，背景干扰，类内差异。</p>
+<h2 id="Nearest-Neighbor分类器"><a href="#Nearest-Neighbor分类器" class="headerlink" title="Nearest Neighbor分类器"></a>Nearest Neighbor分类器</h2><p>在<strong>CIFAR-10</strong>数据集上，总共6W张图片，有10类。32×32×3</p>
+<p>5W做训练集，1W做测试集。每张测试图片属于哪一类，就是直接计算两张图片的所有像素的差值，一个测试图片和5W个训练集图片分别比较，最后哪个差值小就是和这个图片一类。</p>
+<p>L1 (Manhattan)distance</p>
+<p>L2 (Euclidean)distance</p>
+<p>你会发现准确率能达到38.6%。这比随机猜测的10%要好，但是比人类识别的水平（据研究推测是94%）和卷积神经网络能达到的95%还是差多了</p>
+<h2 id="k-Nearest-Neighbor-Classifier-KNN"><a href="#k-Nearest-Neighbor-Classifier-KNN" class="headerlink" title="k - Nearest Neighbor Classifier(KNN)"></a>k - Nearest Neighbor Classifier(KNN)</h2><p>不找最近的一个图片的标签作为记过，找K个图片，然后投票决定图片标签</p>
+<h2 id="用于超参数调优的验证集"><a href="#用于超参数调优的验证集" class="headerlink" title="用于超参数调优的验证集"></a>用于超参数调优的验证集</h2><p><img src="/cs231n-Lecture2-Image-Classification/1.png" alt="1"></p>
+<p>这里有K和which distance 两个超参数需要确定，<strong>不要用你的test data来调优找到超参数</strong></p>
+<p>在训练集中，使用交叉循环验证，分成5份，用4份做训练集，一份做验证集</p>
+<p>一旦找到最优的超参数，就让算法以该参数在测试集跑且只跑一次，并根据测试结果评价算法。</p>
+<p>对最优的超参数做记录。记录最优参数后，是否应该让使用最优参数的算法在完整的训练集上运行并再次训练呢？因为如果把验证集重新放回到训练集中（自然训练集的数据量就又变大了），有可能最优参数又会有所变化。在实践中，<strong>不要这样做</strong>。千万不要在最终的分类器中使用验证集数据，这样做会破坏对于最优参数的估计。<strong>直接使用测试集来测试用最优参数设置好的最优模型</strong>，得到测试集数据的分类准确率，并以此作为你的kNN分类器在该数据上的性能表现。</p>
+<h2 id="Nearest-Neighbor分类器的优劣"><a href="#Nearest-Neighbor分类器的优劣" class="headerlink" title="Nearest Neighbor分类器的优劣"></a>Nearest Neighbor分类器的优劣</h2><p>耗时，图像是高维的。且用L1和L2并不准确。</p>
+<p>仅仅使用L1和L2范数来进行像素比较是不够的，图像更多的是按照背景和颜色被分类，而不是语义主体分身。</p>
+<p><img src="/cs231n-Lecture2-Image-Classification/L2.png" alt="2"></p>
 
       
     </div>
@@ -382,7 +381,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/图像风格转换/" rel="tag"># 图像风格转换</a>
+            <a href="/tags/cs231n/" rel="tag"># cs231n</a>
           
         </div>
       
@@ -395,8 +394,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/10/24/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/2018/10/31/风格转换-二-：Perceptual-Losses-for-Real-Time-Style-Transfer-and-Super-Resolution/" rel="next" title="风格转换(二)：Perceptual Losses for Real-Time Style Transfer and Super-Resolution">
+                <i class="fa fa-chevron-left"></i> 风格转换(二)：Perceptual Losses for Real-Time Style Transfer and Super-Resolution
               </a>
             
           </div>
@@ -404,10 +403,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/10/31/风格转换-二-：Perceptual-Losses-for-Real-Time-Style-Transfer-and-Super-Resolution/" rel="prev" title="风格转换(二)：Perceptual Losses for Real-Time Style Transfer and Super-Resolution">
-                风格转换(二)：Perceptual Losses for Real-Time Style Transfer and Super-Resolution <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -539,7 +534,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-概述"><span class="nav-number">1.</span> <span class="nav-text">1. 概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-VGG19"><span class="nav-number">2.</span> <span class="nav-text">2. VGG19</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-内容损失"><span class="nav-number">3.</span> <span class="nav-text">3. 内容损失</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-风格损失"><span class="nav-number">4.</span> <span class="nav-text">4. 风格损失</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-总损失"><span class="nav-number">5.</span> <span class="nav-text">5. 总损失</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后记"><span class="nav-number">7.</span> <span class="nav-text">后记</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Nearest-Neighbor分类器"><span class="nav-number">1.</span> <span class="nav-text">Nearest Neighbor分类器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#k-Nearest-Neighbor-Classifier-KNN"><span class="nav-number">2.</span> <span class="nav-text">k - Nearest Neighbor Classifier(KNN)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用于超参数调优的验证集"><span class="nav-number">3.</span> <span class="nav-text">用于超参数调优的验证集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nearest-Neighbor分类器的优劣"><span class="nav-number">4.</span> <span class="nav-text">Nearest Neighbor分类器的优劣</span></a></li></ol></div>
             
 
           </div>
