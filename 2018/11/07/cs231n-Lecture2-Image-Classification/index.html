@@ -79,21 +79,21 @@
 
 
 
-<meta name="description" content="网易云视频：https://study.163.com/course/courseLearn.htm?courseId=1003223001#/learn/video?lessonId=1003705493&amp;amp;courseId=1003223001 课件原文：http://cs231n.github.io/classification/ 课件翻译：https://zhuanlan.zhihu">
+<meta name="description" content="图像分类 面对的困难挑战是视角变化，大小变化，形变，遮挡，光照条件，背景干扰，类内差异。 Nearest Neighbor分类器在CIFAR-10数据集上，总共6W张图片，有10类。32×32×3 5W做训练集，1W做测试集。每张测试图片属于哪一类，就是直接计算两张图片的所有像素的差值，一个测试图片和5W个训练集图片分别比较，最后哪个差值小就是和这个图片一类。 L1 (Manhattan)dist">
 <meta name="keywords" content="cs231n">
 <meta property="og:type" content="article">
 <meta property="og:title" content="cs231n Lecture2 Image Classification">
 <meta property="og:url" content="http://yoursite.com/2018/11/07/cs231n-Lecture2-Image-Classification/index.html">
 <meta property="og:site_name" content="Voila">
-<meta property="og:description" content="网易云视频：https://study.163.com/course/courseLearn.htm?courseId=1003223001#/learn/video?lessonId=1003705493&amp;amp;courseId=1003223001 课件原文：http://cs231n.github.io/classification/ 课件翻译：https://zhuanlan.zhihu">
+<meta property="og:description" content="图像分类 面对的困难挑战是视角变化，大小变化，形变，遮挡，光照条件，背景干扰，类内差异。 Nearest Neighbor分类器在CIFAR-10数据集上，总共6W张图片，有10类。32×32×3 5W做训练集，1W做测试集。每张测试图片属于哪一类，就是直接计算两张图片的所有像素的差值，一个测试图片和5W个训练集图片分别比较，最后哪个差值小就是和这个图片一类。 L1 (Manhattan)dist">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/cs231n-Lecture2-Image-Classification/1.png">
-<meta property="og:image" content="http://yoursite.com/cs231n-Lecture2-Image-Classification/L2.png">
-<meta property="og:updated_time" content="2018-11-07T07:03:18.651Z">
+<meta property="og:image" content="http://yoursite.com/2018/11/07/cs231n-Lecture2-Image-Classification/1.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/07/cs231n-Lecture2-Image-Classification/L2.png">
+<meta property="og:updated_time" content="2018-11-07T07:08:57.977Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="cs231n Lecture2 Image Classification">
-<meta name="twitter:description" content="网易云视频：https://study.163.com/course/courseLearn.htm?courseId=1003223001#/learn/video?lessonId=1003705493&amp;amp;courseId=1003223001 课件原文：http://cs231n.github.io/classification/ 课件翻译：https://zhuanlan.zhihu">
-<meta name="twitter:image" content="http://yoursite.com/cs231n-Lecture2-Image-Classification/1.png">
+<meta name="twitter:description" content="图像分类 面对的困难挑战是视角变化，大小变化，形变，遮挡，光照条件，背景干扰，类内差异。 Nearest Neighbor分类器在CIFAR-10数据集上，总共6W张图片，有10类。32×32×3 5W做训练集，1W做测试集。每张测试图片属于哪一类，就是直接计算两张图片的所有像素的差值，一个测试图片和5W个训练集图片分别比较，最后哪个差值小就是和这个图片一类。 L1 (Manhattan)dist">
+<meta name="twitter:image" content="http://yoursite.com/2018/11/07/cs231n-Lecture2-Image-Classification/1.png">
 
 
 
@@ -345,10 +345,7 @@
       
 
       
-        <p>网易云视频：<a href="https://study.163.com/course/courseLearn.htm?courseId=1003223001#/learn/video?lessonId=1003705493&amp;courseId=1003223001" target="_blank" rel="noopener">https://study.163.com/course/courseLearn.htm?courseId=1003223001#/learn/video?lessonId=1003705493&amp;courseId=1003223001</a></p>
-<p>课件原文：<a href="http://cs231n.github.io/classification/" target="_blank" rel="noopener">http://cs231n.github.io/classification/</a></p>
-<p>课件翻译：<a href="https://zhuanlan.zhihu.com/p/20894041?refer=intelligentunit" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/20894041?refer=intelligentunit</a></p>
-<p><strong>图像分类</strong></p>
+        <p><strong>图像分类</strong></p>
 <p>面对的困难挑战是视角变化，大小变化，形变，遮挡，光照条件，背景干扰，类内差异。</p>
 <h2 id="Nearest-Neighbor分类器"><a href="#Nearest-Neighbor分类器" class="headerlink" title="Nearest Neighbor分类器"></a>Nearest Neighbor分类器</h2><p>在<strong>CIFAR-10</strong>数据集上，总共6W张图片，有10类。32×32×3</p>
 <p>5W做训练集，1W做测试集。每张测试图片属于哪一类，就是直接计算两张图片的所有像素的差值，一个测试图片和5W个训练集图片分别比较，最后哪个差值小就是和这个图片一类。</p>
@@ -356,14 +353,18 @@
 <p>L2 (Euclidean)distance</p>
 <p>你会发现准确率能达到38.6%。这比随机猜测的10%要好，但是比人类识别的水平（据研究推测是94%）和卷积神经网络能达到的95%还是差多了</p>
 <h2 id="k-Nearest-Neighbor-Classifier-KNN"><a href="#k-Nearest-Neighbor-Classifier-KNN" class="headerlink" title="k - Nearest Neighbor Classifier(KNN)"></a>k - Nearest Neighbor Classifier(KNN)</h2><p>不找最近的一个图片的标签作为记过，找K个图片，然后投票决定图片标签</p>
-<h2 id="用于超参数调优的验证集"><a href="#用于超参数调优的验证集" class="headerlink" title="用于超参数调优的验证集"></a>用于超参数调优的验证集</h2><p><img src="/cs231n-Lecture2-Image-Classification/1.png" alt="1"></p>
+<h2 id="用于超参数调优的验证集"><a href="#用于超参数调优的验证集" class="headerlink" title="用于超参数调优的验证集"></a>用于超参数调优的验证集</h2><p><img src="/2018/11/07/cs231n-Lecture2-Image-Classification/1.png" alt="1"></p>
 <p>这里有K和which distance 两个超参数需要确定，<strong>不要用你的test data来调优找到超参数</strong></p>
 <p>在训练集中，使用交叉循环验证，分成5份，用4份做训练集，一份做验证集</p>
 <p>一旦找到最优的超参数，就让算法以该参数在测试集跑且只跑一次，并根据测试结果评价算法。</p>
 <p>对最优的超参数做记录。记录最优参数后，是否应该让使用最优参数的算法在完整的训练集上运行并再次训练呢？因为如果把验证集重新放回到训练集中（自然训练集的数据量就又变大了），有可能最优参数又会有所变化。在实践中，<strong>不要这样做</strong>。千万不要在最终的分类器中使用验证集数据，这样做会破坏对于最优参数的估计。<strong>直接使用测试集来测试用最优参数设置好的最优模型</strong>，得到测试集数据的分类准确率，并以此作为你的kNN分类器在该数据上的性能表现。</p>
 <h2 id="Nearest-Neighbor分类器的优劣"><a href="#Nearest-Neighbor分类器的优劣" class="headerlink" title="Nearest Neighbor分类器的优劣"></a>Nearest Neighbor分类器的优劣</h2><p>耗时，图像是高维的。且用L1和L2并不准确。</p>
 <p>仅仅使用L1和L2范数来进行像素比较是不够的，图像更多的是按照背景和颜色被分类，而不是语义主体分身。</p>
-<p><img src="/cs231n-Lecture2-Image-Classification/L2.png" alt="2"></p>
+<p><img src="/2018/11/07/cs231n-Lecture2-Image-Classification/L2.png" alt="2"></p>
+<p>网易云视频：</p>
+<p><a href="https://study.163.com/course/courseLearn.htm?courseId=1003223001#/learn/video?lessonId=1003705493&amp;courseId=1003223001" target="_blank" rel="noopener">https://study.163.com/course/courseLearn.htm?courseId=1003223001#/learn/video?lessonId=1003705493&amp;courseId=1003223001</a></p>
+<p>课件原文：<a href="http://cs231n.github.io/classification/" target="_blank" rel="noopener">http://cs231n.github.io/classification/</a></p>
+<p>课件翻译：<a href="https://zhuanlan.zhihu.com/p/20894041?refer=intelligentunit" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/20894041?refer=intelligentunit</a></p>
 
       
     </div>
