@@ -1,0 +1,91 @@
+<!DOCTYPE html><html lang="en"><head><meta name="generator" content="Hexo 3.8.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="whiup's blogs"><title>cs231n Lecture 10 Recurrent Neural Networks | Whiup</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/8.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create','UA-132074008-1','auto');ga('send','pageview');
+</script></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">cs231n Lecture 10 Recurrent Neural Networks</h1><a id="logo" href="/.">Whiup</a><p class="description"></p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> Home</i></a><a href="/archives/"><i class="fa fa-archive"> Archive</i></a><a href="/about/"><i class="fa fa-user"> About</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">cs231n Lecture 10 Recurrent Neural Networks</h1><div class="post-meta">Dec 24, 2018<span> | </span><span class="category"><a href="/categories/cs231n/">cs231n</a></span></div><a class="disqus-comment-count" href="/2018/12/24/cs231n-Lecture-10-Recurrent-Neural-Networks.html/#vcomment"><span class="valine-comment-count" data-xid="/2018/12/24/cs231n-Lecture-10-Recurrent-Neural-Networks.html/"></span><span> Comment</span></a><div class="post-content"><ul>
+<li>RNN</li>
+<li>Language modeling(RNN) </li>
+<li>Image captioning, Soft attention, visual question answering(CNN+RNN)</li>
+<li>LSTM, GRU </li>
+</ul>
+<h2 id="1-RNN"><a href="#1-RNN" class="headerlink" title="1.RNN"></a>1.RNN</h2><p>循环神经网络:</p>
+<ul>
+<li>$x_t$表示t时刻的输入</li>
+<li>$h_{t-1}$表示上一时刻的状态</li>
+<li>$f_w$是权重，<strong><code>在每一个时间步中使用的W</code></strong>(Notice: the same function and the same set<br>of parameters are used at every time step.)</li>
+<li>$h_t$是当前的最新状态</li>
+<li>$y$是输出</li>
+</ul>
+<p><img src="/2018/12/24/cs231n-Lecture-10-Recurrent-Neural-Networks.html/1.png" alt=""></p>
+<p>RNN序列示例</p>
+<p><img src="/2018/12/24/cs231n-Lecture-10-Recurrent-Neural-Networks.html/2.png" alt=""></p>
+<p>可以用来做自然语言翻译，序列到序列，多到一 + 一到多的encode和decode模型。</p>
+<p><img src="/2018/12/24/cs231n-Lecture-10-Recurrent-Neural-Networks.html/3.png" alt=""></p>
+<h2 id="2-Language-modeling-RNN"><a href="#2-Language-modeling-RNN" class="headerlink" title="2.Language modeling(RNN)"></a>2.Language modeling(RNN)</h2><p>使用RNN的一个简单字符集语言模型实例。训练输出hello，直接用一个4*1的one hot向量表示h，e，l，o 4个英文字母。测试的时候，<strong>输出层接一个softmax函数，然后在得到的结果中采样输出下一个字符。</strong></p>
+<p><strong>用上一阶段的状态和本阶段输入分别乘以权重w，然后经过tanh等到本阶段状态</strong></p>
+<p>$h_t = tanh(W_{hh}h_{t-1}+W_{xh}x_t)$</p>
+<p><img src="/2018/12/24/cs231n-Lecture-10-Recurrent-Neural-Networks.html/4.png" alt=""></p>
+<hr>
+<p>当尝试训练wiki网页文本的时候，训练一次正向加反向传播需要遍历wiki中所有文本，太耗时了，用近似方法，截断整个序列，分成一部分一部分的，每次训练只反向传播该部分。<a href="https://gist.github.com/karpathy/d4dee566867f8291f086" target="_blank" rel="noopener">min-char-rnn.py代码</a></p>
+<hr>
+<p>还训练了莎士比亚的文章，拓扑学的一本书，linux C源码。都取得了有趣的结果。</p>
+<p>并且根据生成的结果，观察某个神经元的值，发现某些神经元起到了句子开头，缩进等功能。</p>
+<h2 id="3-Image-captioning-Soft-attention-visual-question-answering-CNN-RNN"><a href="#3-Image-captioning-Soft-attention-visual-question-answering-CNN-RNN" class="headerlink" title="3.Image captioning, Soft attention, visual question answering(CNN+RNN)"></a>3.Image captioning, Soft attention, visual question answering(CNN+RNN)</h2><h3 id="（1）image-caption"><a href="#（1）image-caption" class="headerlink" title="（1）image caption"></a>（1）image caption</h3><p><img src="/2018/12/24/cs231n-Lecture-10-Recurrent-Neural-Networks.html/5.png" alt=""></p>
+<p><img src="/2018/12/24/cs231n-Lecture-10-Recurrent-Neural-Networks.html/6.png" alt=""></p>
+<p><img src="/2018/12/24/cs231n-Lecture-10-Recurrent-Neural-Networks.html/7.png" alt=""></p>
+<p>image caption还可以用到软注意力soft attention和硬注意力hard attention</p>
+<p>软注意力：加权组合所有图像位置中的所有特征</p>
+<p>硬注意力：限制每次只选择一个图像位置，不可微，不好训练，要用到增强学习的一些东西。</p>
+<p><img src="/2018/12/24/cs231n-Lecture-10-Recurrent-Neural-Networks.html/8.png" alt=""></p>
+<h3 id="（2）视觉问答"><a href="#（2）视觉问答" class="headerlink" title="（2）视觉问答"></a>（2）视觉问答</h3><p><img src="/2018/12/24/cs231n-Lecture-10-Recurrent-Neural-Networks.html/9.png" alt=""></p>
+<h2 id="4-LSTM"><a href="#4-LSTM" class="headerlink" title="4.LSTM"></a>4.LSTM</h2><p>Vanila RNN反向传播的时候，如果求$h_0$，会乘以很多W，导致梯度爆炸或者梯度消失</p>
+<p>梯度爆炸可以用梯度截断的方法解决，就是设置一个阈值，如果梯度的L2值大于这个阈值，梯度就进行缩减。</p>
+<p>梯度消失，使用新的RNN模型，如LSTM进行解决</p>
+<p><img src="/2018/12/24/cs231n-Lecture-10-Recurrent-Neural-Networks.html/10.png" alt=""></p>
+<hr>
+<p>LSTM模型有两个隐状态，$h_t$（RNN本来就有的）和$C_t$（称为单元状态）</p>
+<p>i，输入门。f，遗忘门。o，输出门。g，门之门</p>
+<p>同样是用上一阶段的状态和本阶段输入分别乘以权重w，但是分别得到i，f，o，g四个值。3个sigmoid值在[0,1]，一个tanh值在[-1,1]。前一时刻的单元状态$c_{t-1}$逐元素乘以遗忘门f，表示之前的记忆哪些需要遗忘（乘以0），哪些需要保留。输入门i逐元素乘以门g（课上的解释是，这个g相当于一个计数器，只能进行加一或者减一）。两者相加得到本时刻的单元状态$C_t$，经过tanh压缩到[0,1]之间，然后乘以输出门o，得到$h_t$</p>
+<p><img src="/2018/12/24/cs231n-Lecture-10-Recurrent-Neural-Networks.html/11.png" alt=""></p>
+<hr>
+<p>与vanila rnn相比。反向传播的时候，遗忘门进行的是逐元素相乘操作，比矩阵相乘好算。同时每个时刻单元里的遗忘门都发生变化，和以前乘以相同的权重w不一样了。梯度直接通过$c_t$像一条高速公路一样传播。</p>
+<p><img src="/2018/12/24/cs231n-Lecture-10-Recurrent-Neural-Networks.html/12.png" alt=""></p>
+<h2 id="5-GRU"><a href="#5-GRU" class="headerlink" title="5.GRU"></a>5.GRU</h2><p>没讲</p>
+<h2 id="6-总结"><a href="#6-总结" class="headerlink" title="6.总结"></a>6.总结</h2><ul>
+<li><p>RNNs allow a lot of flexibility in architecture design</p>
+</li>
+<li><p>Vanilla RNNs are simple but don’t work very well</p>
+</li>
+<li><p>通常使用LSTM或者GRU他们的相互作用改进了梯度流</p>
+<p>Common to use LSTM or GRU: their additive interactions<br>improve gradient flow</p>
+</li>
+<li><p>RNN梯度的反向流动可能发生爆炸或消失。爆炸是由梯度剪切控制的。消失的是加性相互作用(LSTM)控制</p>
+<p>Backward flow of gradients in RNN can explode or vanish.<br>Exploding is controlled with gradient clipping. Vanishing is<br>controlled with additive interactions (LSTM)</p>
+</li>
+<li><p>Better/simpler architectures are a hot topic of current research</p>
+</li>
+<li><p>Better understanding (both theoretical and empirical) is needed.</p>
+</li>
+</ul>
+</div><div><ul class="post-copyright"><li class="post-copyright-author"><strong>Author: </strong>whiup</li><li class="post-copyright-link"><strong>Blog Link: </strong><a href="/2018/12/24/cs231n-Lecture-10-Recurrent-Neural-Networks.html/">https://tiantianwahaha.github.io/2018/12/24/cs231n-Lecture-10-Recurrent-Neural-Networks.html/</a></li><li class="post-copyright-license"><strong>Copyright Declaration: </strong>The author owns the copyright, please indicate the source reproduced.</li></ul></div><br><div class="tags"><a href="/tags/cs231n/">cs231n</a></div><div class="post-nav"><a class="pre" href="/2019/01/03/Super-FAN-Integrated-facial-landmark-localization-and-super-resolution-of-real-world-low-resolution-faces-in-arbitrary-poses-with-GANS.html/">Super-FAN:Integrated facial landmark localization and super-resolution of real-world low resolution faces in arbitrary poses with GANS</a><a class="next" href="/2018/12/22/cs231n-Lecture-9-CNN-Architectures.html/">cs231n Lecture 9 CNN Architectures</a></div><div id="vcomment"></div><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script><script>var notify = 'true' == true ? true : false;
+var verify = 'false' == true ? true : false;
+var GUEST_INFO = ['nick','mail','link'];
+var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+  return GUEST_INFO.indexOf(item) > -1
+});
+guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
+window.valine = new Valine({
+  el:'#vcomment',
+  notify:notify,
+  verify:verify,
+  appId:'ghsTdcg2fkGJS6ezqnysCLhl-gzGzoHsz',
+  appKey:'TFWzwUO0GPWYSIzO5rlINGID',
+  placeholder:'Just so so',
+  avatar:'mm',
+  guest_info:guest_info,
+  pageSize:'10'
+})</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> Categories</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/cs231n/">cs231n</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/百篇论文阅读计划/">百篇论文阅读计划</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> Tags</i></div><div class="tagcloud"><a href="/tags/GAN/" style="font-size: 15px;">GAN</a> <a href="/tags/image-caption/" style="font-size: 15px;">image caption</a> <a href="/tags/cs231n/" style="font-size: 15px;">cs231n</a> <a href="/tags/图像风格转换/" style="font-size: 15px;">图像风格转换</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> Recent</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/01/09/Show-Attend-and-Tell-Neural-Image-Caption-Generation-with-Visual-Attention.html/">Show, Attend and Tell: Neural Image Caption Generation with Visual Attention</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/09/Spectral-Normalization-for-Generative-Adversarial-Networks.html/">Spectral Normalization for Generative Adversarial Networks</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/08/Self-Attention-Generative-Adversarial-Networks.html/">Self-Attention Generative Adversarial Networks</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/07/cs231n-lecture11-Detection-and-Segmentation.html/">cs231n lecture11 Detection and Segmentation</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/03/Super-FAN-Integrated-facial-landmark-localization-and-super-resolution-of-real-world-low-resolution-faces-in-arbitrary-poses-with-GANS.html/">Super-FAN:Integrated facial landmark localization and super-resolution of real-world low resolution faces in arbitrary poses with GANS</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/24/cs231n-Lecture-10-Recurrent-Neural-Networks.html/">cs231n Lecture 10 Recurrent Neural Networks</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/22/cs231n-Lecture-9-CNN-Architectures.html/">cs231n Lecture 9 CNN Architectures</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/22/cs231n-Lecture-7-Training-Neural-Networks-part-2.html/">cs231n Lecture 7 Training Neural Networks part 2</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/21/cs231n-Lecture-6-Training-Neural-Networks-part-I.html/">cs231n Lecture 6 Training Neural Networks, part I</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/20/cs231n-参数设置技巧.html/">cs231n 参数设置技巧</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> Links</i></div><ul></ul><a href="https://github.com/tiantianwahaha" title="github" target="_blank">github</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2019 <a href="/." rel="nofollow">Whiup.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.css"><script type="text/x-mathjax-config">MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+  });
+</script><script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML" async></script><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
