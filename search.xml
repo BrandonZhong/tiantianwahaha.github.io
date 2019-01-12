@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[如何计算卷积层的参数个数]]></title>
+    <url>%2F2019%2F01%2F12%2F%E5%A6%82%E4%BD%95%E8%AE%A1%E7%AE%97%E5%8D%B7%E7%A7%AF%E5%B1%82%E7%9A%84%E5%8F%82%E6%95%B0%E4%B8%AA%E6%95%B0.html%2F</url>
+    <content type="text"><![CDATA[如何计算卷积层的参数个数 不考虑batchsize，输入64×64×16，经过conv3×3，输出64×64×32，也就是H和W是64，通道数或者说feature map数从16到32. 卷积核个数。为输出的feature map数，也就是32 卷积核的大小。16个通道上每个通道对应一个3×3的卷积核，且这16个卷积核上的参数时不一样的，但是认为这是一个卷积核，因为认为卷积核的大小为 3×3×16 参数的个数。卷积核的个数+偏置。 3×3×16×32 + 32. 在输出的某个通道上的值，是输入的16个通道处的卷积结果相加，再加上一个偏置，然后再取激活函数值得到的。 总结 卷积核的个数=最终的featuremap的个数 卷积核的大小=开始进行卷积的通道数×每个通道上进行卷积的二维卷积核的尺寸 参数的个数=卷积核个数×（卷积核大小+1） 详细的解释和图参考别人的博客]]></content>
+      <categories>
+        <category>deep learning</category>
+      </categories>
+      <tags>
+        <tag>deep learning</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Fully Convolutional Network (FCN)]]></title>
+    <url>%2F2019%2F01%2F12%2FFully-Convolutional-Network-FCN.html%2F</url>
+    <content type="text"><![CDATA[使用卷积层替代CNN末尾的全连接层 全卷积神经网络Fully Convolutional Network (FCN) 别人的博客介绍]]></content>
+      <categories>
+        <category>deep learning</category>
+      </categories>
+      <tags>
+        <tag>deep learning</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[inception network]]></title>
+    <url>%2F2019%2F01%2F12%2Finception-network.html%2F</url>
+    <content type="text"><![CDATA[Inception V1-V4 介绍4个版本的inception模型 从Inception v1到Inception-ResNet，一文概览Inception家族的「奋斗史」 inception v4的tensorflow api slim代码实现 InceptionV4 介绍inception模型以及之后的改变 从Inception v1,v2,v3,v4,RexNeXt到Xception再到MobileNets,ShuffleNet,MobileNetV2,ShuffleNetV2]]></content>
+      <categories>
+        <category>deep learning</category>
+      </categories>
+      <tags>
+        <tag>deep learning</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Show, Attend and Tell: Neural Image Caption Generation with Visual Attention]]></title>
+    <url>%2F2019%2F01%2F09%2FShow-Attend-and-Tell-Neural-Image-Caption-Generation-with-Visual-Attention.html%2F</url>
+    <content type="text"><![CDATA[本文是2015年的一篇根据图片生成文字描述的文章。 主要是因为文章里用了soft attention和hard attention 详细内容可以参考博客!!(需要翻墙！) 图片先经过一个VGG网络，学习到一个对图片的特征图向量表示。然后输入到后面的LSTM中学习得到对应的文字。 这个特征图要均匀的划分L个区域，每个区域有大小为14×14，D=196 $a={a_1,…,a_L}, a_i∈R^D$ 预测输出的一句话表示为，C是句子长度，K是字典大小(单词个数) $y={y_1,…,y_C},y_i∈R^K$ 文字结果跟图片有关系，LSTM与传统的相比，在每个位置除了输入$x_t$,$h_{t-1}$，还需要输入对应的图像表达信息$z_t$，但是这个单词不可能跟全局的图像信息有关，所以要加上attention机制。也就是传统的LSTM4个门的计算只跟输入文字x，上一状态h有关系，在image caption任务中还要加入z。 z是怎么求的呢。 $z_t=∑\alpha_ia_i$ hard attention: 只有一个alpha为1，其他的全为0，注意力一个时刻只关注一个区域。不可微，近似一个下界，略 soft attention:每个区域都有一定的权重，和为1。连续可微的。 用多层感知器输入a和h来求alpha，具体没看，略]]></content>
+      <categories>
+        <category>百篇论文阅读计划</category>
+      </categories>
+      <tags>
+        <tag>image caption</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Spectral Normalization for Generative Adversarial Networks]]></title>
+    <url>%2F2019%2F01%2F09%2FSpectral-Normalization-for-Generative-Adversarial-Networks.html%2F</url>
+    <content type="text"><![CDATA[谱归一化 GAN训练不稳定，通过在对抗器加入谱归一化，在每层对权重进行归一化操作，稳定训练，同时还起到了权重正则化的作用。最终得到了更好的图像效果，一个模型在多类别图像上都表现的很好。 进过推论证明，在每层对权重归一化，就相当于让权重除以他的对应矩阵范数，求矩阵范数需要计算这个矩阵的特征值，可以通过幂迭代法来近似求取。 参考博客 1234567891011121314151617181920212223242526272829def _l2normalize(v, eps=1e-12): return v / (tf.reduce_sum(v ** 2) ** 0.5 + eps)def spectral_norm(w, u=None, iteration=1, update_collection=None): w_shape = w.get_shape().as_list() w_reshaped = tf.reshape(w, [-1, w_shape[-1]]) if u is None: u = tf.get_variable("u", shape=[1, w_shape[-1]], initializer=tf.truncated_normal_initializer(), trainable=False) u_ = u v_ = None for i in range(iteration): """ power iteration Usually iteration = 1 will be enough """ v_ = _l2normalize(tf.matmul(u_, tf.transpose(w_reshaped))) u_ = _l2normalize(tf.matmul(v_, w_reshaped)) u_ = tf.stop_gradient(u_) v_ = tf.stop_gradient(v_) sigma = tf.matmul(tf.matmul(v_, w_reshaped), tf.transpose(u_)) """ assign给u赋值u_hat tf.control_dependencies，控制依赖的上下文管理器，u赋值之后，才能执行with中的语句，且必须写在with下，直接在外面定义的变量直接返回不行 """ with tf.control_dependencies([u.assign(u_)]): sigma = tf.identity(sigma) return w / sigma]]></content>
+      <categories>
+        <category>百篇论文阅读计划</category>
+      </categories>
+      <tags>
+        <tag>GAN</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Self-Attention Generative Adversarial Networks]]></title>
+    <url>%2F2019%2F01%2F08%2FSelf-Attention-Generative-Adversarial-Networks.html%2F</url>
+    <content type="text"><![CDATA[自注意力生成对抗网络，首次把自注意力引入生成对抗网络图像生成中，结合使用谱归一化，得到了更好的图像质量。 Self-Attention Generative Adversarial Network(SAGAN)是一个注意力驱动，长范围，关联模型(attention-driven, long-range dependency modeling )。 解决的问题利用GAN进行图像合成，对于含有较少结构约束的类别（比如海洋、天空和地面等重纹理不重结构的）比较成功，而对于含有几何或结构模式的则容易失败，比如合成的狗的图像具有真实的毛但是很难认出脚。可能的原因：CNN的卷积层具有感受野，因此利用CNN建模必须具有足够的深度才能在较大空间范围内建立图像不同区域的相关性，但这会导致更大的计算代价。 因此本文提出Self-attention GAN以平衡long range dependency modeling和计算代价的问题。 传统gan的问题: 使用小的卷积核很难发现图像中的依赖关系 使用大的卷积核就丧失了卷积网络参数与计算的效率 传统的GAN在生成高分辨率的细节时，是基于低分辨率的feature map中的某一个小部分的(卷积网络的特性)。而SAGAN是基于所有的特征点(all feature locations). 让每个像素点跟全局的所有像素点都有关系。 注意力模型 123456789101112131415161718192021def hw_flatten(x) : return tf.reshape(x, shape=[x.shape[0], -1, x.shape[-1]])def attention(self, x, ch, sn=False, scope='attention', reuse=False): with tf.variable_scope(scope, reuse=reuse): f = conv(x, ch // 8, kernel=1, stride=1, sn=sn, scope='f_conv') # [bs, h, w, c'] g = conv(x, ch // 8, kernel=1, stride=1, sn=sn, scope='g_conv') # [bs, h, w, c'] h = conv(x, ch, kernel=1, stride=1, sn=sn, scope='h_conv') # [bs, h, w, c] # N = h * w s = tf.matmul(hw_flatten(g), hw_flatten(f), transpose_b=True) # # [bs, N, N] beta = tf.nn.softmax(s, axis=-1) # attention map o = tf.matmul(beta, hw_flatten(h)) # [bs, N, C] gamma = tf.get_variable("gamma", [1], initializer=tf.constant_initializer(0.0)) o = tf.reshape(o, shape=x.shape) # [bs, h, w, C] x = gamma * o + x return x 文章在生成器和鉴别器中都使用了这个attention module，同时讨论得出结论，在一些中层次或者高层次特征中使用attention层能够得到更好的效果。 文章使用了谱归一化和hinge loss来提升效果性能 效果与ACGAN和SNGAN做比较]]></content>
+      <categories>
+        <category>百篇论文阅读计划</category>
+      </categories>
+      <tags>
+        <tag>GAN</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[cs231n lecture11 Detection and Segmentation]]></title>
+    <url>%2F2019%2F01%2F07%2Fcs231n-lecture11-Detection-and-Segmentation.html%2F</url>
+    <content type="text"><![CDATA[语义分割 (重点有：Transpose convolution反卷积) 分类+定位 目标检测 (RNN, Faster RNN, YOLO) 物体分割 1.语义分割给图片的每个像素都分类，与物体分割不同，只关心像素，而且如果有两个牛在图片里，也不区分划分在一起。 (1) 在图片中滑动选择无数个小区域，每个小区域进行分类，表示中心像素点所属的分类，问题是效率太低。 (2) 直接把图片输入进全卷积网络，输出一个scores : C×H×W的结果，C表示一共几类，然后argmax得出预测结果H×W。在原始图片的大小卷积花费太多内存和时间。 (3) 所以在卷积中间，加入下采样和上采样。 下采样有Pooling, strided convolution 上采样有Unpooling or strided, transpose convolution 上采样有”Unpooling” : Unpooling or strided transpose convolution Input 2×2 out put 4×4 (1)Nearest Neighbor是指把一个像素复制4份，进行上采样 (2)Bed of Nails是指除了左上角像素直接复制，其他位置的三个像素补0 (3)“Max Unpooling” 在整个卷积网络的工程中，前面的下采样和后面的上采样是一一对应的。记住前面做max pooling的对应元素位置，在做上采样的时候，把元素放在对应的位置，其他的元素位置补0 (4)重点：Transpose Convolution反卷积前面提到的都是固定规则的上采样，不需要训练参数，还有可学习的上采样:Transpose Convolution, 在其他地方也称作：Deconvolution (bad), Upconvolution, Fractionally strided convolution, Backward strided convolution。都是一个意思。但是推荐叫Transpose Convolution。 3×3的卷积核，步长为2，pad为1. input 2×2，看做是卷积核的权重，像素乘以卷积核，然后值作为上采样的像素。如果和之前的结果有重叠部分，那么直接相加。 有人提出，用3×3步长为2的Transpose Convolution存在checkerboard artifact棋盘效应的问题。所以最新的文章，有人使用conv4×4步长为2，或者conv2×2步长为2 2.分类加定位分类加定位就是分类+边框bounding boxes 一个图片，输入卷积网络中，4096个神经元经过FC，输出Class Scores，有几类就输出几个得分。同时还要输出Box coordinate框坐标(x,y,w,h)，分别是想x和y坐标，框的宽和高，连续值，这是个回归问题。 存在一个问题，如果图片里有很多个物体，要求很多个Box coordinate 3.目标检测多物体的话就是目标检测。要用到滑动窗口！ 将CNN网络应用在一个图片的各种不同分割，然后CNN给每个分割分类是目标或者背景。存在问题，计算花费太高。 使用Region proposals候选区域/ Selective Search 遍历所有区域花费太高，先用算法找到2000个候选区域，然后对候选区域分类。 R-CNN先找到2K个候选区域 找到的区域大小不一，先使用某种方法warp图片，切分为一样大小 然后把每个处理过的区域经过convNet 输出Linear regression for bounding box offesets + classify regions with SVMs 存在问题，训练太慢 Fast R-CNN整个图片输入convNet网络 在学习到的特征映射中找到候选区域 然后经过”Rol Pooling” layer 将不同的大小处理 剩下的同R-CNN Faster R-CNN插入RPN网络，从特征中去预测候选区域 Insert Region Proposal Network (RPN) to predict proposals from features YOLO/SSD Detection without Proposals把图片划分成grid cell网格单元。设置一系列的base boxes以各个gird cell为中心，假设为B=3，一个宽的，一个长的，一个正方形的。 对每个base boxes去找到最终的一个base boxes，求5个值(x,y,h,w,confidence) 虽然准确率没有之前的模型高，但是最快 4.物体分割Mask R-CNN(没仔细讲，没明白) Predict a mask for each of C classes C ×14 ×14]]></content>
+      <categories>
+        <category>cs231n</category>
+      </categories>
+      <tags>
+        <tag>cs231n</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Super-FAN:Integrated facial landmark localization and super-resolution of real-world low resolution faces in arbitrary poses with GANS]]></title>
+    <url>%2F2019%2F01%2F03%2FSuper-FAN-Integrated-facial-landmark-localization-and-super-resolution-of-real-world-low-resolution-faces-in-arbitrary-poses-with-GANS.html%2F</url>
+    <content type="text"><![CDATA[使用GAN将现实世界中任意姿态下低分辨率人脸的人脸关键点定位和超分辨率结合起来。 CVPR2018 spotlignt 作者主页 1.文章5点贡献1.提出Super-FAN：一个同时提高人脸分辨率并进行人脸对齐的端到端系统，主要通过热图回归(Heatmap Regression)整合子网络进行人脸关键点定位，然后进入基于GAN的超分辨率处理网络，并将其并入到一个新的热图损失中。2.展示了联合训练两个网络在处理任意人脸姿势的生成图像（以前只能正面人脸图像）以及真实世界的低分辨率图像上（合成的低清图片）的优势3.提出了一个改进的残差网络结构来得到较好的超分辨率图像4.首次提交了处理LS3D-W数据集各种人脸姿势的结果，并在超分辨率和人脸对齐方面做出了领先的结果。 5.首次在真实世界的低分辨率人脸图像(WiderFace数据集)上做到了良好的视觉效果 2.整体模型架构 生成器对应的是-超分辨率网络 FAN是-人脸对齐网络 鉴别器就是传统的鉴别器 3.超分辨率网络(Super-resolution network) 在Photo-realistic single image super-resolution using a generative adversarial的基础上，改进了网络机构。 如图右侧是SRGAN，从上到下为网络顺序，输入为16×16，输出为64×64. SRGAN的残差块由conv-batchnorm-prelu-conv-batchnorm-prelu组成。先经过16个这样的残差块作用在16×16分辨率上，再经过1个deconv-pixel shuffle-prelu作用在32×32上，一个deconv-pixel shuffle-prelu作用在64×64上。记该结构为16-1-1. 本文的改进为，把prelu改成relu，因为他实验证明prelu对结果没有明显的提升作用。去除了长连接，因为对整体效益没有什么特别影响。同时把网络结构改为12-3-2，因为作者希望通过增加残差块来处理较高维特征，从而增强高分辨率图像上的细节，尤其是处理场景复杂的图像。 4.人脸对齐网络(Face Alignment Network)和Heapmap loss为了获得更好的细节，作者通过热图回归(heatmap regression)将人脸关键点定位(facial landmark localization)集成到超分辨率过程并且优化一个适当的热图损失，从而增强超分辨率图像和原始图像的结构一致性。 使用的是FAN with 2 Hourglass modules模型。 FAN是作者的上一篇文章中提出的结构，用来做2D人脸对齐，输入一张图片，输出一个63*2的向量，表示(x,y)的坐标，就是人脸关键点。用的是两层hourglass modules，不过在此基础上把bottleneck block改成了多层次平行的多规模块。具体介绍见此博客。 在本文中，FAN不再回归一个x，y的坐标，而是使用热图回归的内容定位人脸。用预先训练好的两个FAN网络，一个输入生成器生成的高清图片，一个输入ground true高清图片，得到的结果做均方误差(逐像素相减的平方求平均) $l_{heatmap}=\frac{1}{N}\sum_{n=1}^N\sum_{ij}(\widetilde M_{i,j}^n-\widehat M_{i,j}^n)$ 另一个关于热图损失的关键特征是它的优化不需要访问标记好的真实数据，而只需要预训练好的FAN。这就允许以弱监督方式训练整个超分辨率网络。 5.整体损失函数$l^{SR}=\alpha l_{pixel}+\beta l_{feature} + \gamma l_{heatmap} + \zeta l_{WGAN}$ 生成器的整体损失函数 pixel loss是生成的高清图和ground true的均方误差MSE(就是逐元素相减，然后平方，然后求均值) perceptual loss是李飞飞风格转换里突出的损失函数，这里用的vgg_19的layer5_4 heatmap损失上面提到了 wgan损失，这篇文章用的wgan-gp 整体的训练过程，大致是先训练了60epoch的FAN GAN模型是基于之前的训练模型，微调5epoch 然后把所有模型合并在一起，训练5epoch 整合了多个数据集，自己构造了训练集和测试集，包括300W-LP, AFLW, Celeb-A，LS3D-W balanced.]]></content>
+      <categories>
+        <category>百篇论文阅读计划</category>
+      </categories>
+      <tags>
+        <tag>GAN</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[cs231n Lecture 10 Recurrent Neural Networks]]></title>
+    <url>%2F2018%2F12%2F24%2Fcs231n-Lecture-10-Recurrent-Neural-Networks.html%2F</url>
+    <content type="text"><![CDATA[RNN Language modeling(RNN) Image captioning, Soft attention, visual question answering(CNN+RNN) LSTM, GRU 1.RNN循环神经网络: $x_t$表示t时刻的输入 $h_{t-1}$表示上一时刻的状态 $f_w$是权重，在每一个时间步中使用的W(Notice: the same function and the same setof parameters are used at every time step.) $h_t$是当前的最新状态 $y$是输出 RNN序列示例 可以用来做自然语言翻译，序列到序列，多到一 + 一到多的encode和decode模型。 2.Language modeling(RNN)使用RNN的一个简单字符集语言模型实例。训练输出hello，直接用一个4*1的one hot向量表示h，e，l，o 4个英文字母。测试的时候，输出层接一个softmax函数，然后在得到的结果中采样输出下一个字符。 用上一阶段的状态和本阶段输入分别乘以权重w，然后经过tanh等到本阶段状态 $h_t = tanh(W_{hh}h_{t-1}+W_{xh}x_t)$ 当尝试训练wiki网页文本的时候，训练一次正向加反向传播需要遍历wiki中所有文本，太耗时了，用近似方法，截断整个序列，分成一部分一部分的，每次训练只反向传播该部分。min-char-rnn.py代码 还训练了莎士比亚的文章，拓扑学的一本书，linux C源码。都取得了有趣的结果。 并且根据生成的结果，观察某个神经元的值，发现某些神经元起到了句子开头，缩进等功能。 3.Image captioning, Soft attention, visual question answering(CNN+RNN)（1）image caption image caption还可以用到软注意力soft attention和硬注意力hard attention 软注意力：加权组合所有图像位置中的所有特征 硬注意力：限制每次只选择一个图像位置，不可微，不好训练，要用到增强学习的一些东西。 （2）视觉问答 4.LSTMVanila RNN反向传播的时候，如果求$h_0$，会乘以很多W，导致梯度爆炸或者梯度消失 梯度爆炸可以用梯度截断的方法解决，就是设置一个阈值，如果梯度的L2值大于这个阈值，梯度就进行缩减。 梯度消失，使用新的RNN模型，如LSTM进行解决 LSTM模型有两个隐状态，$h_t$（RNN本来就有的）和$C_t$（称为单元状态） i，输入门。f，遗忘门。o，输出门。g，门之门 同样是用上一阶段的状态和本阶段输入分别乘以权重w，但是分别得到i，f，o，g四个值。3个sigmoid值在[0,1]，一个tanh值在[-1,1]。前一时刻的单元状态$c_{t-1}$逐元素乘以遗忘门f，表示之前的记忆哪些需要遗忘（乘以0），哪些需要保留。输入门i逐元素乘以门g（课上的解释是，这个g相当于一个计数器，只能进行加一或者减一）。两者相加得到本时刻的单元状态$C_t$，经过tanh压缩到[0,1]之间，然后乘以输出门o，得到$h_t$ 与vanila rnn相比。反向传播的时候，遗忘门进行的是逐元素相乘操作，比矩阵相乘好算。同时每个时刻单元里的遗忘门都发生变化，和以前乘以相同的权重w不一样了。梯度直接通过$c_t$像一条高速公路一样传播。 5.GRU没讲 6.总结 RNNs allow a lot of flexibility in architecture design Vanilla RNNs are simple but don’t work very well 通常使用LSTM或者GRU他们的相互作用改进了梯度流 Common to use LSTM or GRU: their additive interactionsimprove gradient flow RNN梯度的反向流动可能发生爆炸或消失。爆炸是由梯度剪切控制的。消失的是加性相互作用(LSTM)控制 Backward flow of gradients in RNN can explode or vanish.Exploding is controlled with gradient clipping. Vanishing iscontrolled with additive interactions (LSTM) Better/simpler architectures are a hot topic of current research Better understanding (both theoretical and empirical) is needed.]]></content>
+      <categories>
+        <category>cs231n</category>
+      </categories>
+      <tags>
+        <tag>cs231n</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[cs231n Lecture 9 CNN Architectures]]></title>
+    <url>%2F2018%2F12%2F22%2Fcs231n-Lecture-9-CNN-Architectures.html%2F</url>
+    <content type="text"><![CDATA[介绍几个重要的CNN模型(在imagenet比赛中获得冠军) AlexNet VGG GoogleNet ResNet 1.AlexNet2012年冠imagenet比赛冠军，第一次使用ReLU，8layer 2.VGG2014年亚军，只用小的卷积核filters(3*3)，更深的网络，16layer或者19layer 19层只比16层效果好一点点，但是用了更多的参数和内存，看情况可以使用16层 学习一下怎么计算网络的参数大小(权重)和容量大小(输入的x在网络中传播占的大小)。可以看出平均一个图片就要占100M，如果一批32个图片，就要占用3G内存。 3.GooLeNet（Inception！）2014年冠军，Inception model和没有FC层。22layer 新提出的inception模型，并行进行1×1conv，3×3conv，5×5conv和3×3pool。但是非常耗费内存。 提出了“bottleneck”解决这个问题，就是加一些1×1conv，减少信道数 4.ResNet(skip connect)2015年冠军，残差网络，目前最好的网络结构，152层。 残差网络同样加入了bottleneck，当网络层数大于50的时候 5.其他的结构（对残差网络的后续改进）（1）残差网络的作者进行的改进 （2）该作者认为残差的有效性在于宽度，不在于深度，加大中间3×3卷积的宽度(F×K) （3）残差网络作者的后续改进，增加了宽度]]></content>
+      <categories>
+        <category>cs231n</category>
+      </categories>
+      <tags>
+        <tag>cs231n</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[cs231n Lecture 7 Training Neural Networks part 2]]></title>
+    <url>%2F2018%2F12%2F22%2Fcs231n-Lecture-7-Training-Neural-Networks-part-2.html%2F</url>
+    <content type="text"><![CDATA[模型集成 正则化 迁移学习 课程官方链接 课程笔记翻译 1.求梯度下降的方法比较 Adam 在大多数情况是不错的默认选择 如果你能够承受整个批次的更新，你的问题没有很大的随机性，可以使用L-BFGS （在风格迁移中会用到？？） If you can afford to do full batch updates then try out L-BFGS (and don’t forget to disable all sources of noise) 2.Model Ensembles模型集成减少训练误差和测试误差之间的差距 训练多个独立模型，在测试的时候求平均结果，一般能够提升2%的性能 可以不用训练多个模型，在一个模型的不同训练阶段保存多个快照 3.正则化提升单一模型效果，降低过拟合。最简单的L1，L2， Elastic net (L1 + L2) 正则化其实就是在训练集加随机噪声，在测试集忽视这些噪声。可以使用Dropout，Batch Normalization和Data Augmentation这三个方法： Dropout随机失活，以0.5的概率，随机选择一些神经单元为0 Data Augmentation数据扩张：图片的旋转，拉伸，剪切，改变对比度和亮度等。 batch normalization已经为网络增加了随机性，因为每次的数据进行怎样的归一化有随机性，进行了正则化，基本不再加dropout了 4.迁移学习Transfer learning模型现在Imagenet训练好，你要在另一个相似的数据集上训练模型。 如果你有很少的数据，那就在最后的FC线性分类层，重新初始化训练，其他层固定不变。 如果你有较多的数据，那就多训练几层。最会可以使用原学习率的十分之一进行微调整个网络（finetuning） 在目标检测和image caption中，都会用到已经训练好的CNN模型，迁移学习。]]></content>
+      <categories>
+        <category>cs231n</category>
+      </categories>
+      <tags>
+        <tag>cs231n</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[cs231n Lecture 6 Training Neural Networks, part I]]></title>
+    <url>%2F2018%2F12%2F21%2Fcs231n-Lecture-6-Training-Neural-Networks-part-I.html%2F</url>
+    <content type="text"><![CDATA[激活函数 数据预处理 权重初始化 批量归一化 超参数优化 课程官方链接 课程笔记翻译 1.激活函数 (1)Sigmoid sigmoid讲输入压缩到0到1的范围内，曾经非常常用，现在已经很少使用了。主要有两个缺点，（1）Sigmoid函数饱和使梯度消失。当神经元的激活在接近0或1处时会饱和：在这些区域，梯度几乎为0。（2）Sigmoid函数的输出不是零中心的。因为如果输入神经元的数据总是正数（比如在$f=w^Tx+b$中每个元素都x&gt;0），那么关于w的梯度在反向传播的过程中，将会要么全部是正数，要么全部是负数（具体依整个表达式f而定）。这将会导致梯度下降权重更新时出现z字型的下降。然而，可以看到整个批量的数据的梯度被加起来后，对于权重的最终更新将会有不同的正负，这样就从一定程度上减轻了这个问题。因此，该问题相对于上面的神经元饱和问题来说只是个小麻烦，没有那么严重。 （2）tanh 将实数值压缩到[-1,1]之间,它也存在饱和问题，但是和sigmoid神经元不同的是，它的输出是零中心的.注意tanh神经元是一个简单放大的sigmoid神经元 （3）ReLU x&gt;0,斜率为1，x&lt;=0时，斜率为0.论文证明使用ReLU比使用tanh的收敛快6倍。sigmoid和tanh神经元含有指数运算等耗费计算资源的操作，而ReLU可以简单地通过对一个矩阵进行阈值计算得到。 缺点是，ReLU的单元容易死掉，如果学习率设置的太高，网络汇总40%的神经元都会死掉 （4）Leaky ReLU Leaky ReLU解决单元死亡问题，x&lt;0的时候给一个小小的梯度值 （5）其他Exponential Linear Units (ELU) Maxout “Neuron” （6）总结 用ReLU非线性函数，注意设置好学习率 如果单元死亡问题困扰你，就试试Leaky ReLU / Maxout / ELU 也可以试试tanh，但是其效果应该不如ReLU或者Maxout 不要使用sigmoid 2.数据预处理 中心化(零均值) 归一化，一种是先零中心化，然后除以标准差。一种是全都归一化到[-1,1]之间。 按照上面数据预处理之后，对权重小的扰动不敏感，训练稳定 3.权重初始化gaussian with zero mean and 1e-2 standard deviation $W = 0.01 * np.random.randn(D,H)​$ 权重太小，会导致梯度消失。因为反向传播的时候会乘以当前梯度 权重太多，会导致饱和 。比如tanh。 总结：当前的推荐是使用ReLU激活函数，并且使用$w = np.random.randn(n) * sqrt(2.0/n)$来进行权重初始化，来自论文. 4.Batch Normalization批量归一化 在全连接层或者卷积层 与 激活函数之间添加一个BatchNorm层。可以理解为在网络的每一层之前都做数据预处理，添加了之后不用小心的进行权重初始化了。 5.Babysitting the Learning Process1.预处理数据 2.选择网络结构 3.确定损失函数是合理的：看你的模型是否能够过拟合小数据集 6.超参数优化交叉验证，每个跑5epoch，学习率在某个取值范围内测试（best to optimize in log space） 损失函数不变，学习率太小。损失函数NAN，学习率太大。在1e-3到1e-5范围内一般。 10**uniform（-3,-4） 随机搜索&gt;网格搜索 损失函数在训练集上表现好，在验证集上表现差，说明过拟合了，要加大正则化损失。 7.总结 Activation Functions (use ReLU) Data Preprocessing (images: subtract mean) Weight Initialization (use Xavier/He init) Batch Normalization (use) Babysitting the Learning process Hyperparameter Optimization(random sample hyperparams, in log space when appropriate)]]></content>
+      <categories>
+        <category>cs231n</category>
+      </categories>
+      <tags>
+        <tag>cs231n</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[cs231n 参数设置技巧]]></title>
+    <url>%2F2018%2F12%2F20%2Fcs231n-%E5%8F%82%E6%95%B0%E8%AE%BE%E7%BD%AE%E6%8A%80%E5%B7%A7.html%2F</url>
+    <content type="text"><![CDATA[认为有用的一些技巧知识1.验证集用来确定超参数，测试集用来测试性能，不到最后不要使用测试集！ 2.步长(学习率)需要用验证集找到最优解 3.batch_size一般由GPU大小决定，但是设置成2的指数，这样会运算快一点（32,64,128等） 4.GAN不加pooling层，如果要用max pooling效果比average pooling好 5.全连接层转化为卷积层？ 6.几个小滤波器卷积层的组合比一个大滤波器卷积层好。叠加使用三层3个3×3卷积，而不是一个7×7卷积。前者可以表达出输入数据中更多个强力特征，使用的参数也更少。唯一的不足是，在进行反向传播时，中间的卷积层可能会导致占用更多的内存 模型训练过程 数据初始化：推荐的预处理操作是对数据的每个特征都进行零中心化，然后将其数值范围都归一化到[-1,1]范围之内。 权重初始化：当前的推荐是使用ReLU激活函数，并且使用$w = np.random.randn(n) * sqrt(2.0/n)$来进行权重初始化。 但是如果使用批量归一化batch normalization，可以不管权重初始化和正则化 损失函数使用ReLU，如果有单元死亡问题，就试试Leaky ReLU/Maxout/ELU。也可以使用tanh但是肯定效果不如ReLU和Maout。一定不要使用sigmoid。 超参数设置。最重要的就是学习率。先找到一个合适的学习率，其他的模型层数，权重值等之后再进行寻找。使用随机搜索（不要用网格搜索）来搜索最优的超参数。分阶段从粗（比较宽的超参数范围训练1-5个周期）到细（窄范围训练很多个周期）地来搜索。 随着训练进行学习率衰减。比如，在固定多少个周期后让学习率减半，或者当验证集准确率下降的时候。 进行合理性检查，确认初始损失函数值是合理的，在小数据集上能得到100%的准确率（过拟合这个数据集）。 在训练时，跟踪损失函数值，损失函数4中不同的下降速率，可以观察出学习率是否合理。 比较训练集和验证集准确率，相差较多的话，说明模型过拟合了，这种情况应该加大正则项或者收集更多的数据。另一种可能就是验证集曲线和训练集曲线如影随形，这种情况说明你的模型容量还不够大：应该通过增加参数数量让模型容量更大些。 还可以跟踪更新的参数量相对于总参数量的比例。一个经验性的结论是这个比例应该在1e-3左右。如果更低，说明学习率可能太小，如果更高，说明学习率可能太高。 每层的激活数据及梯度分布。一个不正确的初始化可能让学习过程变慢，甚至彻底停止，输出网络中所有层的激活数据和梯度分布的柱状图，不要出现奇怪的分布。比如，对于使用tanh的神经元，我们应该看到激活数据的值在整个[-1,1]区间中都有分布。如果看到神经元的输出全部是0，或者全都饱和了往-1和1上跑，那肯定就是有问题了。 然后如果是对于卷积神经网络，可以将第一层的权重可视化。]]></content>
+      <categories>
+        <category>cs231n</category>
+      </categories>
+      <tags>
+        <tag>cs231n</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[cs231n Lecture5 Convolutional Neural Networks]]></title>
+    <url>%2F2018%2F12%2F20%2Fcs231n-Lecture5-Convolutional-Neural-Networks.html%2F</url>
+    <content type="text"><![CDATA[卷积核池化 全连接层转变为卷积层 几个小滤波器卷积层的组合比一个大滤波器层更好 课程笔记 1.卷积 输入为32×32×3的图像 经过6个5×5×3的卷积核，3是输入图像的深度（channel） 得到28×28×6 经过10个5×5×6的卷积核 得到24×24×10 2.计算经过卷积之后的输出特征的宽和高输入尺寸为$W_{1}×H_{1}×D_{1}$ 滤波器的数量K滤波器的空间尺寸F步长S零填充数量P 输出尺寸为$W_{2}×H_{2}×D_{2}$ $H_2 = W_2=(W_1-F+2P)/S+1$ $D_2=k$ 3.卷积计算过程 如图，输入数据体是蓝色，权重数据体是红色，输出数据体是绿色。输入数据体的尺寸是$W_1=5$,$H_1=5$,$D_1=3$，卷积层参数$K=2,F=3,S=2,P=1$。就是说，有2个滤波器，滤波器的尺寸是$3\cdot 3$，它们的步长是2.因此，输出数据体的空间尺寸是(5-3+2)/2+1=3。注意输入数据体使用了零填充P=1，所以输入数据体外边缘一圈都是0。 输出的每个元素，都是通过蓝色输入的局部区域，与红色卷积核逐元素相乘，然后求其和，再加上偏差（bias）得来的。 4.池化层pooling层降低空间尺寸，减少参数，其实就是下采样 一般使用max pooling 比使用average pooling可以得到更好的效果 不可以加太多pooling层，丢掉了很多信息。 网络层的排列规律参考： INPUT -&gt; [CONV -&gt; RELU -&gt; CONV -&gt; RELU -&gt; POOL]3 -&gt; [FC -&gt; RELU]2 -&gt; FC 训练良好的生成模型都不用pooling层，如VAE何GAN 5.全连接层转化为卷积层全连接层和卷积层之间唯一的不同就是卷积层中的神经元只与输入数据中的一个局部区域连接，并且在卷积列中的神经元共享参数。然而在两类层中，神经元都是计算点积，所以它们的函数形式是一样的。因此，将此两者相互转化是可能的： 对于任一个卷积层，都存在一个能实现和它一样的前向传播函数的全连接层。权重矩阵是一个巨大的矩阵，除了某些特定块（这是因为有局部连接），其余部分都是零。而在其中大部分块中，元素都是相等的（因为参数共享）。相反，任何全连接层都可以被转化为卷积层。比如，一个K=4096的全连接层，输入数据体的尺寸是7\times 7\times 512，这个全连接层可以被等效地看做一个F=7,P=0,S=1,K=4096的卷积层。换句话说，就是将滤波器的尺寸设置为和输入数据体的尺寸一致了。因为只有一个单独的深度列覆盖并滑过输入数据体，所以输出将变成1\times 1\times 4096，这个结果就和使用初始的那个全连接层一样了。 全连接层转化为卷积层：在两种变换中，将全连接层转化为卷积层在实际运用中更加有用。假设一个卷积神经网络的输入是224x224x3的图像，一系列的卷积层和汇聚层将图像数据变为尺寸为7x7x512的激活数据体（在AlexNet中就是这样，通过使用5个汇聚层来对输入数据进行空间上的降采样，每次尺寸下降一半，所以最终空间尺寸为224/2/2/2/2/2=7）。从这里可以看到，AlexNet使用了两个尺寸为4096的全连接层，最后一个有1000个神经元的全连接层用于计算分类评分。我们可以将这3个全连接层中的任意一个转化为卷积层： 针对第一个连接区域是[7x7x512]的全连接层，令其滤波器尺寸为F=7，这样输出数据体就为[1x1x4096]了。针对第二个全连接层，令其滤波器尺寸为F=1，这样输出数据体为[1x1x4096]。对最后一个全连接层也做类似的，令其F=1，最终输出为[1x1x1000]实际操作中，每次这样的变换都需要把全连接层的权重W重塑成卷积层的滤波器。那么这样的转化有什么作用呢？它在下面的情况下可以更高效：让卷积网络在一张更大的输入图片上滑动（译者注：即把一张更大的图片的不同区域都分别带入到卷积网络，得到每个区域的得分），得到多个输出，这样的转化可以让我们在单个向前传播的过程中完成上述的操作。 举个例子，如果我们想让224x224尺寸的浮窗，以步长为32在384x384的图片上滑动，把每个经停的位置都带入卷积网络，最后得到6x6个位置的类别得分。上述的把全连接层转换成卷积层的做法会更简便。如果224x224的输入图片经过卷积层和汇聚层之后得到了[7x7x512]的数组，那么，384x384的大图片直接经过同样的卷积层和汇聚层之后会得到[12x12x512]的数组（因为途径5个汇聚层，尺寸变为384/2/2/2/2/2 = 12）。然后再经过上面由3个全连接层转化得到的3个卷积层，最终得到[6x6x1000]的输出（因为(12 - 7)/1 + 1 = 6）。这个结果正是浮窗在原图经停的6x6个位置的得分！（译者注：这一段的翻译与原文不同，经过了译者较多的修改，使更容易理解） 面对384x384的图像，让（含全连接层）的初始卷积神经网络以32像素的步长独立对图像中的224x224块进行多次评价，其效果和使用把全连接层变换为卷积层后的卷积神经网络进行一次前向传播是一样的。自然，相较于使用被转化前的原始卷积神经网络对所有36个位置进行迭代计算，使用转化后的卷积神经网络进行一次前向传播计算要高效得多，因为36次计算都在共享计算资源。这一技巧在实践中经常使用，一次来获得更好的结果。比如，通常将一张图像尺寸变得更大，然后使用变换后的卷积神经网络来对空间上很多不同位置进行评价得到分类评分，然后在求这些分值的平均值。 最后，如果我们想用步长小于32的浮窗怎么办？用多次的向前传播就可以解决。比如我们想用步长为16的浮窗。那么先使用原图在转化后的卷积网络执行向前传播，然后分别沿宽度，沿高度，最后同时沿宽度和高度，把原始图片分别平移16个像素，然后把这些平移之后的图分别带入卷积网络。（译者注：这一段的翻译与原文不同，经过了译者较多的修改，使更容易理解） 6.几个小滤波器卷积层的组合比一个大滤波器卷积层好几个小滤波器卷积层的组合比一个大滤波器卷积层好：假设你一层一层地重叠了3个3x3的卷积层（层与层之间有非线性激活函数）。在这个排列下，第一个卷积层中的每个神经元都对输入数据体有一个3x3的视野。第二个卷积层上的神经元对第一个卷积层有一个3x3的视野，也就是对输入数据体有5x5的视野。同样，在第三个卷积层上的神经元对第二个卷积层有3x3的视野，也就是对输入数据体有7x7的视野。假设不采用这3个3x3的卷积层，二是使用一个单独的有7x7的感受野的卷积层，那么所有神经元的感受野也是7x7，但是就有一些缺点。首先，多个卷积层与非线性的激活层交替的结构，比单一卷积层的结构更能提取出深层的更好的特征。其次，假设所有的数据有C个通道，那么单独的7x7卷积层将会包含$C\times (7\times 7\times C)=49C^2$个参数，而3个3x3的卷积层的组合仅有$3\times (C\times (3\times 3\times C))=27C^2$个参数。直观说来，最好选择带有小滤波器的卷积层组合，而不是用一个带有大的滤波器的卷积层。前者可以表达出输入数据中更多个强力特征，使用的参数也更少。唯一的不足是，在进行反向传播时，中间的卷积层可能会导致占用更多的内存。]]></content>
+      <categories>
+        <category>cs231n</category>
+      </categories>
+      <tags>
+        <tag>cs231n</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[BeautyGAN: Instance-level Facial Makeup Transfer with Deep]]></title>
+    <url>%2F2018%2F11%2F14%2FBeautyGAN-Instance-level-Facial-Makeup-Transfer-with-Deep.html%2F</url>
+    <content type="text"><![CDATA[BeautyGAN 基于生成对抗网络的实例级面部化妆转移 ECCV2018 刘思组一个学生做的 传统的化妆转换，需要用户事实的交互，只有固定的几个妆容，但是如果明星有一个很好看的妆容，想试试怎么办，这篇文章就做的在非对称网络上，实现实例级的化妆转换，输入一个素颜+目标化妆照片，输出化妆后的结果图片。 贡献1）我们通过双重输入/输出生成对抗网络实现自动化妆转移。 实验表明了转移策略的有效性，并且生成的结果比最先进的方法具有更高的质量。（2）我们通过在局部区域成功应用像素级直方图损失来实现实例级样式转换。 这种实例级转移方法可以很容易地推广到其他图像转换任务，例如用于头像肖像的样式转移，图像属性转移等。（3）建立了一个包含3834张图像的新化妆数据集 结构 如图所示 网络由一个生成器，两个鉴别器构成 $I_{src}$表示source image，是素颜图片，或者为A图片 $I_{ref}$表示reference image，是目标妆容图片，或者为B图片 两张图片一起输入生成器，先经过单独的几层CNN网络，然后经过共用的深度残差网络，最后再分别经过反卷积输出两张图片 $I_{src}^{B}$表示化了 B图片妆的A图片 $I_{ref}^{A}$表示去掉了妆，变成素颜的B图片 然后$I_{src}^{B}$和$I_{ref}$是化了相同妆的图片，放入鉴别器$D_{B}$中进行训练 $I_{ref}^{A}$和$I_{src}$都是素颜图片，放入鉴别器$D_{A}$中进行训练 损失函数1.鉴别器$D_{B}$和鉴别器$D_{A}$处是两个传统的GAN损失函数 2.生成器损失函数由四项构成 $L_{G} = αL_{adv} + βL_{cyc} +γL_{per} + L_{makeup}$ $L_{cyc}$和$L_{per}$保证经过化妆，还是原来的人脸模样，同时图片背景不变 $L_{makeup}$损失保证妆容转移 $L_{adv}$第一项是鉴别器对应的生成器损失，使生成的图片逼真，鉴别器无法鉴别 $L_{cyc}$是循环重构损失，类似cycleGAN，$I_{src}^{B}$和$I_{ref}^{A}$再次输入生成器，得到$I_{src}^{rec}$和$I_{ref}^{rec}$，和原输入图片算重构损失，L1或者L2。 $L_{per}$是perceptual loss，其实就是李飞飞风格转换那篇文章中提到的内容损失content loss，提取VGG16网络中的relu_4_1层 $L_{makeup}$是直方图损失Histogram loss，不能在全局算这个损失，因为妆容只包括 眼影，唇膏，粉底。跟头发背景等无关。所以用别人预训练好的网络，输入人脸图片，直接得到眼，嘴，皮肤三个位置的mask，分别计算三个位置的直方图损失，然后想加就是总直方图损失，如结构图所示。 化妆在图像上其实可以看做是颜色的深浅等的变化，所以用直方图损失，直方图匹配就是，有时需要变换直方图使之成为某个特定的形状,从而有选择地增强某个灰度值范围内的对比度 直方图损失的理论理解参考：https://blog.csdn.net/majinlei121/article/details/46482615]]></content>
+      <categories>
+        <category>百篇论文阅读计划</category>
+      </categories>
+      <tags>
+        <tag>GAN</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[cs231n Lecture3 Loss Functions and Optimization]]></title>
+    <url>%2F2018%2F11%2F10%2Fcs231n-Lecture3-Loss-Functions-and-Optimization.html%2F</url>
+    <content type="text"><![CDATA[损失函数(softmax和SVM) 最优化（mini batch） 1.损失函数多类支持向量机损失 Multiclass Support Vector Machine LossSVM的损失函数想要SVM在正确分类上的得分始终比不正确分类上的得分高，而且要至少高出$\Delta$，如果不满足这点，就开始计算损失值。 正则化（Regularization） 能够满足正确分类的权重W不是唯一的。比如W乘以常数，所以加上权重正则化惩罚（L2）。同时对大数值权重进行惩罚，提高泛化能力，避免过拟合。 svm的损失函数 $L=\frac{1}{N}\sum_i\sum_{j\not=y_i}[max(0,f(x_i;W)_j-f(x_i;W)_{y_i}+\Delta)]+\lambda \sum_k \sum_l W^2_{k,l}$ Softmax分类器SVM和softmax是最常用的两个分类器。 在Softmax分类器中，函数映射$f(x_i;W)=Wx_i$保持不变，但将这些评分值视为每个分类的未归一化的对数概率，使用交叉熵损失（cross-entropy loss）。公式如下： $$\displaystyle Li=-log(\frac{e^{f_{y_i}}}{\sum_je^{f_j}})$$ $f_j(z)=\frac{e^{z_j}}{\sum_ke^{z_k}}$被称作softmax 函数 针对一个数据点，SVM和Softmax分类器的不同处理方式的例子。两个分类器都计算了同样的分值向量f（本节中是通过矩阵乘来实现）。不同之处在于对f中分值的解释：SVM分类器将它们看做是分类评分，它的损失函数鼓励正确的分类（本例中是蓝色的类别2）的分值比其他分类的分值高出至少一个边界值。Softmax分类器将这些数值看做是每个分类没有归一化的对数概率，鼓励正确分类的归一化的对数概率变高，其余的变低。SVM的最终的损失值是1.58，Softmax的最终的损失值是0.452，但要注意这两个数值没有可比性。只在给定同样数据，在同样的分类器的损失值计算中，它们才有意义。 2.最优化最优化 Optimization 损失函数可以量化某个具体权重集W的质量。而最优化的目标就是找到能够最小化损失函数值的W 策略#1：一个差劲的初始方案：随机搜索 策略#2：随机本地搜索 策略#3：跟随梯度 在梯度负方向上更新，这是因为我们希望损失函数值是降低而不是升高 小批量数据梯度下降（Mini-batch gradient descent）小批量数据策略有个极端情况，那就是每个批量中只有1个数据样本，这种策略被称为随机梯度下降（Stochastic Gradient Descent 简称SGD），有时候也被称为在线梯度下降。这种策略在实际情况中相对少见，因为向量化操作的代码一次计算100个数据 比100次计算1个数据要高效很多。即使SGD在技术上是指每次使用1个数据来计算梯度，你还是会听到人们使用SGD来指代小批量数据梯度下降（或者用MGD来指代小批量数据梯度下降，而BGD来指代则相对少见）。小批量数据的大小是一个超参数，但是一般并不需要通过交叉验证来调参。它一般由存储器的限制来决定的，或者干脆设置为同样大小，比如32，64，128等。之所以使用2的指数，是因为在实际中许多向量化操作实现的时候，如果输入数据量是2的倍数，那么运算更快。 总结： 步长(学习率)需要用验证集找到最优解 batch_size一般由GPU大小决定，但是设置成2的指数，这样会运算快一点]]></content>
+      <categories>
+        <category>cs231n</category>
+      </categories>
+      <tags>
+        <tag>cs231n</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[cs231n Lecture2 Image Classification]]></title>
+    <url>%2F2018%2F11%2F07%2Fcs231n-Lecture2-Image-Classification.html%2F</url>
+    <content type="text"><![CDATA[1.数据驱动：图像分类面对的困难挑战是视角变化，大小变化，形变，遮挡，光照条件，背景干扰，类内差异。 Nearest Neighbor分类器在CIFAR-10数据集上，总共6W张图片，有10类。32×32×3 5W做训练集，1W做测试集。每张测试图片属于哪一类，就是直接计算两张图片的所有像素的差值，一个测试图片和5W个训练集图片分别比较，最后哪个差值小就是和这个图片一类。 L1 (Manhattan)distance L2 (Euclidean)distance 你会发现准确率能达到38.6%。这比随机猜测的10%要好，但是比人类识别的水平（据研究推测是94%）和卷积神经网络能达到的95%还是差多了 k - Nearest Neighbor Classifier(KNN)不找最近的一个图片的标签作为记过，找K个图片，然后投票决定图片标签 用于超参数调优的验证集 这里有K和which distance 两个超参数需要确定，不要用你的test data来调优找到超参数 在训练集中，使用交叉循环验证，分成5份，用4份做训练集，一份做验证集 一旦找到最优的超参数，就让算法以该参数在测试集跑且只跑一次，并根据测试结果评价算法。 对最优的超参数做记录。记录最优参数后，是否应该让使用最优参数的算法在完整的训练集上运行并再次训练呢？因为如果把验证集重新放回到训练集中（自然训练集的数据量就又变大了），有可能最优参数又会有所变化。在实践中，不要这样做。千万不要在最终的分类器中使用验证集数据，这样做会破坏对于最优参数的估计。直接使用测试集来测试用最优参数设置好的最优模型，得到测试集数据的分类准确率，并以此作为你的kNN分类器在该数据上的性能表现。 Nearest Neighbor分类器的优劣耗时，图像是高维的。且用L1和L2并不准确。 仅仅使用L1和L2范数来进行像素比较是不够的，图像更多的是按照背景和颜色被分类，而不是语义主体分身。 2.参数方法：线性分类y = wx +b 还是在CIFAR-10训练集上，一个单独的矩阵乘法Wx就可以高效地并行评估10个不同的分类器。 从上面可以看到，W的每一行都是一个分类类别的分类器。对于这些数字的几何解释是：如果改变其中一行的数字，会看见分类器在空间中对应的直线开始向着不同方向旋转。而偏差b，则允许分类器对应的直线平移。需要注意的是，如果没有偏差，无论权重如何，在x_i=0时分类分值始终为0。这样所有分类器的线都不得不穿过原点。 将线性分类器看做模板匹配：关于权重W的另一个解释是它的每一行对应着一个分类的模板（有时候也叫作原型）。一张图像对应不同分类的得分，是通过使用内积（也叫点积）来比较图像和模板，然后找到和哪个模板最相似。从这个角度来看，线性分类器就是在利用学习到的模板，针对图像做模板匹配。从另一个角度来看，可以认为还是在高效地使用k-NN，不同的是我们没有使用所有的训练集的图像来比较，而是每个类别只用了一张图片（这张图片是我们学习到的，而不是训练集中的某一张），而且我们会使用（负）内积来计算向量间的距离，而不是使用L1或者L2距离。 对CIFAR-10的10个类别的权重数值可视化，可以看到如图所示。 可以看到马的模板看起来似乎是两个头的马，这是因为训练集中的马的图像中马头朝向各有左右造成的。线性分类器将这两种情况融合到一起了。类似的，汽车的模板看起来也是将几个不同的模型融合到了一个模板中，并以此来分辨不同方向不同颜色的汽车。这个模板上的车是红色的，这是因为CIFAR-10中训练集的车大多是红色的。线性分类器只拟合了一个模板，求了所有相关图像特征的均值。线性分类器对于不同颜色的车的分类能力是很弱的，但是后面可以看到神经网络是可以完成这一任务的。神经网络可以在它的隐藏层中实现中间神经元来探测不同种类的车（比如绿色车头向左，蓝色车头向前等）。而下一层的神经元通过计算不同的汽车探测器的权重和，将这些合并为一个更精确的汽车分类分值。 2017雷锋网 http://ai.yanxishe.com/page/search 2016网易云视频： https://study.163.com/course/courseLearn.htm?courseId=1003223001#/learn/video?lessonId=1003705493&amp;courseId=1003223001 课件原文：http://cs231n.github.io/classification/ 课件翻译：https://zhuanlan.zhihu.com/p/20894041?refer=intelligentunit]]></content>
+      <categories>
+        <category>cs231n</category>
+      </categories>
+      <tags>
+        <tag>cs231n</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[风格转换(二)：Perceptual Losses for Real-Time Style Transfer and Super-Resolution]]></title>
+    <url>%2F2018%2F10%2F31%2F%E9%A3%8E%E6%A0%BC%E8%BD%AC%E6%8D%A2-%E4%BA%8C-%EF%BC%9APerceptual-Losses-for-Real-Time-Style-Transfer-and-Super-Resolution.html%2F</url>
+    <content type="text"><![CDATA[基于感知损失函数的实时风格转换和超分辨率重建论文地址：[1603.08155] Perceptual Losses for Real-Time Style Transfer and Super-Resolution本文是李飞飞在2016年ECCV上发表的实时风格转换论文。提出了perceptual loss，风格转换分为单一图片单一风格，多图片单一风格，多图片多风格，任意图片任意风格。A Neural Algorithm of Artistic Style 这篇文章每次都要重新训练图片，属于单一图片单一风格。训练一个模型，每次输入图片实时的生成风格图片，也就是本篇文章，为多图片单一风格。 1. 翻译文章摘要我们考虑的图像转换的问题，即将一个输入图像变换成一个输出图像。最近热门的图像转换的方法通常是训练前馈卷积神经网络，将输出图像与原本图像的逐像素差距作为损失函数。并行的工作表明，高质量的图像可以通过用预训练好的网络提取高级特征、定义并优化感知损失函数来产生。我们组合了一下这两种方法各自的优势，提出采用感知损失函数训练前馈网络进行图像转换的任务。本文给出了图像风格化的结果，训练一个前馈网络去解决实时优化问题（Gatys等人提出的），和基于有优化的方法对比，我们的网络产生质量相当的结果，却能做到三个数量级的提速。我们还实验了单图的超分辨率重建，同样采用感知损失函数来代替求逐像素差距的损失函数. 2. 概述如图，提出一个Image Transform Net，输入为 $x$ 输出为风格图片，输出为 $\widehat{y}$结果图片，后面紧跟一个与训练好的VGG-16网络作为Loss Network，输入为风格图片$ y_{s}$ (不变)和内容图片$ y_{c}$ (训练集中读个内容图片)，使用内容损失和风格损失的权重和作为总体损失，保持Loss Network参数不变，更新Image Transform Net网络的参数。 最终训练成功后，取出Image Transform Net，输入任意内容图片，输出就是风格转换后的结果。多图片单一风格。 3. Image Transform Net​ Image Transform Net的输入是要转换的图像，输出是转换好的图像，在模型训练好之后，用于生成风格迁移的只是这部分的网络。具体这部分的网络模型图如下。 ​ 图像变换网络总体也属于一个残差网络。一共是由3个卷积层、5个残差块、3个卷积层构成。这里没有用到池化等操作进行采用，在开始卷积层中（第二层、第三层）进行了下采样，在最后的3个卷积层中进行了上采样，这样最直接的就是减少了计算复杂度，另外还有一个好处是有效受区域变大，卷积下采样都会增大有效区域。5个残差块都是使用相同个数的（128）滤镜核，每个残差块中都有2个卷积层（3*3核），这里的卷积层中没有进行标准的0填充（padding），因为使用0填充会使生成出的图像的边界出现严重伪影。为了保证输入输出图像大小不改变，在图像初始输入部分加入了反射填充。 ​ 这里的残差网络不是使用何凯明的残差网络（卷积之后没有Relu），而是使用了Gross and Wilber的残差网络 。后面这种方法验证在图像分类算法上面效果比较好。 4. Perceptual Loss(1)Feature Reconstruction Loss 使用 $\phi $来表示VGG网络 $j $表示网络的第j层。 $C_{j}H_{j}W_{j} $表示第$j$层的feature_map的size 就是VGG网络某一层的输出，结果图片和内容图片所有的feature相减求平方，然后求个平均 （2）Style Reconstruction Loss 同Gatys，先求Gram矩阵，就是把$\phi_{j}$reshpe为$C_{j} \times H_{j}W_{j}$的矩阵$ \psi$ ，然后得到 也就是该层特征的未零均值化的协方差，若样本均标准化为均值为0，那么内积=协方差。这将获得哪些feature倾向于一起激活(相关性). 在loss网络的每一层都求出Gram矩阵，然后对应层之间计算欧式距离，最后将不同层的欧氏距离相加，得到最后的风格损失。 当生成的图片和风格图片尺寸不一致，也能计算风格损失，因为Gram矩阵大小一样 (3)Total Variation Regularization保证输出图像的空间平滑性，避免高频噪声 $l_{TV} $，该损失多用于去噪和图片高清化。这个损失的相关解释可以参考Total variation denoising wiki解释Total Variation Denosing 一个博客中文的根据wiki的自己理解 5.实验结果 图像风格转换任务上，针对不同分辨率的图像，Loss值在Perceptual Loss(ours)和Gatys的对比。可以看到，使用Perceptual Loss相当于原始算法迭代50到100次。 可以看到速度可以提升几百倍 6. 总结感觉最大贡献就是图像风格转换的实用化，速度提升了很多个量级。然后这个模型可以做super-resolution，简单说来就是，输入$x$ 为模糊图片，$y_{c}$为ground-truth高清图片，$y_{s}​$不使用，loss要加一个Pixel Loss，就是输入输出图片的欧几里得距离，其余同理训练。 参考 Perceptual Losses for Real-Time Style Transfer and Super-Resolution 论文 理解 [译] Perceptual Losses for Real-Time Style Transfer and Super-Resolution（Stanford University 感知损失(Perceptual Losses)]]></content>
+      <categories>
+        <category>百篇论文阅读计划</category>
+      </categories>
+      <tags>
+        <tag>图像风格转换</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[图像风格转换(一):A Neural Algorithm of Artistic Style]]></title>
+    <url>%2F2018%2F10%2F30%2F%E9%A3%8E%E6%A0%BC%E8%BD%AC%E6%8D%A2-%E4%B8%80-%EF%BC%9AA-Neural-Algorithm-of-Artistic-Style.html%2F</url>
+    <content type="text"><![CDATA[论文地址：A Neural Algorithm of Artistic Styletensorflow代码实现：woodrush/neural-art-tf本文介绍Leon Gatys在2016年初大热的Style Transfer算法，发表于CVPR16 1. 概述首次提出，使用预训练好的VGG19网络，提取图像不同层级的特征，分别作为图像的风格特征和内容特征，以高斯噪声为初始输入图像，多次执行前向/后向迭代使用L-BFGS方法优化，保持CNN的参数不变，根据风格损失和内容损失，反向传播更新图片。保留内容图片的内容和全局布局的同时，由风格图片提供颜色和局部结构信息。 2. VGG19 如图所示为VGG19的网络结构，16个convolutional和5个pooling layer，本文不使用后面的全连接层。使用average pooling代替max pooling，得到更好的视觉效果。如图所示，输入内容图片和风格图片，在abcde五层处分别重构风格图片和内容图片。内容重构(a)conv1_1，(b) conv2_1，(c)conv3_1，(d)conv4_1，(e)conv5_1可以看出，在高层(d，e)，细节像素信息丢失，但内容保留，所以内容特征一般用高层。 风格重构(a)conv1_1，(b)conv1_1， conv2_1，(c)conv1_1， conv2_1，conv3_1，(d)conv1_1， conv2_1，conv3_1，conv4_1，(e)conv1_1， conv2_1，conv3_1，conv4_1，conv5_1感受野大小和特征复杂程度随着网络层级增大，当风格表示匹配到网络的更高层时，局部图像结构在越来越大的范围内匹配，从而导致更平滑和更连接的视觉效果所以在最终的实验里内容层 - conv4_2风格层 - conv1_1, conv2_1, conv3_1, conv4_1, conv5_1 3. 内容损失输入$x$，在网络中某一层的输出为，shape可以表示为 $$ N_{l}\times H \times W $$ ，reshape为 $N_{l}\times M_{l}$，写作矩阵$F^{l}$。其中$N_{l} $表示该层卷积核的个数，$ M_{l}$ 是该层feature的长度 $H $和宽度 $W$ 的乘积。$ F_{ij}^{l} $表示$ l $层第$ i $个filter的位置$ j$ 。内容损失就是原始图像和生成图片，经过VGG19网络，在这一层的feature的SSE(和方差，误差平方和)$$L_{content} = \frac{1}{2} \sum_{i,j}({F_{ij}^{l}-P_{ij}^{l}})^{2}$$ 4. 风格损失先引入Gram matrix $G^{l}\in R^{ N_{l} \times N_{l}}$,由矩阵$F^{l}$和他转置矩阵的相乘得到。$ G_{ij}^{l}$ 是第$ l $层的feature$ i $向量和feature$ j $向量的内积。可以认为是一个未零均值化的协方差矩阵，捕获的是哪些feature是趋于一起激活的信息(如果无法理解为什么内积=协方差，可以看参考里的2和3两篇博文)。 $$E_{l} = \frac{1}{4N_{l}^{2}m_{l}^{2}}\sum_{i,j}{(G_{ij}^{l}-F_{ij}^{l})^{2}}$$ $$L_{style} = \sum_{l=0}^{L}{w_{l}E_{l}}$$ 5层的损失相加，乘以对应权重，通常为$ \frac{1}{5} $ 当风格图片和内容图片size不一样，这个风格损失函数也可以用，因为Gram矩阵shape一样 5. 总损失$$L_{total} = \alpha L_{content} + \beta L_{style}$$ $\alpha$和$\beta$ 表示权重，不可能内容和风格完美匹配，需要调节。文章中使用 $\frac{\alpha}{\beta} = 10^{-3}$ (B,C,D)更加注重原图，或者$10^{-4} $(E,F)，更加艺术化。 参考 【深度学习】A neural algorithm of artistic style算法详解 【统计学习1】方差、协方差、相关系数与向量内积 - CSDN博客 CodingLabs - PCA的数学原理 后记最近对风格转换的文章比较感兴趣，看了一篇NVIDA最新的，然后有些地方不明白，就循着参考文献看过来，这片是最经典最早的一篇，后续看完其他几篇，也会做个笔记，坚持每周至少精读一篇文章并做个笔记。]]></content>
+      <categories>
+        <category>百篇论文阅读计划</category>
+      </categories>
+      <tags>
+        <tag>图像风格转换</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Hello World]]></title>
+    <url>%2F2018%2F10%2F24%2Fhello-world.html%2F</url>
+    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
+  </entry>
+</search>
