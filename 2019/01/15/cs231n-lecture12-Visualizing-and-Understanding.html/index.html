@@ -107,25 +107,38 @@
 
 
 
-  <meta name="description" content="简介CV博士在读，目前研究生成对抗网络GAN在风格转换，图像生成等方面的应用。 深感文章读的少，计划本年度至少精读文章100篇，略读不计。 联系方式Email : whiup888@gmail.com（不定期上线检查邮件）">
-<meta name="keywords" content="blogs, CV">
-<meta property="og:type" content="website">
-<meta property="og:title" content="about">
-<meta property="og:url" content="https://tiantianwahaha.github.io/about/index.html">
+  <meta name="description" content="Feature visualization and inversionAdversarial examplesDeepDream and style transfer 特征可视化第一层对神经网络第一层可视化，比如第一层的的输入是3×256×256的图片，经过11×11的64个卷积核。那么每个3×11×11看做一个彩色图片，共64个，做可视化，看神经网络是否训练的好，学到了边角等特征。  最后一层N">
+<meta name="keywords" content="cs231n">
+<meta property="og:type" content="article">
+<meta property="og:title" content="cs231n lecture12 Visualizing and Understanding">
+<meta property="og:url" content="https://tiantianwahaha.github.io/2019/01/15/cs231n-lecture12-Visualizing-and-Understanding.html/index.html">
 <meta property="og:site_name" content="tiantianwahaha">
-<meta property="og:description" content="简介CV博士在读，目前研究生成对抗网络GAN在风格转换，图像生成等方面的应用。 深感文章读的少，计划本年度至少精读文章100篇，略读不计。 联系方式Email : whiup888@gmail.com（不定期上线检查邮件）">
+<meta property="og:description" content="Feature visualization and inversionAdversarial examplesDeepDream and style transfer 特征可视化第一层对神经网络第一层可视化，比如第一层的的输入是3×256×256的图片，经过11×11的64个卷积核。那么每个3×11×11看做一个彩色图片，共64个，做可视化，看神经网络是否训练的好，学到了边角等特征。  最后一层N">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-01-09T02:46:21.052Z">
+<meta property="og:image" content="https://tiantianwahaha.github.io/2019/01/15/cs231n-lecture12-Visualizing-and-Understanding.html/first%20layer.png">
+<meta property="og:image" content="https://tiantianwahaha.github.io/2019/01/15/cs231n-lecture12-Visualizing-and-Understanding.html/last%20layer1.png">
+<meta property="og:image" content="https://tiantianwahaha.github.io/2019/01/15/cs231n-lecture12-Visualizing-and-Understanding.html/last%20layer2.png">
+<meta property="og:image" content="https://tiantianwahaha.github.io/2019/01/15/cs231n-lecture12-Visualizing-and-Understanding.html/middle1.png">
+<meta property="og:image" content="https://tiantianwahaha.github.io/2019/01/15/cs231n-lecture12-Visualizing-and-Understanding.html/middel2.png">
+<meta property="og:image" content="https://tiantianwahaha.github.io/2019/01/15/cs231n-lecture12-Visualizing-and-Understanding.html/middel3.png">
+<meta property="og:image" content="https://tiantianwahaha.github.io/2019/01/15/cs231n-lecture12-Visualizing-and-Understanding.html/middle4.png">
+<meta property="og:image" content="https://tiantianwahaha.github.io/2019/01/15/cs231n-lecture12-Visualizing-and-Understanding.html/middel5.png">
+<meta property="og:image" content="https://tiantianwahaha.github.io/2019/01/15/cs231n-lecture12-Visualizing-and-Understanding.html/middle5.png">
+<meta property="og:image" content="https://tiantianwahaha.github.io/2019/01/15/cs231n-lecture12-Visualizing-and-Understanding.html/middle5-2.png">
+<meta property="og:image" content="https://tiantianwahaha.github.io/2019/01/15/cs231n-lecture12-Visualizing-and-Understanding.html/adversarial.png">
+<meta property="og:image" content="https://tiantianwahaha.github.io/2019/01/15/cs231n-lecture12-Visualizing-and-Understanding.html/deepdream.png">
+<meta property="og:updated_time" content="2019-01-15T07:08:42.836Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="about">
-<meta name="twitter:description" content="简介CV博士在读，目前研究生成对抗网络GAN在风格转换，图像生成等方面的应用。 深感文章读的少，计划本年度至少精读文章100篇，略读不计。 联系方式Email : whiup888@gmail.com（不定期上线检查邮件）">
+<meta name="twitter:title" content="cs231n lecture12 Visualizing and Understanding">
+<meta name="twitter:description" content="Feature visualization and inversionAdversarial examplesDeepDream and style transfer 特征可视化第一层对神经网络第一层可视化，比如第一层的的输入是3×256×256的图片，经过11×11的64个卷积核。那么每个3×11×11看做一个彩色图片，共64个，做可视化，看神经网络是否训练的好，学到了边角等特征。  最后一层N">
+<meta name="twitter:image" content="https://tiantianwahaha.github.io/2019/01/15/cs231n-lecture12-Visualizing-and-Understanding.html/first%20layer.png">
 
 
 
 
 
 
-  <link rel="canonical" href="https://tiantianwahaha.github.io/about/">
+  <link rel="canonical" href="https://tiantianwahaha.github.io/2019/01/15/cs231n-lecture12-Visualizing-and-Understanding.html/">
 
 
 
@@ -135,7 +148,7 @@
   };
 </script>
 
-  <title>about | tiantianwahaha</title>
+  <title>cs231n lecture12 Visualizing and Understanding | tiantianwahaha</title>
   
 
 
@@ -320,74 +333,246 @@
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://tiantianwahaha.github.io/2019/01/15/cs231n-lecture12-Visualizing-and-Understanding.html/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="tiantianwahaha">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="tiantianwahaha">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-<h2 class="post-title" itemprop="name headline">about</h2>
-
-<div class="post-meta">
-  
-  
-
-
-
-</div>
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>CV博士在读，目前研究生成对抗网络GAN在风格转换，图像生成等方面的应用。</p>
-<p>深感文章读的少，计划本年度至少精读文章100篇，略读不计。</p>
-<h1 id="联系方式"><a href="#联系方式" class="headerlink" title="联系方式"></a>联系方式</h1><p>Email : <a href="mailto:whiup888@gmail.com" target="_blank" rel="noopener">whiup888@gmail.com</a>（不定期上线检查邮件）</p>
-
+          <h2 class="post-title" itemprop="name headline">cs231n lecture12 Visualizing and Understanding</h2>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-15T13:59:22+08:00">2019-01-15</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/cs231n/" itemprop="url" rel="index"><span itemprop="name">cs231n</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/01/15/cs231n-lecture12-Visualizing-and-Understanding.html/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/01/15/cs231n-lecture12-Visualizing-and-Understanding.html/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             Views: 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <p>Feature visualization and inversion<br>Adversarial examples<br>DeepDream and style transfer</p>
+<h1 id="特征可视化"><a href="#特征可视化" class="headerlink" title="特征可视化"></a>特征可视化</h1><h2 id="第一层"><a href="#第一层" class="headerlink" title="第一层"></a>第一层</h2><p>对神经网络第一层可视化，比如第一层的的输入是3×256×256的图片，经过11×11的64个卷积核。那么每个3×11×11看做一个彩色图片，共64个，做可视化，看神经网络是否训练的好，学到了边角等特征。</p>
+<p><img src="/2019/01/15/cs231n-lecture12-Visualizing-and-Understanding.html/first layer.png" alt=""></p>
+<h2 id="最后一层"><a href="#最后一层" class="headerlink" title="最后一层"></a>最后一层</h2><h3 id="Nearest-Neighbors"><a href="#Nearest-Neighbors" class="headerlink" title="Nearest Neighbors"></a>Nearest Neighbors</h3><p>分类神经网络，最后一层是全连接层，4096到1000类的映射。取4096这层做特征，然后求基于像素值的L2图像紧邻，一个头朝左的大象和一个头朝右的大象，竟然最相似，可见学到了语义特征。</p>
+<p><img src="/2019/01/15/cs231n-lecture12-Visualizing-and-Understanding.html/last layer1.png" alt=""></p>
+<h3 id="Dimensionality-Reduction"><a href="#Dimensionality-Reduction" class="headerlink" title="Dimensionality Reduction"></a>Dimensionality Reduction</h3><p>用t-SNE降维，把4096降维到两维，对应为二维坐标轴上的x和y坐标，对应的图片放在对应的位置，组成一个密密麻麻的大图</p>
+<p><img src="/2019/01/15/cs231n-lecture12-Visualizing-and-Understanding.html/last layer2.png" alt=""></p>
+<h2 id="中间层"><a href="#中间层" class="headerlink" title="中间层"></a>中间层</h2><h3 id="Visualizing-Activations"><a href="#Visualizing-Activations" class="headerlink" title="Visualizing Activations"></a>Visualizing Activations</h3><p>conv5 feature map是一个128×13×13的，可视化128个13×13的灰度图片，可以看到某张图片正对应人脸的激活位置</p>
+<p><img src="/2019/01/15/cs231n-lecture12-Visualizing-and-Understanding.html/middle1.png" alt=""></p>
+<h3 id="Maximally-Activating-Patches"><a href="#Maximally-Activating-Patches" class="headerlink" title="Maximally Activating Patches"></a>Maximally Activating Patches</h3><p>找到中间某层的一个通道，比如conv5是128×13×13，取出128个中的第17个通道，网络中输入图片，记录通道值，找到最大激活对应的图像上的位置。</p>
+<p><img src="/2019/01/15/cs231n-lecture12-Visualizing-and-Understanding.html/middel2.png" alt=""></p>
+<h3 id="Occlusion-Experiments"><a href="#Occlusion-Experiments" class="headerlink" title="Occlusion Experiments"></a>Occlusion Experiments</h3><p>遮挡一部分图片，然后滑动这个遮挡，输入遮挡后的图片进网络，输出的预测概率值做一个热力图，变化距离的地方就是分类起作用的地方。</p>
+<p><img src="/2019/01/15/cs231n-lecture12-Visualizing-and-Understanding.html/middel3.png" alt=""></p>
+<h3 id="Saliency-Maps"><a href="#Saliency-Maps" class="headerlink" title="Saliency Maps"></a>Saliency Maps</h3><p><img src="/2019/01/15/cs231n-lecture12-Visualizing-and-Understanding.html/middle4.png" alt=""></p>
+<p>显著图，根据分类得分，反向求图像像素相关的梯度值，对应的是3×256×256，保留三个通道中的最大值，得到一个灰度图。这个可以用来做语义分割，但是效果不是那么好。</p>
+<h3 id="Intermediate-features-via-guided-backprop"><a href="#Intermediate-features-via-guided-backprop" class="headerlink" title="Intermediate features via (guided) backprop"></a>Intermediate features via (guided) backprop</h3><p>找到中间某层的一个神经元，计算关于这个神经元对应图像感受野位置的梯度。但是梯度要经过Relu激活，也就是只取正梯度。</p>
+<p><img src="/2019/01/15/cs231n-lecture12-Visualizing-and-Understanding.html/middel5.png" alt=""></p>
+<h3 id="Visualizing-CNN-features-Gradient-Ascent"><a href="#Visualizing-CNN-features-Gradient-Ascent" class="headerlink" title="Visualizing CNN features: Gradient Ascent"></a>Visualizing CNN features: Gradient Ascent</h3><p>初始化图像为0，正向输入图片得到目前的得分，反向求图像像素对应的梯度，然后逐渐更新图片。$I^2$是对应的图像像素的L2正则化。</p>
+<p><img src="/2019/01/15/cs231n-lecture12-Visualizing-and-Understanding.html/middle5.png" alt=""></p>
+<p><img src="/2019/01/15/cs231n-lecture12-Visualizing-and-Understanding.html/middle5-2.png" alt=""></p>
+<p>Better regularizer: Penalize L2 norm of image; also during optimization periodically<br>(1) Gaussian blur image<br>(2) Clip pixels with small values to 0<br>(3) Clip pixels with small gradients to 0</p>
+<h1 id="对抗样本"><a href="#对抗样本" class="headerlink" title="对抗样本"></a>对抗样本</h1><p>随意宣一个图片，随意选一个类别，通过修改图片，使这个图片最终被错误分类为这个随意选的类别。</p>
+<p><img src="/2019/01/15/cs231n-lecture12-Visualizing-and-Understanding.html/adversarial.png" alt=""></p>
+<h1 id="深梦和风格转换"><a href="#深梦和风格转换" class="headerlink" title="深梦和风格转换"></a>深梦和风格转换</h1><p>google写的一个博客，正向传播，计算被选层的梯度当做激活，反向计算图片相关的梯度，更新图片。在分类网络上做的，应为1000类其中有200类狗，所以会有很多狗头，虫子等乱七八糟的神奇图像。</p>
+<p><img src="/2019/01/15/cs231n-lecture12-Visualizing-and-Understanding.html/deepdream.png" alt=""></p>
+<ol>
+<li><p>纹理生成，提出Gram矩阵</p>
+<p>Gatys, Ecker, and Bethge, “Texture Synthesis Using Convolutional Neural Networks”, NIPS 2015</p>
+</li>
+<li><p>Gram矩阵用于风格转换，单一内容单一风格</p>
+<p>Gatys, Ecker, and Bethge, “Image style transfer using convolutional neural networks”, CVPR 2016</p>
+</li>
+<li><p>多内容单一风格转换。</p>
+<p>Johnson, Alahi, and Fei-Fei, “Perceptual Losses for Real-Time Style Transfer and Super-Resolution”, ECCV 2016.</p>
+</li>
+<li><p>Replacing batch normalization with Instance Normalization improves results</p>
+<p>Ulyanov et al, “Texture Networks: Feed-forward Synthesis of Textures and Stylized Images”, ICML 2016</p>
+<p>Ulyanov et al, “Instance Normalization: The Missing Ingredient for Fast Stylization”, arXiv 2016</p>
+</li>
+<li><p>多内容多风格转换</p>
+<p><strong>Dumoulin, Shlens, and Kudlur, “A Learned Representation for Artistic Style”, ICLR 2017</strong></p>
+</li>
+</ol>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>Many methods for understanding CNN representations<br><strong>Activations:</strong> Nearest neighbors, Dimensionality reduction,maximal patches, occlusion<br><strong>Gradients:</strong> Saliency maps, class visualization, fooling, images, feature inversion<br><strong>Fun:</strong> DeepDream, Style Transfer.</p>
+
       
     </div>
+
     
+
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author: </strong>tiantianwahaha</li>
+  <li class="post-copyright-link">
+    <strong>Post link:</strong>
+    <a href="https://tiantianwahaha.github.io/2019/01/15/cs231n-lecture12-Visualizing-and-Understanding.html/" title="cs231n lecture12 Visualizing and Understanding">https://tiantianwahaha.github.io/2019/01/15/cs231n-lecture12-Visualizing-and-Understanding.html/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice: </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> unless stating additionally.</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/cs231n/" rel="tag"># cs231n</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/12/如何计算卷积层的参数个数.html/" rel="next" title="如何计算卷积层的参数个数">
+                <i class="fa fa-chevron-left"></i> 如何计算卷积层的参数个数
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
 
 
 
-    
-    
-    
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -539,7 +724,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#联系方式"><span class="nav-text">联系方式</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#特征可视化"><span class="nav-text">特征可视化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一层"><span class="nav-text">第一层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后一层"><span class="nav-text">最后一层</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Nearest-Neighbors"><span class="nav-text">Nearest Neighbors</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dimensionality-Reduction"><span class="nav-text">Dimensionality Reduction</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#中间层"><span class="nav-text">中间层</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Visualizing-Activations"><span class="nav-text">Visualizing Activations</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Maximally-Activating-Patches"><span class="nav-text">Maximally Activating Patches</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Occlusion-Experiments"><span class="nav-text">Occlusion Experiments</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Saliency-Maps"><span class="nav-text">Saliency Maps</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Intermediate-features-via-guided-backprop"><span class="nav-text">Intermediate features via (guided) backprop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Visualizing-CNN-features-Gradient-Ascent"><span class="nav-text">Visualizing CNN features: Gradient Ascent</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#对抗样本"><span class="nav-text">对抗样本</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#深梦和风格转换"><span class="nav-text">深梦和风格转换</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
@@ -1115,6 +1300,29 @@
   
   
 
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
   
 
 

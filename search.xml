@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[cs231n lecture12 Visualizing and Understanding]]></title>
+    <url>%2F2019%2F01%2F15%2Fcs231n-lecture12-Visualizing-and-Understanding.html%2F</url>
+    <content type="text"><![CDATA[Feature visualization and inversionAdversarial examplesDeepDream and style transfer 特征可视化第一层对神经网络第一层可视化，比如第一层的的输入是3×256×256的图片，经过11×11的64个卷积核。那么每个3×11×11看做一个彩色图片，共64个，做可视化，看神经网络是否训练的好，学到了边角等特征。 最后一层Nearest Neighbors分类神经网络，最后一层是全连接层，4096到1000类的映射。取4096这层做特征，然后求基于像素值的L2图像紧邻，一个头朝左的大象和一个头朝右的大象，竟然最相似，可见学到了语义特征。 Dimensionality Reduction用t-SNE降维，把4096降维到两维，对应为二维坐标轴上的x和y坐标，对应的图片放在对应的位置，组成一个密密麻麻的大图 中间层Visualizing Activationsconv5 feature map是一个128×13×13的，可视化128个13×13的灰度图片，可以看到某张图片正对应人脸的激活位置 Maximally Activating Patches找到中间某层的一个通道，比如conv5是128×13×13，取出128个中的第17个通道，网络中输入图片，记录通道值，找到最大激活对应的图像上的位置。 Occlusion Experiments遮挡一部分图片，然后滑动这个遮挡，输入遮挡后的图片进网络，输出的预测概率值做一个热力图，变化距离的地方就是分类起作用的地方。 Saliency Maps 显著图，根据分类得分，反向求图像像素相关的梯度值，对应的是3×256×256，保留三个通道中的最大值，得到一个灰度图。这个可以用来做语义分割，但是效果不是那么好。 Intermediate features via (guided) backprop找到中间某层的一个神经元，计算关于这个神经元对应图像感受野位置的梯度。但是梯度要经过Relu激活，也就是只取正梯度。 Visualizing CNN features: Gradient Ascent初始化图像为0，正向输入图片得到目前的得分，反向求图像像素对应的梯度，然后逐渐更新图片。$I^2$是对应的图像像素的L2正则化。 Better regularizer: Penalize L2 norm of image; also during optimization periodically(1) Gaussian blur image(2) Clip pixels with small values to 0(3) Clip pixels with small gradients to 0 对抗样本随意宣一个图片，随意选一个类别，通过修改图片，使这个图片最终被错误分类为这个随意选的类别。 深梦和风格转换google写的一个博客，正向传播，计算被选层的梯度当做激活，反向计算图片相关的梯度，更新图片。在分类网络上做的，应为1000类其中有200类狗，所以会有很多狗头，虫子等乱七八糟的神奇图像。 纹理生成，提出Gram矩阵 Gatys, Ecker, and Bethge, “Texture Synthesis Using Convolutional Neural Networks”, NIPS 2015 Gram矩阵用于风格转换，单一内容单一风格 Gatys, Ecker, and Bethge, “Image style transfer using convolutional neural networks”, CVPR 2016 多内容单一风格转换。 Johnson, Alahi, and Fei-Fei, “Perceptual Losses for Real-Time Style Transfer and Super-Resolution”, ECCV 2016. Replacing batch normalization with Instance Normalization improves results Ulyanov et al, “Texture Networks: Feed-forward Synthesis of Textures and Stylized Images”, ICML 2016 Ulyanov et al, “Instance Normalization: The Missing Ingredient for Fast Stylization”, arXiv 2016 多内容多风格转换 Dumoulin, Shlens, and Kudlur, “A Learned Representation for Artistic Style”, ICLR 2017 总结Many methods for understanding CNN representationsActivations: Nearest neighbors, Dimensionality reduction,maximal patches, occlusionGradients: Saliency maps, class visualization, fooling, images, feature inversionFun: DeepDream, Style Transfer.]]></content>
+      <categories>
+        <category>cs231n</category>
+      </categories>
+      <tags>
+        <tag>cs231n</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[如何计算卷积层的参数个数]]></title>
     <url>%2F2019%2F01%2F12%2F%E5%A6%82%E4%BD%95%E8%AE%A1%E7%AE%97%E5%8D%B7%E7%A7%AF%E5%B1%82%E7%9A%84%E5%8F%82%E6%95%B0%E4%B8%AA%E6%95%B0.html%2F</url>
     <content type="text"><![CDATA[如何计算卷积层的参数个数 不考虑batchsize，输入64×64×16，经过conv3×3，输出64×64×32，也就是H和W是64，通道数或者说feature map数从16到32. 卷积核个数。为输出的feature map数，也就是32 卷积核的大小。16个通道上每个通道对应一个3×3的卷积核，且这16个卷积核上的参数时不一样的，但是认为这是一个卷积核，因为认为卷积核的大小为 3×3×16 参数的个数。卷积核的个数+偏置。 3×3×16×32 + 32. 在输出的某个通道上的值，是输入的16个通道处的卷积结果相加，再加上一个偏置，然后再取激活函数值得到的。 总结 卷积核的个数=最终的featuremap的个数 卷积核的大小=开始进行卷积的通道数×每个通道上进行卷积的二维卷积核的尺寸 参数的个数=卷积核个数×（卷积核大小+1） 详细的解释和图参考别人的博客]]></content>
