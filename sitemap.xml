@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://tiantianwahaha.github.io/2019/01/12/Fully-Convolutional-Network-FCN-and-Global-Average-Pooling-GAP.html/</loc>
+    
+    <lastmod>2019-01-18T13:06:41.053Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://tiantianwahaha.github.io/2019/01/15/cs231n-lecture12-Visualizing-and-Understanding.html/</loc>
     
     <lastmod>2019-01-15T07:08:42.836Z</lastmod>
@@ -19,13 +26,6 @@
     <loc>https://tiantianwahaha.github.io/2019/01/12/inception-network.html/</loc>
     
     <lastmod>2019-01-12T07:48:45.199Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://tiantianwahaha.github.io/2019/01/12/Fully-Convolutional-Network-FCN.html/</loc>
-    
-    <lastmod>2019-01-12T04:54:30.791Z</lastmod>
     
   </url>
   

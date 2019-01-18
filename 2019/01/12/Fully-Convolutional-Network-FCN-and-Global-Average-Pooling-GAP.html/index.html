@@ -107,25 +107,25 @@
 
 
 
-  <meta name="description" content="使用卷积层替代CNN末尾的全连接层 全卷积神经网络Fully Convolutional Network (FCN) 别人的博客介绍">
+  <meta name="description" content="使用卷积层替代CNN末尾的全连接层 全卷积神经网络Fully Convolutional Network (FCN) 别人的博客介绍 全局平均池化Global Average Pooling 非常好的一篇博客，还有实验对比。 证明全局最大池化效果非常差，全局平均池化比全连接效果要好，不容易过拟合">
 <meta name="keywords" content="deep learning">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Fully Convolutional Network (FCN)">
-<meta property="og:url" content="https://tiantianwahaha.github.io/2019/01/12/Fully-Convolutional-Network-FCN.html/index.html">
+<meta property="og:title" content="Fully Convolutional Network (FCN) and Global Average Pooling (GAP)">
+<meta property="og:url" content="https://tiantianwahaha.github.io/2019/01/12/Fully-Convolutional-Network-FCN-and-Global-Average-Pooling-GAP.html/index.html">
 <meta property="og:site_name" content="tiantianwahaha">
-<meta property="og:description" content="使用卷积层替代CNN末尾的全连接层 全卷积神经网络Fully Convolutional Network (FCN) 别人的博客介绍">
+<meta property="og:description" content="使用卷积层替代CNN末尾的全连接层 全卷积神经网络Fully Convolutional Network (FCN) 别人的博客介绍 全局平均池化Global Average Pooling 非常好的一篇博客，还有实验对比。 证明全局最大池化效果非常差，全局平均池化比全连接效果要好，不容易过拟合">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-01-12T04:54:30.791Z">
+<meta property="og:updated_time" content="2019-01-18T13:06:41.053Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Fully Convolutional Network (FCN)">
-<meta name="twitter:description" content="使用卷积层替代CNN末尾的全连接层 全卷积神经网络Fully Convolutional Network (FCN) 别人的博客介绍">
+<meta name="twitter:title" content="Fully Convolutional Network (FCN) and Global Average Pooling (GAP)">
+<meta name="twitter:description" content="使用卷积层替代CNN末尾的全连接层 全卷积神经网络Fully Convolutional Network (FCN) 别人的博客介绍 全局平均池化Global Average Pooling 非常好的一篇博客，还有实验对比。 证明全局最大池化效果非常差，全局平均池化比全连接效果要好，不容易过拟合">
 
 
 
 
 
 
-  <link rel="canonical" href="https://tiantianwahaha.github.io/2019/01/12/Fully-Convolutional-Network-FCN.html/">
+  <link rel="canonical" href="https://tiantianwahaha.github.io/2019/01/12/Fully-Convolutional-Network-FCN-and-Global-Average-Pooling-GAP.html/">
 
 
 
@@ -135,7 +135,7 @@
   };
 </script>
 
-  <title>Fully Convolutional Network (FCN) | tiantianwahaha</title>
+  <title>Fully Convolutional Network (FCN) and Global Average Pooling (GAP) | tiantianwahaha</title>
   
 
 
@@ -340,7 +340,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://tiantianwahaha.github.io/2019/01/12/Fully-Convolutional-Network-FCN.html/">
+    <link itemprop="mainEntityOfPage" href="https://tiantianwahaha.github.io/2019/01/12/Fully-Convolutional-Network-FCN-and-Global-Average-Pooling-GAP.html/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="tiantianwahaha">
@@ -357,7 +357,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">Fully Convolutional Network (FCN)</h2>
+          <h2 class="post-title" itemprop="name headline">Fully Convolutional Network (FCN) and Global Average Pooling (GAP)</h2>
         
 
         <div class="post-meta">
@@ -405,8 +405,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/01/12/Fully-Convolutional-Network-FCN.html/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/01/12/Fully-Convolutional-Network-FCN.html/" itemprop="commentCount"></span>
+                <a href="/2019/01/12/Fully-Convolutional-Network-FCN-and-Global-Average-Pooling-GAP.html/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/01/12/Fully-Convolutional-Network-FCN-and-Global-Average-Pooling-GAP.html/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -444,6 +444,9 @@
         <p><strong>使用卷积层替代CNN末尾的全连接层</strong></p>
 <p>全卷积神经网络Fully Convolutional Network (FCN)</p>
 <p><a href="https://blog.csdn.net/u010548772/article/details/78582250" target="_blank" rel="noopener">别人的博客介绍</a></p>
+<p><strong>全局平均池化Global Average Pooling</strong></p>
+<p><a href="http://www.cnblogs.com/hutao722/p/10008581.html" target="_blank" rel="noopener">非常好的一篇博客，还有实验对比。</a></p>
+<p>证明全局最大池化效果非常差，全局平均池化比全连接效果要好，不容易过拟合</p>
 
       
     </div>
@@ -465,7 +468,7 @@
     <strong>Post author: </strong>tiantianwahaha</li>
   <li class="post-copyright-link">
     <strong>Post link:</strong>
-    <a href="https://tiantianwahaha.github.io/2019/01/12/Fully-Convolutional-Network-FCN.html/" title="Fully Convolutional Network (FCN)">https://tiantianwahaha.github.io/2019/01/12/Fully-Convolutional-Network-FCN.html/</a>
+    <a href="https://tiantianwahaha.github.io/2019/01/12/Fully-Convolutional-Network-FCN-and-Global-Average-Pooling-GAP.html/" title="Fully Convolutional Network (FCN) and Global Average Pooling (GAP)">https://tiantianwahaha.github.io/2019/01/12/Fully-Convolutional-Network-FCN-and-Global-Average-Pooling-GAP.html/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice: </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> unless stating additionally.</li>
