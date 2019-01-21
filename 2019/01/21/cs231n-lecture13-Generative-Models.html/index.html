@@ -107,24 +107,29 @@
 
 
 
-  <meta name="description" content="tiantianwahaha&apos;s blogs">
-<meta name="keywords" content="blogs, CV">
-<meta property="og:type" content="website">
-<meta property="og:title" content="tiantianwahaha">
-<meta property="og:url" content="https://tiantianwahaha.github.io/archives/2018/index.html">
+  <meta name="description" content="PixelRNN/CNNVariational AutoencodersGenerative Adversarial Networks 生成模型生成模型分为显式和隐式 显式密度估计：显式地定义和求解分布，PixelRNN/CNN，Variational Autoencoder(差分编码器VAE) 隐式密度估计：学习从模型中直接采样，比如GAN  PixelRNN and PixelCNNGener">
+<meta name="keywords" content="cs231n">
+<meta property="og:type" content="article">
+<meta property="og:title" content="cs231n lecture13 Generative Models">
+<meta property="og:url" content="https://tiantianwahaha.github.io/2019/01/21/cs231n-lecture13-Generative-Models.html/index.html">
 <meta property="og:site_name" content="tiantianwahaha">
-<meta property="og:description" content="tiantianwahaha&apos;s blogs">
+<meta property="og:description" content="PixelRNN/CNNVariational AutoencodersGenerative Adversarial Networks 生成模型生成模型分为显式和隐式 显式密度估计：显式地定义和求解分布，PixelRNN/CNN，Variational Autoencoder(差分编码器VAE) 隐式密度估计：学习从模型中直接采样，比如GAN  PixelRNN and PixelCNNGener">
 <meta property="og:locale" content="en">
+<meta property="og:image" content="https://tiantianwahaha.github.io/2019/01/21/cs231n-lecture13-Generative-Models.html/generative%20model.png">
+<meta property="og:image" content="https://tiantianwahaha.github.io/2019/01/21/cs231n-lecture13-Generative-Models.html/VAE.png">
+<meta property="og:image" content="https://tiantianwahaha.github.io/2019/01/21/cs231n-lecture13-Generative-Models.html/GAN.png">
+<meta property="og:updated_time" content="2019-01-21T14:56:22.678Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="tiantianwahaha">
-<meta name="twitter:description" content="tiantianwahaha&apos;s blogs">
+<meta name="twitter:title" content="cs231n lecture13 Generative Models">
+<meta name="twitter:description" content="PixelRNN/CNNVariational AutoencodersGenerative Adversarial Networks 生成模型生成模型分为显式和隐式 显式密度估计：显式地定义和求解分布，PixelRNN/CNN，Variational Autoencoder(差分编码器VAE) 隐式密度估计：学习从模型中直接采样，比如GAN  PixelRNN and PixelCNNGener">
+<meta name="twitter:image" content="https://tiantianwahaha.github.io/2019/01/21/cs231n-lecture13-Generative-Models.html/generative%20model.png">
 
 
 
 
 
 
-  <link rel="canonical" href="https://tiantianwahaha.github.io/archives/2018/">
+  <link rel="canonical" href="https://tiantianwahaha.github.io/2019/01/21/cs231n-lecture13-Generative-Models.html/">
 
 
 
@@ -134,7 +139,7 @@
   };
 </script>
 
-  <title>Archive | tiantianwahaha</title>
+  <title>cs231n lecture13 Generative Models | tiantianwahaha</title>
   
 
 
@@ -181,7 +186,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -319,423 +324,230 @@
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://tiantianwahaha.github.io/2019/01/21/cs231n-lecture13-Generative-Models.html/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="tiantianwahaha">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="tiantianwahaha">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h2 class="post-title" itemprop="name headline">cs231n lecture13 Generative Models</h2>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-21T22:35:36+08:00">2019-01-21</time>
+            
+
+            
+            
+
+            
+          </span>
+
           
-        
-        Um..! 22 posts in total. Keep on posting.
-      </span>
-      
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/cs231n/" itemprop="url" rel="index"><span itemprop="name">cs231n</span></a></span>
 
-      
-
-        
-        
-        
-
-        
+                
+                
+              
+            </span>
           
-          <div class="collection-title">
-            <h2 class="archive-year" id="archive-year-2018">2018</h2>
-          </div>
-        
-        
 
-        
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/01/21/cs231n-lecture13-Generative-Models.html/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/01/21/cs231n-lecture13-Generative-Models.html/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
+          
 
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2018/12/24/cs231n-Lecture-10-Recurrent-Neural-Networks.html/" itemprop="url">
-              
-                <span itemprop="name">cs231n Lecture 10 Recurrent Neural Networks</span>
-              
-            </a>
-        
-      </h3>
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             Views: 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-12-24T15:35:38+08:00" content="2018-12-24">
-          12-24
-        </time>
-      </div>
+          
 
-    </header>
-  </article>
+          
 
+        </div>
+      </header>
+    
 
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2018/12/22/cs231n-Lecture-9-CNN-Architectures.html/" itemprop="url">
-              
-                <span itemprop="name">cs231n Lecture 9 CNN Architectures</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-12-22T21:59:30+08:00" content="2018-12-22">
-          12-22
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2018/12/22/cs231n-Lecture-7-Training-Neural-Networks-part-2.html/" itemprop="url">
-              
-                <span itemprop="name">cs231n Lecture 7 Training Neural Networks part 2</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-12-22T20:37:33+08:00" content="2018-12-22">
-          12-22
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2018/12/21/cs231n-Lecture-6-Training-Neural-Networks-part-I.html/" itemprop="url">
-              
-                <span itemprop="name">cs231n Lecture 6 Training Neural Networks, part I</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-12-21T17:21:59+08:00" content="2018-12-21">
-          12-21
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <p>PixelRNN/CNN<br>Variational Autoencoders<br>Generative Adversarial Networks</p>
+<h1 id="生成模型"><a href="#生成模型" class="headerlink" title="生成模型"></a>生成模型</h1><p>生成模型分为显式和隐式</p>
+<p>显式密度估计：显式地定义和求解分布，PixelRNN/CNN，Variational Autoencoder(差分编码器VAE)</p>
+<p>隐式密度估计：学习从模型中直接采样，比如GAN</p>
+<p><img src="/2019/01/21/cs231n-lecture13-Generative-Models.html/generative model.png" alt=""></p>
+<h1 id="PixelRNN-and-PixelCNN"><a href="#PixelRNN-and-PixelCNN" class="headerlink" title="PixelRNN and PixelCNN"></a>PixelRNN and PixelCNN</h1><p>Generate image pixels starting from corner. </p>
+<p>Dependency on previous pixels modeled using an RNN (LSTM)</p>
+<p>Dependency on previous pixels now modeled using a CNN over context region</p>
+<p>Drawback: sequential generation is slow!</p>
+<h1 id="Variational-Autoencoders-VAE"><a href="#Variational-Autoencoders-VAE" class="headerlink" title="Variational Autoencoders (VAE)"></a>Variational Autoencoders (VAE)</h1><p>自动编码器，是encoder+decoder，输入图片，学习隐变量z。</p>
+<p>差分编码器VAE，学习从隐变量z生成图片。</p>
+<p><img src="/2019/01/21/cs231n-lecture13-Generative-Models.html/VAE.png" alt=""></p>
+<p>生成图片时，随机取z，输入decoder，生成图片</p>
+<h1 id="Generative-Adversarial-Networks"><a href="#Generative-Adversarial-Networks" class="headerlink" title="Generative Adversarial Networks"></a>Generative Adversarial Networks</h1><p><img src="/2019/01/21/cs231n-lecture13-Generative-Models.html/GAN.png" alt=""></p>
+<p>GAN省略</p>
+<p>生成器的损失函数如果直接取鉴别器的右边，会有问题，如图，看蓝色曲线，当鉴别器能很好的鉴别出假样本，梯度平滑不好更新，没办法更新生成器。所以损失函数要反过来，变成绿色曲线，梯度就好求了。</p>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2018/12/20/cs231n-参数设置技巧.html/" itemprop="url">
-              
-                <span itemprop="name">cs231n 参数设置技巧</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-12-20T18:35:31+08:00" content="2018-12-20">
-          12-20
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2018/12/20/cs231n-Lecture5-Convolutional-Neural-Networks.html/" itemprop="url">
-              
-                <span itemprop="name">cs231n Lecture5 Convolutional Neural Networks</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-12-20T18:05:16+08:00" content="2018-12-20">
-          12-20
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2018/11/14/BeautyGAN-Instance-level-Facial-Makeup-Transfer-with-Deep.html/" itemprop="url">
-              
-                <span itemprop="name">BeautyGAN: Instance-level Facial Makeup Transfer with Deep</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-11-14T09:23:35+08:00" content="2018-11-14">
-          11-14
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2018/11/10/cs231n-Lecture3-Loss-Functions-and-Optimization.html/" itemprop="url">
-              
-                <span itemprop="name">cs231n Lecture3 Loss Functions and Optimization</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-11-10T10:51:30+08:00" content="2018-11-10">
-          11-10
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2018/11/07/cs231n-Lecture2-Image-Classification.html/" itemprop="url">
-              
-                <span itemprop="name">cs231n Lecture2 Image Classification</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-11-07T14:13:10+08:00" content="2018-11-07">
-          11-07
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2018/10/31/风格转换-二-：Perceptual-Losses-for-Real-Time-Style-Transfer-and-Super-Resolution.html/" itemprop="url">
-              
-                <span itemprop="name">风格转换(二)：Perceptual Losses for Real-Time Style Transfer and Super-Resolution</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-10-31T14:15:12+08:00" content="2018-10-31">
-          10-31
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author: </strong>tiantianwahaha</li>
+  <li class="post-copyright-link">
+    <strong>Post link:</strong>
+    <a href="https://tiantianwahaha.github.io/2019/01/21/cs231n-lecture13-Generative-Models.html/" title="cs231n lecture13 Generative Models">https://tiantianwahaha.github.io/2019/01/21/cs231n-lecture13-Generative-Models.html/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice: </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> unless stating additionally.</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/cs231n/" rel="tag"># cs231n</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/15/cs231n-lecture12-Visualizing-and-Understanding.html/" rel="next" title="cs231n lecture12 Visualizing and Understanding">
+                <i class="fa fa-chevron-left"></i> cs231n lecture12 Visualizing and Understanding
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/2018/page/2/">2</a><a class="extend next" rel="next" href="/archives/2018/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
-  </nav>
+  </article>
 
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
 
         </div>
         
@@ -756,8 +568,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -856,6 +677,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#生成模型"><span class="nav-text">生成模型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#PixelRNN-and-PixelCNN"><span class="nav-text">PixelRNN and PixelCNN</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Variational-Autoencoders-VAE"><span class="nav-text">Variational Autoencoders (VAE)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Generative-Adversarial-Networks"><span class="nav-text">Generative Adversarial Networks</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1010,6 +847,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.6"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.6"></script>
+
+
 
   
 
@@ -1422,6 +1263,29 @@
   
   
 
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
   
 
 
