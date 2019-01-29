@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[cs231n lecture13 Generative Models]]></title>
     <url>%2F2019%2F01%2F21%2Fcs231n-lecture13-Generative-Models.html%2F</url>
-    <content type="text"><![CDATA[PixelRNN/CNNVariational AutoencodersGenerative Adversarial Networks 生成模型生成模型分为显式和隐式 显式密度估计：显式地定义和求解分布，PixelRNN/CNN，Variational Autoencoder(差分编码器VAE) 隐式密度估计：学习从模型中直接采样，比如GAN PixelRNN and PixelCNNGenerate image pixels starting from corner. Dependency on previous pixels modeled using an RNN (LSTM) Dependency on previous pixels now modeled using a CNN over context region Drawback: sequential generation is slow! Variational Autoencoders (VAE)自动编码器，是encoder+decoder，输入图片，学习隐变量z。 差分编码器VAE，学习从隐变量z生成图片。 生成图片时，随机取z，输入decoder，生成图片 Generative Adversarial Networks GAN省略 生成器的损失函数如果直接取鉴别器的右边，会有问题，如图，看蓝色曲线，当鉴别器能很好的鉴别出假样本，梯度平滑不好更新，没办法更新生成器。所以损失函数要反过来，变成绿色曲线，梯度就好求了。]]></content>
+    <content type="text"><![CDATA[PixelRNN/CNN Variational Autoencoders Generative Adversarial Networks 生成模型生成模型分为显式和隐式 显式密度估计：显式地定义和求解分布，PixelRNN/CNN，Variational Autoencoder(差分编码器VAE) 隐式密度估计：学习从模型中直接采样，比如GAN PixelRNN and PixelCNNGenerate image pixels starting from corner. Dependency on previous pixels modeled using an RNN (LSTM) Dependency on previous pixels now modeled using a CNN over context region Drawback: sequential generation is slow! Variational Autoencoders (VAE)自动编码器，是encoder+decoder，输入图片，学习隐变量z。 差分编码器VAE，学习从隐变量z生成图片。 生成图片时，随机取z，输入decoder，生成图片 Generative Adversarial Networks GAN省略 生成器的损失函数如果直接取鉴别器的右边，会有问题，如图，看蓝色曲线，当鉴别器能很好的鉴别出假样本，梯度平滑不好更新，没办法更新生成器。所以损失函数要反过来，变成绿色曲线，梯度就好求了。]]></content>
       <categories>
         <category>cs231n</category>
       </categories>
