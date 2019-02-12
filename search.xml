@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Reset TeamViewer ID]]></title>
+    <url>%2F2019%2F02%2F12%2FReset-TeamViewer-ID.html%2F</url>
+    <content type="text"><![CDATA[TeamViewer疑似商业应用 5分钟限制，解决办法 方法一去官网填表格申诉，这个比较慢，至少一周，其实就是他那边帮你重置一个ID号 方法二 需要装卸TeamViewer，用360清空下注册表，或者手动清空，清空步骤参考这个博客。 然后在设备管理器中更改有线网卡和无线网卡的MAC地址，无线网卡修改比较麻烦，参考这个博客。 重新安装TeamViewer后，发现ID号边了，之后将网卡地址勾选为不存在，因为每个人的网卡地址是全球唯一的，网卡地址改为不存在后，ID正常使用。]]></content>
+      <categories>
+        <category>其他</category>
+      </categories>
+      <tags>
+        <tag>TeamViewer</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[cs231n lecture13 Generative Models]]></title>
     <url>%2F2019%2F01%2F21%2Fcs231n-lecture13-Generative-Models.html%2F</url>
     <content type="text"><![CDATA[PixelRNN/CNN Variational Autoencoders Generative Adversarial Networks 生成模型生成模型分为显式和隐式 显式密度估计：显式地定义和求解分布，PixelRNN/CNN，Variational Autoencoder(差分编码器VAE) 隐式密度估计：学习从模型中直接采样，比如GAN PixelRNN and PixelCNNGenerate image pixels starting from corner. Dependency on previous pixels modeled using an RNN (LSTM) Dependency on previous pixels now modeled using a CNN over context region Drawback: sequential generation is slow! Variational Autoencoders (VAE)自动编码器，是encoder+decoder，输入图片，学习隐变量z。 差分编码器VAE，学习从隐变量z生成图片。 生成图片时，随机取z，输入decoder，生成图片 Generative Adversarial Networks GAN省略 生成器的损失函数如果直接取鉴别器的右边，会有问题，如图，看蓝色曲线，当鉴别器能很好的鉴别出假样本，梯度平滑不好更新，没办法更新生成器。所以损失函数要反过来，变成绿色曲线，梯度就好求了。]]></content>
