@@ -117,7 +117,7 @@
 <meta property="og:description" content="PatchGAN由朱俊彦的pix2pix一文中提出使用，Image-to-Image Translation with Conditional Adversarial Networks 之前的GAN鉴别器，是输入图片，输出一个神经元，判别图片是真还是假，我们可以称为Image GAN 如果鉴别器输入图片，输出的是w×H×1，针对每个像素的真假进行了预测，我们称为Pixel GAN patchGAN">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://tiantianwahaha.github.io/2019/03/18/PatchGAN-Discriminator.html/patchgan.png">
-<meta property="og:updated_time" content="2019-03-18T08:32:29.626Z">
+<meta property="og:updated_time" content="2019-03-18T08:46:58.110Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PatchGAN Discriminator">
 <meta name="twitter:description" content="PatchGAN由朱俊彦的pix2pix一文中提出使用，Image-to-Image Translation with Conditional Adversarial Networks 之前的GAN鉴别器，是输入图片，输出一个神经元，判别图片是真还是假，我们可以称为Image GAN 如果鉴别器输入图片，输出的是w×H×1，针对每个像素的真假进行了预测，我们称为Pixel GAN patchGAN">
@@ -458,7 +458,7 @@
         <p><strong>PatchGAN</strong>由朱俊彦的pix2pix一文中提出使用，<a href="http://openaccess.thecvf.com/content_cvpr_2017/papers/Isola_Image-To-Image_Translation_With_CVPR_2017_paper.pdf" target="_blank" rel="noopener">Image-to-Image Translation with Conditional Adversarial Networks</a></p>
 <p>之前的GAN鉴别器，是输入图片，输出一个神经元，判别图片是真还是假，我们可以称为Image GAN</p>
 <p>如果鉴别器输入图片，输出的是w×H×1，针对每个像素的真假进行了预测，我们称为Pixel GAN</p>
-<p>patchGAN是在两者之间，输出一个70×70×1，我们称为Patch GAN(70x70)，具体patch是多少是根据你图片的输入大小，已经你的网络经过了几次stride=2的卷积。文章中说测试了70在他的实验中表现的好，性能超过Image GAN和Pixel GAN</p>
+<p>patchGAN是在两者之间，输出一个70×70×1，我们称为Patch GAN(70x70)，具体是多少是根据你图片的输入大小，已经你的网络经过了几次stride=2的卷积。文章中说测试了70在他的实验中表现的好，性能超过Image GAN和Pixel GAN</p>
 <h1 id="具体结构和实现代码"><a href="#具体结构和实现代码" class="headerlink" title="具体结构和实现代码"></a>具体结构和实现代码</h1><p><a href="https://github.com/ChengBinJin/V-GAN-tensorflow" target="_blank" rel="noopener">可以参考github某论文的源码进行学习分析</a>，看他的readme里的网络结构图，看codes/model里损失函数怎么写</p>
 <p>模型结构，供参考，他里面用了下采样</p>
 <p><img src="/2019/03/18/PatchGAN-Discriminator.html/patchgan.png" alt="img"></p>
@@ -517,6 +517,12 @@ self.d_loss = self.d_loss_real + self.d_loss_fake
 <p>这使得GAN的判别器仅模拟高频结构，依靠L1来强制低频部分的正确性。对于模拟高频，只要将注意力限制在局部图像块中结构就可以了。因此，我们设计了一个判别器结构—我们叫它PatchGAN，只在补丁（patch）范围内对结构进行惩罚。这个判别器尝试在一幅图的每个N×N大小的补丁上进行real or fake的判断。我们在整个图片上运行这个判别器，并对所有的结果取均值，以避免判别器的极端输出。</p>
 <p>在4.4部分，我们说明了N可以比image的尺寸小很多并且仍旧可以产生高质量的结果。<strong>这是有利的，因为一个更小的PatchGAN有更少的参数，运行更快，并且可以在任意大小的图片上运行。</strong></p>
 <p>这种判别器将有效的将图像建立为一个马尔科夫随机场，并假定像素间的独立性大于补丁的直径。[35]以前探讨过这种联系，也是纹理和风格模型的常见假设[15,19,14,23,20,34]。因此我们的PatchGAN也可以理解为一种风格/纹理损失。</p>
+<p>附录：<a href="https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix/issues/39" target="_blank" rel="noopener">作者在github对某个提问的回答，解释patchgan</a></p>
+<p><a href="https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix/blob/master/models/networks.py#L532" target="_blank" rel="noopener">论文作者的pytorch实现patchgan</a></p>
+<p>In fact, a “PatchGAN” is just a convnet! Or you could say all convnets are patchnets: the power of convnets is that they process each image patch identically and independently, which makes things very cheap (# params, time, memory), and, amazingly, turns out to work.</p>
+<p>The difference between a PatchGAN and regular GAN discriminator is that rather the regular GAN maps from a 256x256 image to a single scalar output, which signifies “real” or “fake”, whereas the PatchGAN maps from 256x256 to an NxN array of outputs X, where each X_ij signifies whether the patch ij in the image is real or fake. Which is patch ij in the input? Well, output X_ij is just a neuron in a convnet, and we can trace back its receptive field to see which input pixels it is sensitive to. In the CycleGAN architecture, the receptive fields of the discriminator turn out to be 70x70 patches in the input image!</p>
+<p>This is all mathematically equivalent to if we had manually chopped up the image into 70x70 overlapping patches, run a regular discriminator over each patch, and averaged the results.</p>
+<p>Maybe it would have been better if we called it a “Fully Convolutional GAN” like in FCNs… it’s the same idea :)</p>
 
       
     </div>
