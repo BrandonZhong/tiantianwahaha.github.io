@@ -108,25 +108,27 @@
 
 
 
-  <meta name="description" content="模型集成 正则化 迁移学习  课程官方链接 课程笔记翻译 1.求梯度下降的方法比较 Adam 在大多数情况是不错的默认选择  如果你能够承受整个批次的更新，你的问题没有很大的随机性，可以使用L-BFGS （在风格迁移中会用到？？） If you can afford to do full batch updates then try out L-BFGS (and don’t forget to">
-<meta name="keywords" content="cs231n">
+  <meta name="description" content="PatchGAN由朱俊彦的pix2pix一文中提出使用，Image-to-Image Translation with Conditional Adversarial Networks 之前的GAN鉴别器，是输入图片，输出一个神经元，判别图片是真还是假，我们可以称为Image GAN 如果鉴别器输入图片，输出的是w×H×1，针对每个像素的真假进行了预测，我们称为Pixel GAN patchGAN">
+<meta name="keywords" content="GAN">
 <meta property="og:type" content="article">
-<meta property="og:title" content="cs231n Lecture 7 Training Neural Networks part 2">
-<meta property="og:url" content="https://tiantianwahaha.github.io/2018/12/22/cs231n-Lecture-7-Training-Neural-Networks-part-2.html/index.html">
+<meta property="og:title" content="PatchGAN Discriminator">
+<meta property="og:url" content="https://tiantianwahaha.github.io/2019/03/18/PatchGAN-Discriminator.html/index.html">
 <meta property="og:site_name" content="tiantianwahaha">
-<meta property="og:description" content="模型集成 正则化 迁移学习  课程官方链接 课程笔记翻译 1.求梯度下降的方法比较 Adam 在大多数情况是不错的默认选择  如果你能够承受整个批次的更新，你的问题没有很大的随机性，可以使用L-BFGS （在风格迁移中会用到？？） If you can afford to do full batch updates then try out L-BFGS (and don’t forget to">
+<meta property="og:description" content="PatchGAN由朱俊彦的pix2pix一文中提出使用，Image-to-Image Translation with Conditional Adversarial Networks 之前的GAN鉴别器，是输入图片，输出一个神经元，判别图片是真还是假，我们可以称为Image GAN 如果鉴别器输入图片，输出的是w×H×1，针对每个像素的真假进行了预测，我们称为Pixel GAN patchGAN">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-12-22T14:40:36.000Z">
+<meta property="og:image" content="https://tiantianwahaha.github.io/2019/03/18/PatchGAN-Discriminator.html/patchgan.png">
+<meta property="og:updated_time" content="2019-03-18T08:32:29.626Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="cs231n Lecture 7 Training Neural Networks part 2">
-<meta name="twitter:description" content="模型集成 正则化 迁移学习  课程官方链接 课程笔记翻译 1.求梯度下降的方法比较 Adam 在大多数情况是不错的默认选择  如果你能够承受整个批次的更新，你的问题没有很大的随机性，可以使用L-BFGS （在风格迁移中会用到？？） If you can afford to do full batch updates then try out L-BFGS (and don’t forget to">
+<meta name="twitter:title" content="PatchGAN Discriminator">
+<meta name="twitter:description" content="PatchGAN由朱俊彦的pix2pix一文中提出使用，Image-to-Image Translation with Conditional Adversarial Networks 之前的GAN鉴别器，是输入图片，输出一个神经元，判别图片是真还是假，我们可以称为Image GAN 如果鉴别器输入图片，输出的是w×H×1，针对每个像素的真假进行了预测，我们称为Pixel GAN patchGAN">
+<meta name="twitter:image" content="https://tiantianwahaha.github.io/2019/03/18/PatchGAN-Discriminator.html/patchgan.png">
 
 
 
 
 
 
-  <link rel="canonical" href="https://tiantianwahaha.github.io/2018/12/22/cs231n-Lecture-7-Training-Neural-Networks-part-2.html/">
+  <link rel="canonical" href="https://tiantianwahaha.github.io/2019/03/18/PatchGAN-Discriminator.html/">
 
 
 
@@ -136,7 +138,7 @@
   };
 </script>
 
-  <title>cs231n Lecture 7 Training Neural Networks part 2 | tiantianwahaha</title>
+  <title>PatchGAN Discriminator | tiantianwahaha</title>
   
 
 
@@ -352,7 +354,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://tiantianwahaha.github.io/2018/12/22/cs231n-Lecture-7-Training-Neural-Networks-part-2.html/">
+    <link itemprop="mainEntityOfPage" href="https://tiantianwahaha.github.io/2019/03/18/PatchGAN-Discriminator.html/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="tiantianwahaha">
@@ -369,7 +371,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">cs231n Lecture 7 Training Neural Networks part 2</h2>
+          <h2 class="post-title" itemprop="name headline">PatchGAN Discriminator</h2>
         
 
         <div class="post-meta">
@@ -381,7 +383,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-22T20:37:33+08:00">2018-12-22</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-18T16:13:56+08:00">2019-03-18</time>
             
 
             
@@ -402,7 +404,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/cs231n/" itemprop="url" rel="index"><span itemprop="name">cs231n</span></a></span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/百篇论文阅读计划/" itemprop="url" rel="index"><span itemprop="name">百篇论文阅读计划</span></a></span>
 
                 
                 
@@ -417,8 +419,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/12/22/cs231n-Lecture-7-Training-Neural-Networks-part-2.html/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/12/22/cs231n-Lecture-7-Training-Neural-Networks-part-2.html/" itemprop="commentCount"></span>
+                <a href="/2019/03/18/PatchGAN-Discriminator.html/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/03/18/PatchGAN-Discriminator.html/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -453,34 +455,68 @@
       
 
       
-        <ul>
-<li>模型集成</li>
-<li>正则化</li>
-<li>迁移学习</li>
-</ul>
-<p><a href="http://cs231n.stanford.edu/syllabus.html" target="_blank" rel="noopener">课程官方链接</a></p>
-<p><a href="https://zhuanlan.zhihu.com/p/21930884" target="_blank" rel="noopener">课程笔记翻译</a></p>
-<h2 id="1-求梯度下降的方法比较"><a href="#1-求梯度下降的方法比较" class="headerlink" title="1.求梯度下降的方法比较"></a>1.求梯度下降的方法比较</h2><ul>
-<li><p>Adam 在大多数情况是不错的默认选择</p>
-</li>
-<li><p>如果你能够承受整个批次的更新，你的问题没有很大的随机性，可以使用L-BFGS （在风格迁移中会用到？？）</p>
-<p>If you can afford to do full batch updates then try out L-BFGS (and don’t forget to disable all sources of noise)</p>
-</li>
-</ul>
-<h2 id="2-Model-Ensembles模型集成"><a href="#2-Model-Ensembles模型集成" class="headerlink" title="2.Model Ensembles模型集成"></a>2.Model Ensembles模型集成</h2><p>减少训练误差和测试误差之间的差距</p>
-<p><strong>训练多个独立模型，在测试的时候求平均结果，一般能够提升2%的性能</strong></p>
-<p>可以不用训练多个模型，在一个模型的不同训练阶段保存多个快照</p>
-<h2 id="3-正则化"><a href="#3-正则化" class="headerlink" title="3.正则化"></a>3.正则化</h2><p>提升单一模型效果，降低过拟合。最简单的L1，L2， Elastic net (L1 + L2)</p>
-<p><strong>正则化其实就是在训练集加随机噪声，在测试集忽视这些噪声。可以使用Dropout</strong><br><strong>，Batch Normalization和Data Augmentation这三个方法：</strong></p>
-<ol>
-<li>Dropout随机失活，以0.5的概率，随机选择一些神经单元为0</li>
-<li>Data Augmentation数据扩张：图片的旋转，拉伸，剪切，改变对比度和亮度等。</li>
-<li>batch normalization已经为网络增加了随机性，因为每次的数据进行怎样的归一化有随机性，进行了正则化，基本不再加dropout了</li>
-</ol>
-<h2 id="4-迁移学习Transfer-learning"><a href="#4-迁移学习Transfer-learning" class="headerlink" title="4.迁移学习Transfer learning"></a>4.迁移学习Transfer learning</h2><p>模型现在Imagenet训练好，你要在另一个相似的数据集上训练模型。</p>
-<p>如果你有很少的数据，那就在最后的FC线性分类层，重新初始化训练，其他层固定不变。</p>
-<p>如果你有较多的数据，那就多训练几层。最会可以使用原学习率的十分之一进行微调整个网络（finetuning）</p>
-<p>在目标检测和image caption中，都会用到已经训练好的CNN模型，迁移学习。</p>
+        <p><strong>PatchGAN</strong>由朱俊彦的pix2pix一文中提出使用，<a href="http://openaccess.thecvf.com/content_cvpr_2017/papers/Isola_Image-To-Image_Translation_With_CVPR_2017_paper.pdf" target="_blank" rel="noopener">Image-to-Image Translation with Conditional Adversarial Networks</a></p>
+<p>之前的GAN鉴别器，是输入图片，输出一个神经元，判别图片是真还是假，我们可以称为Image GAN</p>
+<p>如果鉴别器输入图片，输出的是w×H×1，针对每个像素的真假进行了预测，我们称为Pixel GAN</p>
+<p>patchGAN是在两者之间，输出一个70×70×1，我们称为Patch GAN(70x70)，具体patch是多少是根据你图片的输入大小，已经你的网络经过了几次stride=2的卷积。文章中说测试了70在他的实验中表现的好，性能超过Image GAN和Pixel GAN</p>
+<h1 id="具体结构和实现代码"><a href="#具体结构和实现代码" class="headerlink" title="具体结构和实现代码"></a>具体结构和实现代码</h1><p><a href="https://github.com/ChengBinJin/V-GAN-tensorflow" target="_blank" rel="noopener">可以参考github某论文的源码进行学习分析</a>，看他的readme里的网络结构图，看codes/model里损失函数怎么写</p>
+<p>模型结构，供参考，他里面用了下采样</p>
+<p><img src="/2019/03/18/PatchGAN-Discriminator.html/patchgan.png" alt="img"></p>
+<pre><code>def discriminator_patch2(self, data, name=&apos;d_&apos;, is_reuse=False):
+    with tf.variable_scope(name) as scope:
+        if is_reuse is True:
+            scope.reuse_variables()
+    # conv1: (N, 640, 640, 4) -&gt; (N,, 160, 160, 32)
+    conv1 = tf_utils.conv2d(data, self.dis_c, k_h=3, k_w=3, d_h=2, d_w=2, name=&apos;conv1_conv1&apos;)
+    conv1 = tf_utils.batch_norm(conv1, name=&apos;conv1_batch1&apos;, _ops=self._dis_train_ops)
+    conv1 = tf.nn.relu(conv1, name=&apos;conv1_relu1&apos;)
+    conv1 = tf_utils.conv2d(conv1, self.dis_c, k_h=3, k_w=3, d_h=1, d_w=1, name=&apos;conv1_conv2&apos;)
+    conv1 = tf_utils.batch_norm(conv1, name=&apos;conv1_batch2&apos;, _ops=self._dis_train_ops)
+    conv1 = tf.nn.relu(conv1, name=&apos;conv1_relu2&apos;)
+    pool1 = tf_utils.max_pool_2x2(conv1, name=&apos;maxpool1&apos;)
+
+    # conv2: (N, 160, 160, 32) -&gt; (N, 80, 80, 64)
+    conv2 = tf_utils.conv2d(pool1, 2*self.dis_c, k_h=3, k_w=3, d_h=1, d_w=1, name=&apos;conv2_conv1&apos;)
+    conv2 = tf_utils.batch_norm(conv2, name=&apos;conv2_batch1&apos;, _ops=self._dis_train_ops)
+    conv2 = tf.nn.relu(conv2, name=&apos;conv2_relu1&apos;)
+    conv2 = tf_utils.conv2d(conv2, 2*self.dis_c, k_h=3, k_w=3, d_h=1, d_w=1, name=&apos;conv2_conv2&apos;)
+    conv2 = tf_utils.batch_norm(conv2, name=&apos;conv2_batch2&apos;, _ops=self._dis_train_ops)
+    conv2 = tf.nn.relu(conv2, name=&apos;conv2_relu2&apos;)
+    pool2 = tf_utils.max_pool_2x2(conv2, name=&apos;maxpool2&apos;)
+
+    # conv3: (N, 80, 80, 64) -&gt; (N, 80, 80, 128)
+    conv3 = tf_utils.conv2d(pool2, 4*self.dis_c, k_h=3, k_w=3, d_h=1, d_w=1, name=&apos;conv3_conv1&apos;)
+    conv3 = tf_utils.batch_norm(conv3, name=&apos;conv3_batch1&apos;, _ops=self._dis_train_ops)
+    conv3 = tf.nn.relu(conv3, name=&apos;conv3_relu1&apos;)
+    conv3 = tf_utils.conv2d(conv3, 4*self.dis_c, k_h=3, k_w=3, d_h=1, d_w=1, name=&apos;conv3_conv2&apos;)
+    conv3 = tf_utils.batch_norm(conv3, name=&apos;conv3_batch2&apos;, _ops=self._dis_train_ops)
+    conv3 = tf.nn.relu(conv3, name=&apos;conv3_relu2&apos;)
+    # 最后一层用一个 filter=1 stride=1，output_channel=1
+    # output layer: (N, 80, 80, 128) -&gt; (N, 80, 80, 1)
+    output = tf_utils.conv2d(conv3, 1, k_h=1, k_w=1, d_h=1, d_w=1, name=&apos;conv_output&apos;)
+
+    return tf.nn.sigmoid(output), output
+</code></pre><p>损失函数</p>
+<pre><code># 前面几行意思是，如果是成对的域转换，要把输入域图片和输出域图片concate到一起，输入到鉴别器中鉴别
+self.g_samples = self.generator(self.X)
+self.real_pair = tf.concat([self.X, self.Y], axis=3)
+self.fake_pair = tf.concat([self.X, self.g_samples], axis=3)
+
+d_real, d_logit_real = self.discriminator(self.real_pair)
+d_fake, d_logit_fake = self.discriminator(self.fake_pair, is_reuse=True)
+
+# discrminator loss
+self.d_loss_real = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(
+    logits=d_logit_real, labels=tf.ones_like(d_real)))
+self.d_loss_fake = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(
+    logits=d_logit_fake, labels=tf.zeros_like(d_logit_fake)))
+self.d_loss = self.d_loss_real + self.d_loss_fake
+</code></pre><h1 id="论文原文"><a href="#论文原文" class="headerlink" title="论文原文"></a>论文原文</h1><p><a href="https://blog.csdn.net/Miss_yan/article/details/81317507" target="_blank" rel="noopener">一篇博客对论文原文翻译如下</a></p>
+<p>3.2.2 Markovian discriminiator (PatchGAN)</p>
+<p>L2和L1损失函数有可能在图像生成中造成模糊结果。尽管这些对高频清晰度而言效果较差，但在许多情况下仍能准确地捕获低频。对于这些问题，我们不需要一个全新的网络在低频部分进行纠正。L1已经可以完成了。</p>
+<p>这使得GAN的判别器仅模拟高频结构，依靠L1来强制低频部分的正确性。对于模拟高频，只要将注意力限制在局部图像块中结构就可以了。因此，我们设计了一个判别器结构—我们叫它PatchGAN，只在补丁（patch）范围内对结构进行惩罚。这个判别器尝试在一幅图的每个N×N大小的补丁上进行real or fake的判断。我们在整个图片上运行这个判别器，并对所有的结果取均值，以避免判别器的极端输出。</p>
+<p>在4.4部分，我们说明了N可以比image的尺寸小很多并且仍旧可以产生高质量的结果。<strong>这是有利的，因为一个更小的PatchGAN有更少的参数，运行更快，并且可以在任意大小的图片上运行。</strong></p>
+<p>这种判别器将有效的将图像建立为一个马尔科夫随机场，并假定像素间的独立性大于补丁的直径。[35]以前探讨过这种联系，也是纹理和风格模型的常见假设[15,19,14,23,20,34]。因此我们的PatchGAN也可以理解为一种风格/纹理损失。</p>
 
       
     </div>
@@ -502,7 +538,7 @@
     <strong>Post author: </strong>tiantianwahaha</li>
   <li class="post-copyright-link">
     <strong>Post link:</strong>
-    <a href="https://tiantianwahaha.github.io/2018/12/22/cs231n-Lecture-7-Training-Neural-Networks-part-2.html/" title="cs231n Lecture 7 Training Neural Networks part 2">https://tiantianwahaha.github.io/2018/12/22/cs231n-Lecture-7-Training-Neural-Networks-part-2.html/</a>
+    <a href="https://tiantianwahaha.github.io/2019/03/18/PatchGAN-Discriminator.html/" title="PatchGAN Discriminator">https://tiantianwahaha.github.io/2019/03/18/PatchGAN-Discriminator.html/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice: </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> unless stating additionally.</li>
@@ -515,7 +551,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/cs231n/" rel="tag"># cs231n</a>
+            <a href="/tags/GAN/" rel="tag"># GAN</a>
           
         </div>
       
@@ -528,8 +564,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/21/cs231n-Lecture-6-Training-Neural-Networks-part-I.html/" rel="next" title="cs231n Lecture 6 Training Neural Networks, part I">
-                <i class="fa fa-chevron-left"></i> cs231n Lecture 6 Training Neural Networks, part I
+              <a href="/2019/02/12/Reset-TeamViewer-ID.html/" rel="next" title="Reset TeamViewer ID">
+                <i class="fa fa-chevron-left"></i> Reset TeamViewer ID
               </a>
             
           </div>
@@ -537,10 +573,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/12/22/cs231n-Lecture-9-CNN-Architectures.html/" rel="prev" title="cs231n Lecture 9 CNN Architectures">
-                cs231n Lecture 9 CNN Architectures <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -720,7 +752,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-求梯度下降的方法比较"><span class="nav-text">1.求梯度下降的方法比较</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Model-Ensembles模型集成"><span class="nav-text">2.Model Ensembles模型集成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-正则化"><span class="nav-text">3.正则化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-迁移学习Transfer-learning"><span class="nav-text">4.迁移学习Transfer learning</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#具体结构和实现代码"><span class="nav-text">具体结构和实现代码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#论文原文"><span class="nav-text">论文原文</span></a></li></ol></div>
             
 
           </div>
