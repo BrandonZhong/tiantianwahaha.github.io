@@ -117,7 +117,7 @@
 <meta property="og:description" content="PatchGAN由朱俊彦的pix2pix一文中提出使用，Image-to-Image Translation with Conditional Adversarial Networks 之前的GAN鉴别器，是输入图片，输出一个神经元，判别图片是真还是假，我们可以称为Image GAN 如果鉴别器输入图片，输出的是w×H×1，针对每个像素的真假进行了预测，我们称为Pixel GAN patchGAN">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://tiantianwahaha.github.io/2019/03/18/PatchGAN-Discriminator.html/patchgan.png">
-<meta property="og:updated_time" content="2019-03-18T08:51:05.443Z">
+<meta property="og:updated_time" content="2019-03-19T01:30:07.050Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PatchGAN Discriminator">
 <meta name="twitter:description" content="PatchGAN由朱俊彦的pix2pix一文中提出使用，Image-to-Image Translation with Conditional Adversarial Networks 之前的GAN鉴别器，是输入图片，输出一个神经元，判别图片是真还是假，我们可以称为Image GAN 如果鉴别器输入图片，输出的是w×H×1，针对每个像素的真假进行了预测，我们称为Pixel GAN patchGAN">
@@ -458,10 +458,11 @@
         <p><strong>PatchGAN</strong>由朱俊彦的pix2pix一文中提出使用，<a href="http://openaccess.thecvf.com/content_cvpr_2017/papers/Isola_Image-To-Image_Translation_With_CVPR_2017_paper.pdf" target="_blank" rel="noopener">Image-to-Image Translation with Conditional Adversarial Networks</a></p>
 <p>之前的GAN鉴别器，是输入图片，输出一个神经元，判别图片是真还是假，我们可以称为Image GAN</p>
 <p>如果鉴别器输入图片，输出的是w×H×1，针对每个像素的真假进行了预测，我们称为Pixel GAN</p>
-<p><strong>patchGAN是在两者之间，输出一个30×30×1，每个神经元对应的感受野大小是70×70，我们称为Patch GAN(70x70)。文章中说测试了70在他的实验中表现的好，性能超过Image GAN和Pixel GAN</strong></p>
+<p><strong>patchGAN是在两者之间，输出一个30×30×1，每个神经元对应的感受野大小是70×70，我们称为Patch GAN(70x70)。文章中默认经过三次卷积网络得到输出。文章中说测试了70在他的实验中表现的好，性能超过Image GAN和Pixel GAN</strong></p>
 <p><strong>在文章 作者的源码里最后一层的output_channel=1，filter=4，stride=1，padding=1</strong></p>
 <p><strong>在另一篇文章的patchgan实现中最后一层用一个 filter=1 stride=1，output_channel=1</strong></p>
 <p><strong>在自己的任务中可以看图片大小的具体情况进行设计！！</strong></p>
+<p>注意，文章中鉴别器默认使用了三次卷积网络，同时他是一个域转换的条件GAN，需要同时feed进去input和output的图片，也就是concate到一起输入D.</p>
 <h1 id="具体结构和实现代码"><a href="#具体结构和实现代码" class="headerlink" title="具体结构和实现代码"></a><strong>具体结构和实现代码</strong></h1><p><a href="https://github.com/ChengBinJin/V-GAN-tensorflow" target="_blank" rel="noopener">可以参考github某论文的源码进行学习分析</a>，看他的readme里的网络结构图，看codes/model里损失函数怎么写</p>
 <p>模型结构，供参考，他里面用了下采样</p>
 <p><img src="/2019/03/18/PatchGAN-Discriminator.html/patchgan.png" alt="img"></p>
@@ -583,6 +584,10 @@ self.d_loss = self.d_loss_real + self.d_loss_fake
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2019/03/19/Arbitrary-Style-Transfer-in-Real-time-with-Adaptive-Instance-Normalization.html/" rel="prev" title="Arbitrary Style Transfer in Real-time with Adaptive Instance Normalization">
+                Arbitrary Style Transfer in Real-time with Adaptive Instance Normalization <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -665,7 +670,7 @@ self.d_loss = self.d_loss_real + self.d_loss_fake
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-count">24</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
