@@ -108,38 +108,31 @@
 
 
 
-  <meta name="description" content="RNN Language modeling(RNN)  Image captioning, Soft attention, visual question answering(CNN+RNN) LSTM, GRU   1.RNN循环神经网络:  $x_t$表示t时刻的输入 $h_{t-1}$表示上一时刻的状态 $f_w$是权重，在每一个时间步中使用的W(Notice: the same func">
-<meta name="keywords" content="cs231n">
+  <meta name="description" content="Nvidia 2018.12 提出的新的高清人脸生成模型，在PGGAN的基础上进行的改进。 文章链接 主要思想这项工作提出了关于GAN框架的另一个观点，具体来说他从风格转换网络中得到灵感，改进得到新的生成器架构，在生成的图像中可以学习高级属性（如年龄、在人脸或背景上训练时的身份、相机视角）和随机变化（雀斑、头发细节）。它不仅学习自动分离这些属性，而且还允许我们以非常直观的方式控制合成。 简介 左边">
+<meta name="keywords" content="GAN">
 <meta property="og:type" content="article">
-<meta property="og:title" content="cs231n Lecture 10 Recurrent Neural Networks">
-<meta property="og:url" content="https://tiantianwahaha.github.io/2018/12/24/cs231n-Lecture-10-Recurrent-Neural-Networks.html/index.html">
+<meta property="og:title" content="StyleGAN: A Style-Based Generator Architecture for Generative Adversarial Networks">
+<meta property="og:url" content="https://tiantianwahaha.github.io/2019/03/19/StyleGAN-A-Style-Based-Generator-Architecture-for-Generative-Adversarial-Networks.html/index.html">
 <meta property="og:site_name" content="tiantianwahaha">
-<meta property="og:description" content="RNN Language modeling(RNN)  Image captioning, Soft attention, visual question answering(CNN+RNN) LSTM, GRU   1.RNN循环神经网络:  $x_t$表示t时刻的输入 $h_{t-1}$表示上一时刻的状态 $f_w$是权重，在每一个时间步中使用的W(Notice: the same func">
+<meta property="og:description" content="Nvidia 2018.12 提出的新的高清人脸生成模型，在PGGAN的基础上进行的改进。 文章链接 主要思想这项工作提出了关于GAN框架的另一个观点，具体来说他从风格转换网络中得到灵感，改进得到新的生成器架构，在生成的图像中可以学习高级属性（如年龄、在人脸或背景上训练时的身份、相机视角）和随机变化（雀斑、头发细节）。它不仅学习自动分离这些属性，而且还允许我们以非常直观的方式控制合成。 简介 左边">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://tiantianwahaha.github.io/2018/12/24/cs231n-Lecture-10-Recurrent-Neural-Networks.html/1.png">
-<meta property="og:image" content="https://tiantianwahaha.github.io/2018/12/24/cs231n-Lecture-10-Recurrent-Neural-Networks.html/2.png">
-<meta property="og:image" content="https://tiantianwahaha.github.io/2018/12/24/cs231n-Lecture-10-Recurrent-Neural-Networks.html/3.png">
-<meta property="og:image" content="https://tiantianwahaha.github.io/2018/12/24/cs231n-Lecture-10-Recurrent-Neural-Networks.html/4.png">
-<meta property="og:image" content="https://tiantianwahaha.github.io/2018/12/24/cs231n-Lecture-10-Recurrent-Neural-Networks.html/5.png">
-<meta property="og:image" content="https://tiantianwahaha.github.io/2018/12/24/cs231n-Lecture-10-Recurrent-Neural-Networks.html/6.png">
-<meta property="og:image" content="https://tiantianwahaha.github.io/2018/12/24/cs231n-Lecture-10-Recurrent-Neural-Networks.html/7.png">
-<meta property="og:image" content="https://tiantianwahaha.github.io/2018/12/24/cs231n-Lecture-10-Recurrent-Neural-Networks.html/8.png">
-<meta property="og:image" content="https://tiantianwahaha.github.io/2018/12/24/cs231n-Lecture-10-Recurrent-Neural-Networks.html/9.png">
-<meta property="og:image" content="https://tiantianwahaha.github.io/2018/12/24/cs231n-Lecture-10-Recurrent-Neural-Networks.html/10.png">
-<meta property="og:image" content="https://tiantianwahaha.github.io/2018/12/24/cs231n-Lecture-10-Recurrent-Neural-Networks.html/11.png">
-<meta property="og:image" content="https://tiantianwahaha.github.io/2018/12/24/cs231n-Lecture-10-Recurrent-Neural-Networks.html/12.png">
-<meta property="og:updated_time" content="2018-12-24T08:27:58.000Z">
+<meta property="og:image" content="https://tiantianwahaha.github.io/2019/03/19/StyleGAN-A-Style-Based-Generator-Architecture-for-Generative-Adversarial-Networks.html/model.png">
+<meta property="og:image" content="https://tiantianwahaha.github.io/2019/03/19/StyleGAN-A-Style-Based-Generator-Architecture-for-Generative-Adversarial-Networks.html/AdaIN.png">
+<meta property="og:image" content="https://tiantianwahaha.github.io/2019/03/19/StyleGAN-A-Style-Based-Generator-Architecture-for-Generative-Adversarial-Networks.html/mix.png">
+<meta property="og:image" content="https://tiantianwahaha.github.io/2019/03/19/StyleGAN-A-Style-Based-Generator-Architecture-for-Generative-Adversarial-Networks.html/Truncation.png">
+<meta property="og:image" content="https://tiantianwahaha.github.io/2019/03/19/StyleGAN-A-Style-Based-Generator-Architecture-for-Generative-Adversarial-Networks.html/result.png">
+<meta property="og:updated_time" content="2019-03-20T08:34:11.824Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="cs231n Lecture 10 Recurrent Neural Networks">
-<meta name="twitter:description" content="RNN Language modeling(RNN)  Image captioning, Soft attention, visual question answering(CNN+RNN) LSTM, GRU   1.RNN循环神经网络:  $x_t$表示t时刻的输入 $h_{t-1}$表示上一时刻的状态 $f_w$是权重，在每一个时间步中使用的W(Notice: the same func">
-<meta name="twitter:image" content="https://tiantianwahaha.github.io/2018/12/24/cs231n-Lecture-10-Recurrent-Neural-Networks.html/1.png">
+<meta name="twitter:title" content="StyleGAN: A Style-Based Generator Architecture for Generative Adversarial Networks">
+<meta name="twitter:description" content="Nvidia 2018.12 提出的新的高清人脸生成模型，在PGGAN的基础上进行的改进。 文章链接 主要思想这项工作提出了关于GAN框架的另一个观点，具体来说他从风格转换网络中得到灵感，改进得到新的生成器架构，在生成的图像中可以学习高级属性（如年龄、在人脸或背景上训练时的身份、相机视角）和随机变化（雀斑、头发细节）。它不仅学习自动分离这些属性，而且还允许我们以非常直观的方式控制合成。 简介 左边">
+<meta name="twitter:image" content="https://tiantianwahaha.github.io/2019/03/19/StyleGAN-A-Style-Based-Generator-Architecture-for-Generative-Adversarial-Networks.html/model.png">
 
 
 
 
 
 
-  <link rel="canonical" href="https://tiantianwahaha.github.io/2018/12/24/cs231n-Lecture-10-Recurrent-Neural-Networks.html/">
+  <link rel="canonical" href="https://tiantianwahaha.github.io/2019/03/19/StyleGAN-A-Style-Based-Generator-Architecture-for-Generative-Adversarial-Networks.html/">
 
 
 
@@ -149,7 +142,7 @@
   };
 </script>
 
-  <title>cs231n Lecture 10 Recurrent Neural Networks | tiantianwahaha</title>
+  <title>StyleGAN: A Style-Based Generator Architecture for Generative Adversarial Networks | tiantianwahaha</title>
   
 
 
@@ -365,7 +358,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://tiantianwahaha.github.io/2018/12/24/cs231n-Lecture-10-Recurrent-Neural-Networks.html/">
+    <link itemprop="mainEntityOfPage" href="https://tiantianwahaha.github.io/2019/03/19/StyleGAN-A-Style-Based-Generator-Architecture-for-Generative-Adversarial-Networks.html/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="tiantianwahaha">
@@ -382,7 +375,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">cs231n Lecture 10 Recurrent Neural Networks</h2>
+          <h2 class="post-title" itemprop="name headline">StyleGAN: A Style-Based Generator Architecture for Generative Adversarial Networks</h2>
         
 
         <div class="post-meta">
@@ -394,7 +387,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-24T15:35:38+08:00">2018-12-24</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-19T16:27:53+08:00">2019-03-19</time>
             
 
             
@@ -415,7 +408,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/cs231n/" itemprop="url" rel="index"><span itemprop="name">cs231n</span></a></span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/百篇论文阅读计划/" itemprop="url" rel="index"><span itemprop="name">百篇论文阅读计划</span></a></span>
 
                 
                 
@@ -430,8 +423,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/12/24/cs231n-Lecture-10-Recurrent-Neural-Networks.html/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/12/24/cs231n-Lecture-10-Recurrent-Neural-Networks.html/" itemprop="commentCount"></span>
+                <a href="/2019/03/19/StyleGAN-A-Style-Based-Generator-Architecture-for-Generative-Adversarial-Networks.html/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/03/19/StyleGAN-A-Style-Based-Generator-Architecture-for-Generative-Adversarial-Networks.html/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -466,71 +459,50 @@
       
 
       
-        <ul>
-<li>RNN</li>
-<li>Language modeling(RNN) </li>
-<li>Image captioning, Soft attention, visual question answering(CNN+RNN)</li>
-<li>LSTM, GRU </li>
-</ul>
-<h2 id="1-RNN"><a href="#1-RNN" class="headerlink" title="1.RNN"></a>1.RNN</h2><p>循环神经网络:</p>
-<ul>
-<li>$x_t$表示t时刻的输入</li>
-<li>$h_{t-1}$表示上一时刻的状态</li>
-<li>$f_w$是权重，<strong><code>在每一个时间步中使用的W</code></strong>(Notice: the same function and the same set<br>of parameters are used at every time step.)</li>
-<li>$h_t$是当前的最新状态</li>
-<li>$y$是输出</li>
-</ul>
-<p><img src="/2018/12/24/cs231n-Lecture-10-Recurrent-Neural-Networks.html/1.png" alt=""></p>
-<p>RNN序列示例</p>
-<p><img src="/2018/12/24/cs231n-Lecture-10-Recurrent-Neural-Networks.html/2.png" alt=""></p>
-<p>可以用来做自然语言翻译，序列到序列，多到一 + 一到多的encode和decode模型。</p>
-<p><img src="/2018/12/24/cs231n-Lecture-10-Recurrent-Neural-Networks.html/3.png" alt=""></p>
-<h2 id="2-Language-modeling-RNN"><a href="#2-Language-modeling-RNN" class="headerlink" title="2.Language modeling(RNN)"></a>2.Language modeling(RNN)</h2><p>使用RNN的一个简单字符集语言模型实例。训练输出hello，直接用一个4*1的one hot向量表示h，e，l，o 4个英文字母。测试的时候，<strong>输出层接一个softmax函数，然后在得到的结果中采样输出下一个字符。</strong></p>
-<p><strong>用上一阶段的状态和本阶段输入分别乘以权重w，然后经过tanh等到本阶段状态</strong></p>
-<p>$h_t = tanh(W_{hh}h_{t-1}+W_{xh}x_t)$</p>
-<p><img src="/2018/12/24/cs231n-Lecture-10-Recurrent-Neural-Networks.html/4.png" alt=""></p>
-<hr>
-<p>当尝试训练wiki网页文本的时候，训练一次正向加反向传播需要遍历wiki中所有文本，太耗时了，用近似方法，截断整个序列，分成一部分一部分的，每次训练只反向传播该部分。<a href="https://gist.github.com/karpathy/d4dee566867f8291f086" target="_blank" rel="noopener">min-char-rnn.py代码</a></p>
-<hr>
-<p>还训练了莎士比亚的文章，拓扑学的一本书，linux C源码。都取得了有趣的结果。</p>
-<p>并且根据生成的结果，观察某个神经元的值，发现某些神经元起到了句子开头，缩进等功能。</p>
-<h2 id="3-Image-captioning-Soft-attention-visual-question-answering-CNN-RNN"><a href="#3-Image-captioning-Soft-attention-visual-question-answering-CNN-RNN" class="headerlink" title="3.Image captioning, Soft attention, visual question answering(CNN+RNN)"></a>3.Image captioning, Soft attention, visual question answering(CNN+RNN)</h2><h3 id="（1）image-caption"><a href="#（1）image-caption" class="headerlink" title="（1）image caption"></a>（1）image caption</h3><p><img src="/2018/12/24/cs231n-Lecture-10-Recurrent-Neural-Networks.html/5.png" alt=""></p>
-<p><img src="/2018/12/24/cs231n-Lecture-10-Recurrent-Neural-Networks.html/6.png" alt=""></p>
-<p><img src="/2018/12/24/cs231n-Lecture-10-Recurrent-Neural-Networks.html/7.png" alt=""></p>
-<p>image caption还可以用到软注意力soft attention和硬注意力hard attention</p>
-<p>软注意力：加权组合所有图像位置中的所有特征</p>
-<p>硬注意力：限制每次只选择一个图像位置，不可微，不好训练，要用到增强学习的一些东西。</p>
-<p><img src="/2018/12/24/cs231n-Lecture-10-Recurrent-Neural-Networks.html/8.png" alt=""></p>
-<h3 id="（2）视觉问答"><a href="#（2）视觉问答" class="headerlink" title="（2）视觉问答"></a>（2）视觉问答</h3><p><img src="/2018/12/24/cs231n-Lecture-10-Recurrent-Neural-Networks.html/9.png" alt=""></p>
-<h2 id="4-LSTM"><a href="#4-LSTM" class="headerlink" title="4.LSTM"></a>4.LSTM</h2><p>Vanila RNN反向传播的时候，如果求$h_0$，会乘以很多W，导致梯度爆炸或者梯度消失</p>
-<p>梯度爆炸可以用梯度截断的方法解决，就是设置一个阈值，如果梯度的L2值大于这个阈值，梯度就进行缩减。</p>
-<p>梯度消失，使用新的RNN模型，如LSTM进行解决</p>
-<p><img src="/2018/12/24/cs231n-Lecture-10-Recurrent-Neural-Networks.html/10.png" alt=""></p>
-<hr>
-<p>LSTM模型有两个隐状态，$h_t$（RNN本来就有的）和$C_t$（称为单元状态）</p>
-<p>i，输入门。f，遗忘门。o，输出门。g，门之门</p>
-<p>同样是用上一阶段的状态和本阶段输入分别乘以权重w，但是分别得到i，f，o，g四个值。3个sigmoid值在[0,1]，一个tanh值在[-1,1]。前一时刻的单元状态$c_{t-1}$逐元素乘以遗忘门f，表示之前的记忆哪些需要遗忘（乘以0），哪些需要保留。输入门i逐元素乘以门g（课上的解释是，这个g相当于一个计数器，只能进行加一或者减一）。两者相加得到本时刻的单元状态$C_t$，经过tanh压缩到[0,1]之间，然后乘以输出门o，得到$h_t$</p>
-<p><img src="/2018/12/24/cs231n-Lecture-10-Recurrent-Neural-Networks.html/11.png" alt=""></p>
-<hr>
-<p>与vanila rnn相比。反向传播的时候，遗忘门进行的是逐元素相乘操作，比矩阵相乘好算。同时每个时刻单元里的遗忘门都发生变化，和以前乘以相同的权重w不一样了。梯度直接通过$c_t$像一条高速公路一样传播。</p>
-<p><img src="/2018/12/24/cs231n-Lecture-10-Recurrent-Neural-Networks.html/12.png" alt=""></p>
-<h2 id="5-GRU"><a href="#5-GRU" class="headerlink" title="5.GRU"></a>5.GRU</h2><p>没讲</p>
-<h2 id="6-总结"><a href="#6-总结" class="headerlink" title="6.总结"></a>6.总结</h2><ul>
-<li><p>RNNs allow a lot of flexibility in architecture design</p>
-</li>
-<li><p>Vanilla RNNs are simple but don’t work very well</p>
-</li>
-<li><p>通常使用LSTM或者GRU他们的相互作用改进了梯度流</p>
-<p>Common to use LSTM or GRU: their additive interactions<br>improve gradient flow</p>
-</li>
-<li><p>RNN梯度的反向流动可能发生爆炸或消失。爆炸是由梯度剪切控制的。消失的是加性相互作用(LSTM)控制</p>
-<p>Backward flow of gradients in RNN can explode or vanish.<br>Exploding is controlled with gradient clipping. Vanishing is<br>controlled with additive interactions (LSTM)</p>
-</li>
-<li><p>Better/simpler architectures are a hot topic of current research</p>
-</li>
-<li><p>Better understanding (both theoretical and empirical) is needed.</p>
-</li>
-</ul>
+        <p>Nvidia 2018.12 提出的新的高清人脸生成模型，在PGGAN的基础上进行的改进。</p>
+<p><a href="https://arxiv.org/abs/1812.04948" target="_blank" rel="noopener">文章链接</a></p>
+<h2 id="主要思想"><a href="#主要思想" class="headerlink" title="主要思想"></a>主要思想</h2><p>这项工作提出了关于GAN框架的另一个观点，具体来说他从风格转换网络中得到灵感，改进得到新的生成器架构，在生成的图像中可以学习高级属性（如年龄、在人脸或背景上训练时的身份、相机视角）和随机变化（雀斑、头发细节）。它不仅学习自动分离这些属性，而且还允许我们以非常直观的方式控制合成。</p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><img src="/2019/03/19/StyleGAN-A-Style-Based-Generator-Architecture-for-Generative-Adversarial-Networks.html/model.png" alt="model"></p>
+<p>左边是传统的网络架构，由噪声Z生成图片。右边是提出的新的生成架构，主要是提出了A和B两个模块。</p>
+<p>在PGGAN(Progressive Growing of GANs)的基础上做的改进，生成模型从$4^2$到$1024^2$逐步生成高清图片，每个分辨率对应两个conv，也就是总共18层网络，最后接了一层conv1×1将特征转换为RGB图片。正常的生成模型，是输入噪声<strong>Z</strong>，经过卷积网络生成图片。</p>
+<p>而stylegan设计了一个<strong>Mapping Network</strong>，包括8层全连接层(后面只接了激活函数lrelu，没有正则化)，输入噪声Z，输出为中间隐变量ⱳ，Z和ⱳ以及每层全连接，大小都是512×1。然后ⱳ经过A模块(其实就是单独的一层全连接)，通过AdaIN操作为图片贡献风格控制。加入A，控制了图片的style，姿势，性别，年级等等大的特征。</p>
+<p>在AdaIN模块之前，每个通道都会添加一个缩放的噪声<strong>B</strong>。加入B，控制雀斑，皱纹等细微特征，使图片更加真实，输出更加多样性。</p>
+<p>实验不再从隐变量生成不同的4*4基础图片，而是全都使用 constant values固定值的4×4.</p>
+<h2 id="主要贡献"><a href="#主要贡献" class="headerlink" title="主要贡献"></a>主要贡献</h2><h4 id="1-Mapping-Network映射模块"><a href="#1-Mapping-Network映射模块" class="headerlink" title="1.Mapping Network映射模块"></a>1.Mapping Network映射模块</h4><p>生成模型有18层，所以Z输入Mapping Network，也输出对应的18个ⱳ</p>
+<h4 id="2-Style-Modules-AdaIN-自适应实例归一化"><a href="#2-Style-Modules-AdaIN-自适应实例归一化" class="headerlink" title="2.Style Modules (AdaIN)自适应实例归一化"></a>2.Style Modules (AdaIN)自适应实例归一化</h4><p>这个是另一篇文章提出的，<a href="https://tiantianwahaha.github.io/2019/03/19/Arbitrary-Style-Transfer-in-Real-time-with-Adaptive-Instance-Normalization.html/">我的另一篇博客介绍了</a>。就是把内容图片的每个信道的分布，经过平移和变换到风格图片对应的信道分布上。</p>
+<p><img src="/2019/03/19/StyleGAN-A-Style-Based-Generator-Architecture-for-Generative-Adversarial-Networks.html/AdaIN.png" alt="model"></p>
+<h4 id="3-Removing-traditional-input"><a href="#3-Removing-traditional-input" class="headerlink" title="3.Removing traditional input"></a>3.Removing traditional input</h4><p>就是把生成器的输入变成固定的4*4</p>
+<p>The StyleGAN team found that the image features are controlled by ⱳ and the AdaIN, and therefore the initial input can be omitted and replaced by constant values. </p>
+<p>文章并没有解释为什么，可能是减少了特征纠缠，网络更容易通过 ⱳ来学习，而不依赖于纠缠的输入向量</p>
+<h4 id="4-Stochastic-variation-噪声B引入了随机变化"><a href="#4-Stochastic-variation-噪声B引入了随机变化" class="headerlink" title="4.Stochastic variation 噪声B引入了随机变化"></a>4.Stochastic variation 噪声B引入了随机变化</h4><p>The common method to insert these small features into GAN images is adding random noise to the input vector. However, in many cases it’s tricky to control the noise effect due to the features entanglement phenomenon that was described above, which leads to other features of the image being affected.</p>
+<p>使图像多样性最直接的方法是加入小的随机噪声，但是这会带来features entanglement phenomenon特征纠缠现象，就是加了噪声，会导致其他的图像特征也收影响，本文的加入B的方法，解决了这个问题，同时提出了两个指标来度量features entanglement现象</p>
+<h4 id="5-Style-mixing-风格混合"><a href="#5-Style-mixing-风格混合" class="headerlink" title="5.Style mixing 风格混合"></a>5.Style mixing 风格混合</h4><p><img src="/2019/03/19/StyleGAN-A-Style-Based-Generator-Architecture-for-Generative-Adversarial-Networks.html/mix.png" alt="1553070519872"></p>
+<p>下图展示了这款新型生成器的风格效果。它将隐编码生成的风格（source）叠加在另一种隐编码的风格子集（destination）上。</p>
+<p>对空间分辨率较低（4^2 – 8^2）的层的风格进行叠加的效果见「Coarse styles copied」部分：生成图像从 source 中复制了姿势、大致发型、脸形和眼镜等高级属性，但保留了 destination 图像的所有颜色（眼睛、头发、光线）和细节脸部特征。</p>
+<p>对空间分辨率为 16^2 – 32^2 的层的风格进行叠加的效果见「Middle styles copied」部分：复制了 source 图像的细微面部特征、发型、眼睛睁开的状态，同时保留了 destination 图像的姿势、脸形和眼镜。</p>
+<p>对高分辨率 (64^2 – 1024^2) 的层的风格进行叠加的效果见「Fine styles」：主要保留了 source 图像的颜色和微小特征。</p>
+<h4 id="6-Truncation-trick-in-W"><a href="#6-Truncation-trick-in-W" class="headerlink" title="6.Truncation trick in W"></a>6.Truncation trick in W</h4><p><img src="/2019/03/19/StyleGAN-A-Style-Based-Generator-Architecture-for-Generative-Adversarial-Networks.html/Truncation.png" alt="1553070566605"></p>
+<p>One of the challenges in generative models is dealing with areas that are poorly represented in the training data. The generator isn’t able to learn them and create images that resemble them (and instead creates bad-looking images). To avoid generating poor images, StyleGAN truncates the intermediate vector ⱳ, forcing it to stay close to the “average” intermediate vector.</p>
+<p>After training the model, an “average” ⱳavg is produced by selecting many random inputs; generating their intermediate vectors with the mapping network; and calculating the mean of these vectors. When generating new images, instead of using Mapping Network output directly, ⱳ is transformed into ⱳ_new=ⱳ_avg+𝞧(ⱳ -ⱳ_avg), where the value of 𝞧 defines how far the image can be from the “average” image (and how diverse the output can be). Interestingly, by using a different 𝞧 for each level, before the affine transformation block, the model can control how far from average each set of features is, as shown in the video below.</p>
+<h4 id="7-Fine-tuning"><a href="#7-Fine-tuning" class="headerlink" title="7.Fine-tuning"></a>7.Fine-tuning</h4><p>改进了PGGAN的几个超参数，比如训练时间和损失函数。<strong>and replacing the up/downscaling from nearest neighbors to bilinear sampling</strong>，对模型效果的提升挺重要。</p>
+<h4 id="8-Results"><a href="#8-Results" class="headerlink" title="8.Results"></a>8.Results</h4><p><img src="/2019/03/19/StyleGAN-A-Style-Based-Generator-Architecture-for-Generative-Adversarial-Networks.html/result.png" alt="result"></p>
+<p>展示了在两个数据集上的Frèchet inception distance (<a href="https://arxiv.org/abs/1706.08500" target="_blank" rel="noopener">FID</a>) score</p>
+<h4 id="9-FlickrFaces-HQ（FFHQ）"><a href="#9-FlickrFaces-HQ（FFHQ）" class="headerlink" title="9.FlickrFaces-HQ（FFHQ）"></a>9.FlickrFaces-HQ（FFHQ）</h4><p>创建了一个新的高清人脸数据集，该数据集包含 70000 张分辨率为 1024^2 的高质量图像，其中的图像在年龄、种族、图像背景等方面比 CelebA-HQ具备更宽泛的变化，且涵盖更多配饰，如眼镜、太阳镜、帽子等</p>
+<h2 id="大致算法流程！！！"><a href="#大致算法流程！！！" class="headerlink" title="大致算法流程！！！"></a>大致算法流程！！！</h2><ol>
+<li>同PGGAN(Progressive Growing of GANs)从$4^2$到$1024^2$，每个分辨率对应两个conv，也就是总共18层网络。正常的生成模型，是输入噪声<strong>Z</strong>，经过卷积网络生成图片。</li>
+<li>stylegan设计了一个<strong>Mapping Network</strong>，包括8层全连接层(后面只接了激活函数lrelu，没有正则化)，输出为中间隐变量ⱳ，Z和ⱳ以及每层全连接，大小都是512×1</li>
+<li>假设在resolution分辨率为8的时候，也就是x.shape=[bs,channel,8,8]</li>
+<li>先为x加入噪声，噪声noise就是一个[1,1,8,8]的随机高斯，会现乘以一个权重W[1,1,1,1]，然后直接与x相加 x+noise，也就是X的每个信道都加了相同的噪声</li>
+<li>然后应用偏差<strong>apply_bias</strong>，就是在x的每一个信道加上不同的偏差</li>
+<li>x上应用<strong>激活函数</strong>lrelu</li>
+<li>x的每个信道进行<strong>instance_norm</strong>，确保AdaIN模块的缩放和平移(scaling and shifting)达到预期的效果</li>
+<li>接下来就是<strong>AdaIN</strong>操作。经过Mapping Network学习到18个ⱳ，找到对应8分辨率的这个ⱳ，再经过<strong>A</strong>仿射。其实就是又经过一个单独的全连接层，输入是512，输出是2*channel，分别表示$y_s$和$y_b$,就是用于AdaIN的scale和biase。 X = X×($y_s$+1) + $y_b$,总共bathsize个，每个图片的不同。</li>
+</ol>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://github.com/NVlabs/stylegan" target="_blank" rel="noopener">作者公布的tensorflow源码</a></p>
+<p><a href="https://www.youtube.com/watch?v=kSLJriaOumA&amp;feature=youtu.be" target="_blank" rel="noopener">作者公布的视频，很值得看,介绍了模型的三个贡献</a></p>
+<p><a href="https://towardsdatascience.com/explained-a-style-based-generator-architecture-for-gans-generating-and-tuning-realistic-6cb2be0f431" target="_blank" rel="noopener">参考的博客1，非常详细的介绍和模型图片，本文主要参考翻译了这个博客的部分讲解.Explained: A Style-Based Generator Architecture for GANs - Generating and Tuning Realistic Artificial Faces</a></p>
+<p><a href="https://dtransposed.github.io/blog/Best-of-GANs-2018-(Part-1-out-of-2" target="_blank" rel="noopener">参考的博客2</a>.html)</p>
+<p><a href="https://blog.csdn.net/weixin_33670786/article/details/85152082" target="_blank" rel="noopener">参考的中文博客3，简单介绍了论文中插图讲的什么</a></p>
 
       
     </div>
@@ -552,7 +524,7 @@
     <strong>Post author: </strong>tiantianwahaha</li>
   <li class="post-copyright-link">
     <strong>Post link:</strong>
-    <a href="https://tiantianwahaha.github.io/2018/12/24/cs231n-Lecture-10-Recurrent-Neural-Networks.html/" title="cs231n Lecture 10 Recurrent Neural Networks">https://tiantianwahaha.github.io/2018/12/24/cs231n-Lecture-10-Recurrent-Neural-Networks.html/</a>
+    <a href="https://tiantianwahaha.github.io/2019/03/19/StyleGAN-A-Style-Based-Generator-Architecture-for-Generative-Adversarial-Networks.html/" title="StyleGAN: A Style-Based Generator Architecture for Generative Adversarial Networks">https://tiantianwahaha.github.io/2019/03/19/StyleGAN-A-Style-Based-Generator-Architecture-for-Generative-Adversarial-Networks.html/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice: </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> unless stating additionally.</li>
@@ -565,7 +537,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/cs231n/" rel="tag"># cs231n</a>
+            <a href="/tags/GAN/" rel="tag"># GAN</a>
           
         </div>
       
@@ -578,8 +550,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/22/cs231n-Lecture-9-CNN-Architectures.html/" rel="next" title="cs231n Lecture 9 CNN Architectures">
-                <i class="fa fa-chevron-left"></i> cs231n Lecture 9 CNN Architectures
+              <a href="/2019/03/19/Arbitrary-Style-Transfer-in-Real-time-with-Adaptive-Instance-Normalization.html/" rel="next" title="Arbitrary Style Transfer in Real-time with Adaptive Instance Normalization">
+                <i class="fa fa-chevron-left"></i> Arbitrary Style Transfer in Real-time with Adaptive Instance Normalization
               </a>
             
           </div>
@@ -587,10 +559,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/01/03/Super-FAN-Integrated-facial-landmark-localization-and-super-resolution-of-real-world-low-resolution-faces-in-arbitrary-poses-with-GANS.html/" rel="prev" title="Super-FAN:Integrated facial landmark localization and super-resolution of real-world low resolution faces in arbitrary poses with GANS">
-                Super-FAN:Integrated facial landmark localization and super-resolution of real-world low resolution faces in arbitrary poses with GANS <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -770,7 +738,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-RNN"><span class="nav-text">1.RNN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Language-modeling-RNN"><span class="nav-text">2.Language modeling(RNN)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Image-captioning-Soft-attention-visual-question-answering-CNN-RNN"><span class="nav-text">3.Image captioning, Soft attention, visual question answering(CNN+RNN)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#（1）image-caption"><span class="nav-text">（1）image caption</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#（2）视觉问答"><span class="nav-text">（2）视觉问答</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-LSTM"><span class="nav-text">4.LSTM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-GRU"><span class="nav-text">5.GRU</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-总结"><span class="nav-text">6.总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#主要思想"><span class="nav-text">主要思想</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主要贡献"><span class="nav-text">主要贡献</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Mapping-Network映射模块"><span class="nav-text">1.Mapping Network映射模块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Style-Modules-AdaIN-自适应实例归一化"><span class="nav-text">2.Style Modules (AdaIN)自适应实例归一化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-Removing-traditional-input"><span class="nav-text">3.Removing traditional input</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-Stochastic-variation-噪声B引入了随机变化"><span class="nav-text">4.Stochastic variation 噪声B引入了随机变化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-Style-mixing-风格混合"><span class="nav-text">5.Style mixing 风格混合</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-Truncation-trick-in-W"><span class="nav-text">6.Truncation trick in W</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-Fine-tuning"><span class="nav-text">7.Fine-tuning</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-Results"><span class="nav-text">8.Results</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-FlickrFaces-HQ（FFHQ）"><span class="nav-text">9.FlickrFaces-HQ（FFHQ）</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#大致算法流程！！！"><span class="nav-text">大致算法流程！！！</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-text">参考</span></a></li></div>
             
 
           </div>
