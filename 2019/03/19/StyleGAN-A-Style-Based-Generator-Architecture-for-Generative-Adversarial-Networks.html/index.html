@@ -121,7 +121,7 @@
 <meta property="og:image" content="https://tiantianwahaha.github.io/2019/03/19/StyleGAN-A-Style-Based-Generator-Architecture-for-Generative-Adversarial-Networks.html/mix.png">
 <meta property="og:image" content="https://tiantianwahaha.github.io/2019/03/19/StyleGAN-A-Style-Based-Generator-Architecture-for-Generative-Adversarial-Networks.html/Truncation.png">
 <meta property="og:image" content="https://tiantianwahaha.github.io/2019/03/19/StyleGAN-A-Style-Based-Generator-Architecture-for-Generative-Adversarial-Networks.html/result.png">
-<meta property="og:updated_time" content="2019-03-20T08:34:11.824Z">
+<meta property="og:updated_time" content="2019-03-20T08:49:34.057Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="StyleGAN: A Style-Based Generator Architecture for Generative Adversarial Networks">
 <meta name="twitter:description" content="Nvidia 2018.12 提出的新的高清人脸生成模型，在PGGAN的基础上进行的改进。 文章链接 主要思想这项工作提出了关于GAN框架的另一个观点，具体来说他从风格转换网络中得到灵感，改进得到新的生成器架构，在生成的图像中可以学习高级属性（如年龄、在人脸或背景上训练时的身份、相机视角）和随机变化（雀斑、头发细节）。它不仅学习自动分离这些属性，而且还允许我们以非常直观的方式控制合成。 简介 左边">
@@ -461,14 +461,14 @@
       
         <p>Nvidia 2018.12 提出的新的高清人脸生成模型，在PGGAN的基础上进行的改进。</p>
 <p><a href="https://arxiv.org/abs/1812.04948" target="_blank" rel="noopener">文章链接</a></p>
-<h2 id="主要思想"><a href="#主要思想" class="headerlink" title="主要思想"></a>主要思想</h2><p>这项工作提出了关于GAN框架的另一个观点，具体来说他从风格转换网络中得到灵感，改进得到新的生成器架构，在生成的图像中可以学习高级属性（如年龄、在人脸或背景上训练时的身份、相机视角）和随机变化（雀斑、头发细节）。它不仅学习自动分离这些属性，而且还允许我们以非常直观的方式控制合成。</p>
-<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><img src="/2019/03/19/StyleGAN-A-Style-Based-Generator-Architecture-for-Generative-Adversarial-Networks.html/model.png" alt="model"></p>
+<h1 id="主要思想"><a href="#主要思想" class="headerlink" title="主要思想"></a>主要思想</h1><p>这项工作提出了关于GAN框架的另一个观点，具体来说他从风格转换网络中得到灵感，改进得到新的生成器架构，在生成的图像中可以学习高级属性（如年龄、在人脸或背景上训练时的身份、相机视角）和随机变化（雀斑、头发细节）。它不仅学习自动分离这些属性，而且还允许我们以非常直观的方式控制合成。</p>
+<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p><img src="/2019/03/19/StyleGAN-A-Style-Based-Generator-Architecture-for-Generative-Adversarial-Networks.html/model.png" alt="model"></p>
 <p>左边是传统的网络架构，由噪声Z生成图片。右边是提出的新的生成架构，主要是提出了A和B两个模块。</p>
 <p>在PGGAN(Progressive Growing of GANs)的基础上做的改进，生成模型从$4^2$到$1024^2$逐步生成高清图片，每个分辨率对应两个conv，也就是总共18层网络，最后接了一层conv1×1将特征转换为RGB图片。正常的生成模型，是输入噪声<strong>Z</strong>，经过卷积网络生成图片。</p>
 <p>而stylegan设计了一个<strong>Mapping Network</strong>，包括8层全连接层(后面只接了激活函数lrelu，没有正则化)，输入噪声Z，输出为中间隐变量ⱳ，Z和ⱳ以及每层全连接，大小都是512×1。然后ⱳ经过A模块(其实就是单独的一层全连接)，通过AdaIN操作为图片贡献风格控制。加入A，控制了图片的style，姿势，性别，年级等等大的特征。</p>
 <p>在AdaIN模块之前，每个通道都会添加一个缩放的噪声<strong>B</strong>。加入B，控制雀斑，皱纹等细微特征，使图片更加真实，输出更加多样性。</p>
-<p>实验不再从隐变量生成不同的4*4基础图片，而是全都使用 constant values固定值的4×4.</p>
-<h2 id="主要贡献"><a href="#主要贡献" class="headerlink" title="主要贡献"></a>主要贡献</h2><h4 id="1-Mapping-Network映射模块"><a href="#1-Mapping-Network映射模块" class="headerlink" title="1.Mapping Network映射模块"></a>1.Mapping Network映射模块</h4><p>生成模型有18层，所以Z输入Mapping Network，也输出对应的18个ⱳ</p>
+<p>实验不再从隐变量生成不同的4*4基础图片，而是全都使用 constant values固定值的4×4，源码中全部设为1，以此为基础学习生成高清图片。</p>
+<h1 id="主要贡献"><a href="#主要贡献" class="headerlink" title="主要贡献"></a>主要贡献</h1><h4 id="1-Mapping-Network映射模块"><a href="#1-Mapping-Network映射模块" class="headerlink" title="1.Mapping Network映射模块"></a>1.Mapping Network映射模块</h4><p>生成模型有18层，所以Z输入Mapping Network，也输出对应的18个ⱳ</p>
 <h4 id="2-Style-Modules-AdaIN-自适应实例归一化"><a href="#2-Style-Modules-AdaIN-自适应实例归一化" class="headerlink" title="2.Style Modules (AdaIN)自适应实例归一化"></a>2.Style Modules (AdaIN)自适应实例归一化</h4><p>这个是另一篇文章提出的，<a href="https://tiantianwahaha.github.io/2019/03/19/Arbitrary-Style-Transfer-in-Real-time-with-Adaptive-Instance-Normalization.html/">我的另一篇博客介绍了</a>。就是把内容图片的每个信道的分布，经过平移和变换到风格图片对应的信道分布上。</p>
 <p><img src="/2019/03/19/StyleGAN-A-Style-Based-Generator-Architecture-for-Generative-Adversarial-Networks.html/AdaIN.png" alt="model"></p>
 <h4 id="3-Removing-traditional-input"><a href="#3-Removing-traditional-input" class="headerlink" title="3.Removing traditional input"></a>3.Removing traditional input</h4><p>就是把生成器的输入变成固定的4*4</p>
@@ -488,7 +488,7 @@
 <h4 id="8-Results"><a href="#8-Results" class="headerlink" title="8.Results"></a>8.Results</h4><p><img src="/2019/03/19/StyleGAN-A-Style-Based-Generator-Architecture-for-Generative-Adversarial-Networks.html/result.png" alt="result"></p>
 <p>展示了在两个数据集上的Frèchet inception distance (<a href="https://arxiv.org/abs/1706.08500" target="_blank" rel="noopener">FID</a>) score</p>
 <h4 id="9-FlickrFaces-HQ（FFHQ）"><a href="#9-FlickrFaces-HQ（FFHQ）" class="headerlink" title="9.FlickrFaces-HQ（FFHQ）"></a>9.FlickrFaces-HQ（FFHQ）</h4><p>创建了一个新的高清人脸数据集，该数据集包含 70000 张分辨率为 1024^2 的高质量图像，其中的图像在年龄、种族、图像背景等方面比 CelebA-HQ具备更宽泛的变化，且涵盖更多配饰，如眼镜、太阳镜、帽子等</p>
-<h2 id="大致算法流程！！！"><a href="#大致算法流程！！！" class="headerlink" title="大致算法流程！！！"></a>大致算法流程！！！</h2><ol>
+<h1 id="大致算法流程！！！"><a href="#大致算法流程！！！" class="headerlink" title="大致算法流程！！！"></a>大致算法流程！！！</h1><ol>
 <li>同PGGAN(Progressive Growing of GANs)从$4^2$到$1024^2$，每个分辨率对应两个conv，也就是总共18层网络。正常的生成模型，是输入噪声<strong>Z</strong>，经过卷积网络生成图片。</li>
 <li>stylegan设计了一个<strong>Mapping Network</strong>，包括8层全连接层(后面只接了激活函数lrelu，没有正则化)，输出为中间隐变量ⱳ，Z和ⱳ以及每层全连接，大小都是512×1</li>
 <li>假设在resolution分辨率为8的时候，也就是x.shape=[bs,channel,8,8]</li>
@@ -498,10 +498,10 @@
 <li>x的每个信道进行<strong>instance_norm</strong>，确保AdaIN模块的缩放和平移(scaling and shifting)达到预期的效果</li>
 <li>接下来就是<strong>AdaIN</strong>操作。经过Mapping Network学习到18个ⱳ，找到对应8分辨率的这个ⱳ，再经过<strong>A</strong>仿射。其实就是又经过一个单独的全连接层，输入是512，输出是2*channel，分别表示$y_s$和$y_b$,就是用于AdaIN的scale和biase。 X = X×($y_s$+1) + $y_b$,总共bathsize个，每个图片的不同。</li>
 </ol>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://github.com/NVlabs/stylegan" target="_blank" rel="noopener">作者公布的tensorflow源码</a></p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://github.com/NVlabs/stylegan" target="_blank" rel="noopener">作者公布的tensorflow源码</a></p>
 <p><a href="https://www.youtube.com/watch?v=kSLJriaOumA&amp;feature=youtu.be" target="_blank" rel="noopener">作者公布的视频，很值得看,介绍了模型的三个贡献</a></p>
 <p><a href="https://towardsdatascience.com/explained-a-style-based-generator-architecture-for-gans-generating-and-tuning-realistic-6cb2be0f431" target="_blank" rel="noopener">参考的博客1，非常详细的介绍和模型图片，本文主要参考翻译了这个博客的部分讲解.Explained: A Style-Based Generator Architecture for GANs - Generating and Tuning Realistic Artificial Faces</a></p>
-<p><a href="https://dtransposed.github.io/blog/Best-of-GANs-2018-(Part-1-out-of-2" target="_blank" rel="noopener">参考的博客2</a>.html)</p>
+<p>参考的博客2 <a href="https://dtransposed.github.io/blog/Best-of-GANs-2018-(Part-1-out-of-2).html" target="_blank" rel="noopener">https://dtransposed.github.io/blog/Best-of-GANs-2018-(Part-1-out-of-2).html</a></p>
 <p><a href="https://blog.csdn.net/weixin_33670786/article/details/85152082" target="_blank" rel="noopener">参考的中文博客3，简单介绍了论文中插图讲的什么</a></p>
 
       
@@ -738,7 +738,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#主要思想"><span class="nav-text">主要思想</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主要贡献"><span class="nav-text">主要贡献</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Mapping-Network映射模块"><span class="nav-text">1.Mapping Network映射模块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Style-Modules-AdaIN-自适应实例归一化"><span class="nav-text">2.Style Modules (AdaIN)自适应实例归一化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-Removing-traditional-input"><span class="nav-text">3.Removing traditional input</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-Stochastic-variation-噪声B引入了随机变化"><span class="nav-text">4.Stochastic variation 噪声B引入了随机变化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-Style-mixing-风格混合"><span class="nav-text">5.Style mixing 风格混合</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-Truncation-trick-in-W"><span class="nav-text">6.Truncation trick in W</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-Fine-tuning"><span class="nav-text">7.Fine-tuning</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-Results"><span class="nav-text">8.Results</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-FlickrFaces-HQ（FFHQ）"><span class="nav-text">9.FlickrFaces-HQ（FFHQ）</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#大致算法流程！！！"><span class="nav-text">大致算法流程！！！</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-text">参考</span></a></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#主要思想"><span class="nav-text">主要思想</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#主要贡献"><span class="nav-text">主要贡献</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Mapping-Network映射模块"><span class="nav-text">1.Mapping Network映射模块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Style-Modules-AdaIN-自适应实例归一化"><span class="nav-text">2.Style Modules (AdaIN)自适应实例归一化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-Removing-traditional-input"><span class="nav-text">3.Removing traditional input</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-Stochastic-variation-噪声B引入了随机变化"><span class="nav-text">4.Stochastic variation 噪声B引入了随机变化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-Style-mixing-风格混合"><span class="nav-text">5.Style mixing 风格混合</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-Truncation-trick-in-W"><span class="nav-text">6.Truncation trick in W</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-Fine-tuning"><span class="nav-text">7.Fine-tuning</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-Results"><span class="nav-text">8.Results</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-FlickrFaces-HQ（FFHQ）"><span class="nav-text">9.FlickrFaces-HQ（FFHQ）</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#大致算法流程！！！"><span class="nav-text">大致算法流程！！！</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-text">参考</span></a></li></div>
             
 
           </div>
